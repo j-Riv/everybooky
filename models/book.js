@@ -31,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
         models.Book.hasMany(models.Post)
     };
     // Book.associate = function(models) {
-    //     Book.belongsTo(models.User, {
+    //     Book.belongsTo(models.Author, {
     //         onDelete: "CASCADE",
     //         foreignKey: {
     //             allowNull: false
