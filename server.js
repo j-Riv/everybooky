@@ -18,14 +18,14 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // For Passport
-// session secret
+// Session secret
 app.use(session({
     secret: 'keybaord cat',
     resave: true,
     saveUninitalized: true
 }));
 app.use(passport.initialize());
-// persistent login sessions
+// Persistent login sessions
 app.use(passport.session());
 
 // Handlebars
@@ -37,7 +37,7 @@ app.engine(
 );
 app.set('view engine', 'handlebars');
 
-// place this middleware before any other route definitions
+// Place this middleware before any other route definitions
 // makes io available as req.io in all request handlers
 app.use(function(req, res, next) {
     req.io = io;
@@ -49,7 +49,7 @@ const authRoute = require('./routes/auth.js')(app, passport);
 require("./routes/apiRoutes")(app, passport);
 // require("./routes/htmlRoutes")(app);
 
-//load passport strategies
+// Load passport strategies
 require('./config/passport/passport.js')(passport, models.user);
 
 const syncOptions = { force: false };

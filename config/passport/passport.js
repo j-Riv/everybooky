@@ -4,16 +4,19 @@ module.exports = function(passport, user) {
     const User = user;
     const LocalStrategy = require('passport-local').Strategy;
 
+    // local sign up
     passport.use('local-signup', new LocalStrategy({
+            // declare what req fields to use
             usernameField: 'email',
             passwordField: 'password',
             passReqToCallback: true // allows us to pass back the entire request to the callback
         },
         function(req, email, password, done) {
+            // generates hash from password
             let generateHash = function(password) {
-                return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
-            }
-
+                    return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
+                }
+                // check to see if user already exists if not add them
             User.findOne({
                 where: {
                     email: email
@@ -60,9 +63,9 @@ module.exports = function(passport, user) {
         function(req, email, password, done) {
             const User = user;
             const isValidPassword = function(userpass, password) {
-                return bCrypt.compareSync(password, userpass);
-            }
-
+                    return bCrypt.compareSync(password, userpass);
+                }
+                // check to see if user already exists
             User.findOne({
                 where: {
                     email: email
