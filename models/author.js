@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    var User = sequelize.define("User", {
+    var Author = sequelize.define("Author", {
         username: {
             type: DataTypes.STRING(20),
             allowNull: false,
@@ -10,19 +10,19 @@ module.exports = function (sequelize, DataTypes) {
     }, {
             freezeTableName: true
         });
-    User.associate = function (models) {
-        models.User.hasMany(models.Book);
+    Author.associate = function (models) {
+        models.Author.hasMany(models.Book);
     };
-    User.associate = function (models) {
-        models.User.hasMany(models.Post);
+    Author.associate = function (models) {
+        models.Author.hasMany(models.Post);
     };
-    User.associate = function (models) {
-        User.belongsTo(models.Book, {
+    Author.associate = function (models) {
+        Author.belongsTo(models.Book, {
             onDelete: "CASCADE",
             foreignKey: {
                 allowNull: false
             }
         });
     };
-    return User;
+    return Author;
 };

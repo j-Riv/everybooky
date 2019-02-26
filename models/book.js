@@ -20,13 +20,13 @@ module.exports = function (sequelize, DataTypes) {
             freezeTableName: true
         });
     Book.associate = function (models) {
-        models.Book.hasMany(models.User);
+        models.Book.hasMany(models.Author);
     };
     Book.associate = function (models) {
         models.Book.hasMany(models.Post)
     };
     Book.associate = function (models) {
-        Book.belongsTo(models.User, {
+        Book.belongsTo(models.Author, {
             onDelete: "CASCADE",
             foreignKey: {
                 allowNull: false
