@@ -1,4 +1,13 @@
 module.exports = {
+    login: function(req, res) {
+        if (req.isAuthenticated()) {
+            res.render('form', {
+                id: req.user.id
+            });
+        } else {
+            res.render('login');
+        }
+    },
     signup: function(req, res) {
         res.render('signup');
     },
