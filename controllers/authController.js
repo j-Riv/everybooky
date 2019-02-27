@@ -1,24 +1,25 @@
 module.exports = {
     homepage: function(req, res) {
-        res.render('homepage', { loggedIn: req.isAuthenticated() });
+        res.render('homepage', {
+            title: 'Homepage',
+            loggedIn: req.isAuthenticated()
+        });
     },
     login: function(req, res) {
         if (req.isAuthenticated()) {
             res.render('form', {
+                title: 'Form',
                 id: req.user.id
             });
         } else {
-            res.render('login');
+            res.render('login', {
+                title: 'Log In / Sign Up'
+            });
         }
-    },
-    signup: function(req, res) {
-        res.render('signup');
-    },
-    signin: function(req, res) {
-        res.render('signin');
     },
     dashboard: function(req, res) {
         res.render('dashboard', {
+            title: 'Dashboard',
             id: req.user.id,
             loggedIn: req.isAuthenticated()
         });
@@ -34,6 +35,8 @@ module.exports = {
         });
     },
     book: function(req, res) {
-        res.render('book');
+        res.render('book', {
+            title: 'Book'
+        });
     }
 }
