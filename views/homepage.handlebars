@@ -28,106 +28,50 @@
         <div class="dropdown"><button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
                 aria-expanded="false" type="button"
                 style="background-color: rgba(255,255,255,0.4);color: rgb(157,157,157);">Sort By</button>
-            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First
-                    Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a
-                    class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+            <div class="dropdown-menu" role="menu">
+                <a class="dropdown-item" role="presentation" href="#compBooks" aria-controls="completeBooks" aria-selected="true">Popular</a>
+                <a class="dropdown-item" role="presentation" href="#progBooks" aria-controls="progBooks" aria-selected="false">In Progress</a>
+                <a class="dropdown-item" role="presentation" href="#">Genre</a>
+            </div>
         </div>
-        <div class="row" style="margin-bottom: 0px;">
-            <div class="col-md-3 mb-3">
-                <div class="card"></div>
-                <div class="card"><img class="card-img w-100 d-block" src="public/images/book-1.jpg">
-                    <div class="card-img-overlay">
-                        <h4 style="color: rgb(249,252,255);font-family: Anton, sans-serif;">I'm Not Like The Other Lamps
-                        </h4>
-                        <p style="color: rgb(255,255,255);font-family: Anton, sans-serif;">Author Name</p>
+
+        <div class="row" id="compBooks">
+            <div class="tab-content">
+                <div class="tab-pane" id="compBooks">
+                    {{#each booksObj}}
+                    <!-- Displays all completed books-->
+                    {{#if completed}}
+                    <div class="col-md-3 mb-3" id="{{this.id}}">
+                        <div class="card book">
+                            <img src="{{this.imgUrl}}" alt="{{this.imgUrl}}" class="card-img w-100 d-block">
+                            <div class="card-img-overlay">
+                                <h4>{{this.title}}</h4>
+                            </div>
+                        </div>
                     </div>
+                    {{/if}}
+                    {{/each}}
                 </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <div class="card"><img class="card-img w-100 d-block" src="public/images/book-3.png">
-                    <div class="card-img-overlay">
-                        <h3 class="text-center"
-                            style="margin: 204px 50px 2px;font-family: Aldrich, sans-serif;font-size: 30px;width: 115px;height: 30px;color: rgb(255,255,255);margin-top: 118px;">
-                            PlanetCream Cheese</h3>
-                        <p class="text-center"
-                            style="margin: 96px 50px 50px;margin-top: 168px;color: rgb(255,255,255);font-family: Aldrich, sans-serif;font-size: 22px;">
-                            Author Name</p>
+                <div class="tab-pane" id="progBooks">
+                    {{#each}}
+                    <!-- Displays all books in progress-->
+                    {{#unless completed}}
+                    <div class="col-md-3 mb-3" id="{{this.id}}">
+                        <div class="card book">
+                            <img src="{{this.imgUrl}}" alt="{{this.imgUrl}}" class="card-img w-100 d-block">
+                            <div class="card-img-overlay">
+                                <h4>{{this.title}}</h4>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <div class="card" style="margin: 0;"><img class="card-img w-100 d-block" src="public/images/book-4.jpg">
-                    <div class="card-img-overlay">
-                        <h1 style="font-family: Adamina, serif;width: 221px;margin-top: 4px;margin-left: 8px;">Lost In
-                            My Backyard</h1>
-                        <p
-                            style="margin: 55px;width: 121px;font-family: Adamina, serif;margin-top: 272px;color: rgb(253,254,255);">
-                            Author Name</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <div class="card"><img class="card-img w-100 d-block" src="public/images/book-5.jpg">
-                    <div class="card-img-overlay">
-                        <h1 class="text-center" style="color: rgb(255,255,255);font-family: 'Alex Brush', cursive;">Full
-                            Moon Buffoon</h1>
-                        <p class="text-center"
-                            style="font-family: Allerta, sans-serif;margin: 100px;width: 63px;height: 69px;margin-left: 78px;">
-                            Author Name</p>
-                    </div>
+                    {{/unless}}
+                    {{/each}}
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-3 mb-3">
-                <div class="card"></div>
-                <div class="card"><img class="card-img w-100 d-block" src="public/images/book-6.jpg">
-                    <div class="card-img-overlay" style="margin-bottom: 30px;">
-                        <h4 class="text-center"
-                            style="color: rgb(249,252,255);font-family: Aclonica, sans-serif;margin-top: 66px;">Bad
-                            Bathroom Renovations</h4>
-                        <p class="text-center"
-                            style="color: rgb(255,255,255);font-family: Anton, sans-serif;margin-left: -2px;margin-top: 181px;font-size: 35px;">
-                            Author Name</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <div class="card"><img class="card-img w-100 d-block" src="public/images/book-7.jpg">
-                    <div class="card-img-overlay">
-                        <h3 class="text-center"
-                            style="margin: 204px 50px 2px;font-family: Allerta, sans-serif;font-size: 30px;width: 115px;height: 30px;color: rgb(255,255,255);margin-top: -2px;margin-bottom: 30px;">
-                            How to Hide From The IRS</h3>
-                        <p class="text-center" style="margin: 96px 50px 50px;margin-top: 316px;">Author Name</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <div class="card" style="margin: 0;"><img class="card-img w-100 d-block" src="public/images/book-8.jpg">
-                    <div class="card-img-overlay">
-                        <p style="margin: 56px;width: 121px;font-family: Adamina, serif;color: rgb(255,255,255);">Author
-                            Name</p>
-                        <h1 style="font-family: Adamina, serif;width: 221px;color: rgb(255,255,255);">Literally Grass
-                        </h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <div class="card"><img class="card-img w-100 d-block" src="public/images/book-2.jpg"
-                        style="height: 453px;">
-                    <div class="card-img-overlay">
-                        <h1 class="text-center" style="color: rgb(255,255,255);font-family: 'Alex Brush', cursive;">
-                            Mystic Bitch</h1>
-                        <p class="text-center"
-                            style="font-family: Allerta, sans-serif;margin: 100px;width: 63px;height: 69px;color: rgb(255,255,255);">
-                            Author Name</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </div>
 </div>
-
 {{> footer}}
 
 {{> login-modal}}
