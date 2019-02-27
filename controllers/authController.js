@@ -10,6 +10,11 @@ module.exports = {
             id: req.user.id
         });
     },
+    form: function(req, res) {
+        res.render('form', {
+            id: req.user.id
+        });
+    },
     logout: function(req, res) {
         req.session.destroy(function(err) {
             res.redirect('/');
