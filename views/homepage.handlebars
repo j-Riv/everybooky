@@ -1,17 +1,4 @@
-<div>
-    <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
-        <div class="container"><a class="navbar-brand" href="#">Everybooky</a><button class="navbar-toggler"
-                data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
-                    class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav mr-auto"></ul><span class="navbar-text actions"> <a href="#" class="login"
-                        data-toggle="modal" data-target="#loginModalCenter">Log
-                        In</a><a class="btn btn-light action-button" role="button" href="/login"
-                        style="background-color: rgb(90,218,255);">Sign Up</a></span>
-            </div>
-        </div>
-    </nav>
-</div>
+{{> header}}
 <div class="article-list">
     <div class="container">
         <div class="intro">
@@ -85,47 +72,6 @@
 
     </div>
 </div>
-</div>
-<div class="footer-basic">
-    <footer>
-        <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i
-                    class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a
-                href="#"><i class="icon ion-social-facebook"></i></a></div>
-        <ul class="list-inline">
-            <li class="list-inline-item"><a href="#">Home</a></li>
-            <li class="list-inline-item"><a href="#">Services</a></li>
-            <li class="list-inline-item"><a href="#">About</a></li>
-            <li class="list-inline-item"><a href="#">Terms</a></li>
-            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
-        </ul>
-        <p class="copyright">Everybooky © 2019</p>
-    </footer>
-</div>
-<!-- Start: Modal -->
-<div class="modal fade" id="loginModalCenter" tabindex="-1" role="dialog" aria-labelledby="loginCenterTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-center" id="loginCenterTitle">Log In</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="signin" name="signin" method="post" action="signin">
-                    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email">
-                    </div>
-                    <div class="form-group"><input class="form-control" type="password" name="password"
-                            placeholder="Password">
-                    </div>
-                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit"
-                            style="background-color: rgb(2,164,211);">Sign In</button></div><a href="/"
-                        class="already">Don't have an
-                        account? Sign Up here.</a>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End: Modal -->
+{{> footer}}
+
+{{> login-modal}}
