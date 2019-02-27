@@ -31,5 +31,8 @@ module.exports = {
         req.session.destroy(function(err) {
             res.redirect('/');
         });
+    },
+    book: function(req, res) {
+        res.render('book');
     }
 }
