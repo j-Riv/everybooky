@@ -1,5 +1,10 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
     var Book = sequelize.define("Book", {
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+        },
         title: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -17,21 +22,21 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         },
     }, {
-            freezeTableName: true
-        });
-    Book.associate = function (models) {
+        freezeTableName: true
+    });
+    Book.associate = function(models) {
         models.Book.hasMany(models.Author);
     };
-    Book.associate = function (models) {
+    Book.associate = function(models) {
         models.Book.hasMany(models.Post)
     };
-    Book.associate = function (models) {
-        Book.belongsTo(models.Author, {
-            onDelete: "CASCADE",
-            foreignKey: {
-                allowNull: false
-            }
-        });
-    };
+    // Book.associate = function(models) {
+    //     Book.belongsTo(models.Author, {
+    //         onDelete: "CASCADE",
+    //         foreignKey: {
+    //             allowNull: false
+    //         }
+    //     });
+    // };
     return Book;
 };

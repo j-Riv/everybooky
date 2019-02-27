@@ -1,24 +1,17 @@
-var db = require("../models");
+const apiController = require('../controllers/apiController.js');
 
-module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
-    });
-  });
+module.exports = function(app, passport) {
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
+    app.get('/api/books', apiController.getBooks);
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
+    app.post('/api/books', apiController.createBook);
+
+    app.put('/api/books/:id', apiController.updateBook);
+
+    app.delete('/api/books/:id', apiController.deleteBook);
+
+    function isLoggedIn(req, res, next) {
+        if (req.isAuthenticated()) return next();
+        res.status(403).end();
+    }
 };

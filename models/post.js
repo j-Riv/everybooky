@@ -1,4 +1,4 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
     var Post = sequelize.define("Post", {
         body: {
             type: DataTypes.TEXT,
@@ -6,9 +6,9 @@ module.exports = function (sequelize, DataTypes) {
             len: [1]
         }
     }, {
-            freezeTableName: true
-        });
-    Post.associate = function (models) {
+        freezeTableName: true
+    });
+    Post.associate = function(models) {
         Post.belongsTo(models.Book, {
             onDelete: "CASCADE",
             foreignKey: {

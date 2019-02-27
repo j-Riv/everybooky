@@ -1,4 +1,4 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
     var Author = sequelize.define("Author", {
         username: {
             type: DataTypes.STRING(20),
@@ -8,21 +8,21 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
     }, {
-            freezeTableName: true
-        });
-    Author.associate = function (models) {
+        freezeTableName: true
+    });
+    Author.associate = function(models) {
         models.Author.hasMany(models.Book);
     };
-    Author.associate = function (models) {
+    Author.associate = function(models) {
         models.Author.hasMany(models.Post);
     };
-    Author.associate = function (models) {
-        Author.belongsTo(models.Book, {
-            onDelete: "CASCADE",
-            foreignKey: {
-                allowNull: false
-            }
-        });
-    };
+    // Author.associate = function(models) {
+    //     Author.belongsTo(models.Book, {
+    //         onDelete: "CASCADE",
+    //         foreignKey: {
+    //             allowNull: false
+    //         }
+    //     });
+    // };
     return Author;
 };
