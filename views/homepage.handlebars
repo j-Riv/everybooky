@@ -8,7 +8,7 @@
         <div class="row articles">
             <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="public/images/desk.jpg"></a>
                 <h3 class="name">Ideas</h3>
-                <p class="description">Have an idea for a story? You can create a new book with others who share the
+                <p class="description">Have an idea for a story? Create a new book with others who share the
                     same ideas!</p>
             </div>
             <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="public/images/building.jpg"></a>
@@ -25,17 +25,20 @@
 </div>
 <div>
     <div class="container">
-        <div class="dropdown"><button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                aria-expanded="false" type="button"
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"
                 style="background-color: rgba(255,255,255,0.4);color: rgb(157,157,157);">Sort By</button>
             <div class="dropdown-menu" role="menu">
-                <a class="dropdown-item" role="presentation" href="#compBooks" aria-controls="completeBooks" aria-selected="true">Popular</a>
-                <a class="dropdown-item" role="presentation" href="#progBooks" aria-controls="progBooks" aria-selected="false">In Progress</a>
+                <a class="dropdown-item" role="presentation" href="#compBooks" aria-controls="completeBooks"
+                    aria-selected="true">Popular</a>
+                <a class="dropdown-item" role="presentation" href="#progBooks" aria-controls="progBooks"
+                    aria-selected="false">In Progress</a>
                 <a class="dropdown-item" role="presentation" href="#">Genre</a>
+                <!-- need to add dropdown when selected for genres-->
             </div>
         </div>
 
-        <div class="row" id="compBooks">
+        <div class="row" id="books">
             <div class="tab-content">
                 <div class="tab-pane" id="compBooks">
                     {{#each booksObj}}
@@ -53,7 +56,7 @@
                     {{/each}}
                 </div>
                 <div class="tab-pane" id="progBooks">
-                    {{#each}}
+                    {{#each booksObj}}
                     <!-- Displays all books in progress-->
                     {{#unless completed}}
                     <div class="col-md-3 mb-3" id="{{this.id}}">
@@ -67,6 +70,7 @@
                     {{/unless}}
                     {{/each}}
                 </div>
+                <!-- Missing genres tab pane -->
             </div>
         </div>
 
