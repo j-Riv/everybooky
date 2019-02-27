@@ -17,7 +17,8 @@ module.exports = {
         models.Book.create({
             title: book.title,
             body: book.body,
-            text_limit: book.text_limit
+            text_limit: book.text_limit,
+            genre: book.genre
         }).then(result => {
             // res.redirect('/');
             // return res.status(200).end();
