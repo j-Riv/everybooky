@@ -1,0 +1,5 @@
+{{#if loggedIn}}
+    {{> user-nav}}
+{{else}}
+    {{> nav signupLink = '/login'}}
+{{/if}}

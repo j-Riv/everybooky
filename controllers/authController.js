@@ -1,6 +1,6 @@
 module.exports = {
     homepage: function(req, res) {
-        res.render('homepage');
+        res.render('homepage', { loggedIn: req.isAuthenticated() });
     },
     login: function(req, res) {
         if (req.isAuthenticated()) {
@@ -19,7 +19,8 @@ module.exports = {
     },
     dashboard: function(req, res) {
         res.render('dashboard', {
-            id: req.user.id
+            id: req.user.id,
+            loggedIn: req.isAuthenticated()
         });
     },
     form: function(req, res) {
