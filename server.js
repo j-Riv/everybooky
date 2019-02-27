@@ -46,7 +46,7 @@ app.use(function(req, res, next) {
 
 // Routes
 const authRoute = require('./routes/auth.js')(app, passport);
-require("./routes/apiRoutes")(app, passport);
+require('./routes/apiRoutes')(app, passport);
 // require("./routes/htmlRoutes")(app);
 
 // Load passport strategies
