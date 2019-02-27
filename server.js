@@ -1,47 +1,74 @@
-require("dotenv").config();
-var express = require("express");
-var exphbs = require("express-handlebars");
+require('dotenv').config();
+const express = require('express');
+const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+const passport = require('passport');
+const session = require('express-session');
+const env = require('dotenv').load();
+const exphbs = require('express-handlebars');
 
-var db = require("./models");
+const models = require('./models');
 
-var app = express();
-var PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static('public'));
+
+// For Passport
+// Session secret
+app.use(session({
+    secret: 'keybaord cat',
+    resave: true,
+    saveUninitalized: true
+}));
+app.use(passport.initialize());
+// Persistent login sessions
+app.use(passport.session());
 
 // Handlebars
 app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
-  })
+    'handlebars',
+    exphbs({
+        defaultLayout: 'main'
+    })
 );
-app.set("view engine", "handlebars");
+app.set('view engine', 'handlebars');
+
+// Place this middleware before any other route definitions
+// makes io available as req.io in all request handlers
+app.use(function(req, res, next) {
+    req.io = io;
+    next();
+});
 
 // Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+const authRoute = require('./routes/auth.js')(app, passport);
+require('./routes/apiRoutes')(app, passport);
+// require("./routes/htmlRoutes")(app);
 
-var syncOptions = { force: false };
+// Load passport strategies
+require('./config/passport/passport.js')(passport, models.user);
+
+const syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
-if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
+if (process.env.NODE_ENV === 'test') {
+    syncOptions.force = true;
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
-  });
+models.sequelize.sync(syncOptions).then(function() {
+    http.listen(PORT, function() {
+        console.log(
+            '==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.',
+            PORT,
+            PORT
+        );
+    });
 });
 
 module.exports = app;
