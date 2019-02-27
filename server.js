@@ -7,6 +7,7 @@ const passport = require('passport');
 const session = require('express-session');
 const env = require('dotenv').load();
 const exphbs = require('express-handlebars');
+const path = require('path');
 
 const models = require('./models');
 
@@ -15,7 +16,8 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.static('public'));
+app.use('/public', express.static('public'));
+// app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // For Passport
 // Session secret
