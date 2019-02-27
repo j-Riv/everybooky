@@ -1,4 +1,7 @@
 module.exports = {
+    homepage: function(req, res) {
+        res.render('homepage');
+    },
     login: function(req, res) {
         if (req.isAuthenticated()) {
             res.render('form', {
