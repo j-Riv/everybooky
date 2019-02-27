@@ -16,6 +16,16 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: false
         },
+        genre: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        views: {
+            type: DataTypes.INTEGER,
+        },
+        rating: {
+            type: DataTypes.INTEGER,
+        },
     }, {
             freezeTableName: true
         });

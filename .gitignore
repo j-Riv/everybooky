@@ -28,3 +28,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Wii Fat delete this at end
+/config/config.json
+package-lock.json
