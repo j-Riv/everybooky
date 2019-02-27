@@ -25,4 +25,6 @@ module.exports = function(app, passport) {
         res.redirect('/signin');
     }
 
+    app.get('/form', authController.form);
+
 };
