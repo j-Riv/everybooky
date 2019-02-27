@@ -25,12 +25,20 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
+        imageUrl: {
+            type: DataTypes.STRING,
+        },
         views: {
             type: DataTypes.INTEGER,
         },
         rating: {
             type: DataTypes.INTEGER,
         },
+        completed: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
+        }
     }, {
         freezeTableName: true
     });
