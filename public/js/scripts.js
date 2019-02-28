@@ -34,8 +34,42 @@ if (document.getElementById("confirmPassword")) {
     confirm_password.onkeyup = validatePassword;
 }
 
+// scroll to element
 $('#viewTeam').click(function() {
     $('html, body').animate({
         scrollTop: $('#theTeam').offset().top
     }, 2000);
+});
+
+// socket.io
+$(function() {
+    var socket = io();
+
+    $('#addLine').on('click', function(e) {
+        e.preventDefault();
+        const theLine = {
+            line: $('#line').val().trim()
+        }
+        console.log('Line: ' + $('#line').val().trim());
+        socket.emit('added line', $('#line').val().trim());
+        $.ajax('/api/book/post', {
+            type: 'POST',
+            data: theLine
+        }).then(
+            function(result) {
+                console.log('response from server:' + result);
+            }
+        );
+        $('#line').val('');
+        return false;
+    });
+
+    //get changes
+    socket.on('added line', function(theLine) {
+        console.log('added line: ' + theLine.line);
+        let content = `
+                <span>${theLine.line}</span>
+            `;
+        $('#bookContent').append(content);
+    });
 });

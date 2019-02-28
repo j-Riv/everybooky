@@ -6,11 +6,14 @@ module.exports = function(app, passport) {
 
     app.get('/api/books/:title', apiController.searchBook)
 
-    app.post('/api/books', apiController.createBook);
+    app.post('/api/book', apiController.createBook);
 
-    app.put('/api/books/:id', apiController.updateBook);
+    app.put('/api/book/:id', apiController.updateBook);
 
-    app.delete('/api/books/:id', apiController.deleteBook);
+    app.delete('/api/book/:id', apiController.deleteBook);
+
+    // posts
+    app.post('/api/book/post', apiController.addPost);
 
     function isLoggedIn(req, res, next) {
         if (req.isAuthenticated()) return next();

@@ -17,6 +17,8 @@ module.exports = function(app, passport) {
 
     app.get('/book', authController.book);
 
+    app.get('/book/:id', authController.editBook);
+
     app.get('/logout', authController.logout);
 
     app.post('/signin', passport.authenticate('local-signin', {
