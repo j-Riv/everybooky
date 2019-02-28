@@ -34,6 +34,7 @@ if (document.getElementById("confirmPassword")) {
     confirm_password.onkeyup = validatePassword;
 }
 
+// scroll to element
 $('#viewTeam').click(function() {
     $('html, body').animate({
         scrollTop: $('#theTeam').offset().top
