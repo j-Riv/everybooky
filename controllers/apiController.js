@@ -24,7 +24,7 @@ module.exports = {
         });
     },
     searchAuthor: function(req, res) {
-        models.Author.findAll({where: {username: req.body.name}}).then(results => {
+        models.Author.findAll({ where: { username: req.body.name } }).then(results => {
             let author = {
                 name: results
             }
@@ -50,6 +50,7 @@ module.exports = {
             }
             console.log('added book: ');
             console.log(bookObj);
+            return res.status(200).end();
             // req.io.emit('added book', bookObj);
         }).catch(error => {
             console.error(error);

@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    const User = sequelize.define('user', {
+    const User = sequelize.define('User', {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -37,6 +37,13 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: 'active'
         }
     });
+
+    User.associate = function(models) {
+        models.User.hasMany(models.Book);
+    };
+    User.associate = function(models) {
+        models.User.hasMany(models.Post);
+    };
 
     return User;
 }

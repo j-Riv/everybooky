@@ -49,19 +49,27 @@ module.exports = {
     },
     editBook: function(req, res) {
         let id = req.params.id;
+        let book;
+        // get book information
+        models.Book.findOne({}).then(result => {
+            book = result;
+        }).catch(error => {
+            console.error(error);
+        });
+        // get posts 
         models.Post.findAll({
             where: {
                 BookId: id
             }
-        }).then(results => {
-            const postsObj = {
-                posts: results
-            };
-            console.log(postsObj);
+        }).then(posts => {
+            console.log(posts);
             res.render('book', {
                 id: id,
                 title: 'Book',
-                posts: results
+                bookTitle: book.title,
+                description: book.body,
+                genre: book.genre,
+                posts: posts
             });
         }).catch(error => {
             console.error(error);

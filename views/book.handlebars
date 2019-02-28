@@ -2,14 +2,15 @@
 
 <div class="container">
     <div class="jumbotron">
-        <h1 class="display-4">Name of Book Will Go Here</h1>
-        <p class="lead">Content will be displayed here</p>
+        <h1 class="display-4">{{bookTitle}}</h1>
+        <p class="lead">{{description}}</p>
+        <hr class="my-4">
+        <!-- the posts -->
         <div id="bookContent">
             {{#each posts}}
             <span>{{this.body}}</span>
             {{/each}}
         </div>
-        <hr class="my-4">
         {{!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> --}}
         <p>
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
