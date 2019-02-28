@@ -4,40 +4,65 @@
         <div class="intro">
             <h2 class="text-center">Welcome to Everybooky!</h2>
             <p class="text-center">Write together and share forever.</p>
+            <div class="d-flex justify-content-center">
+                <i class="fas fa-chevron-circle-down" data-toggle="collapse" data-target="#about" aria-expanded="false"
+                    aria-controls="about" style="font-size: 1.5rem"></i>
+            </div>
         </div>
-        <div class="row articles">
-            <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="public/images/desk.jpg"></a>
-                <h3 class="name">Ideas</h3>
-                <p class="description">Have an idea for a story? You can create a new book with others who share the
-                    same ideas!</p>
-            </div>
-            <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="public/images/building.jpg"></a>
-                <h3 class="name">Collaborate</h3>
-                <p class="description">This allows people to write along with you on your new book; line for line. The
-                    stories can get pretty crazy!</p>
-            </div>
-            <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="public/images/loft.jpg"></a>
-                <h3 class="name">Share</h3>
-                <p class="description">Once you're finished, share the book with the rest of the world!</p>
+        <div class="collapse" id="about">
+            <div class="row articles text-center">
+                <div class="col-sm-6 col-md-4 item">
+                    <img class="img-fluid" src="public/images/desk.jpg">
+                    <h3 class="name">Ideas</h3>
+                    <p class="description">Have an idea for a story? Create a new book with others who share the
+                        same ideas!</p>
+                </div>
+                <div class="col-sm-6 col-md-4 item">
+                    <a href="#"><img class="img-fluid" src="public/images/building.jpg"></a>
+                    <h3 class="name">Collaborate</h3>
+                    <p class="description">You'll be able to write the story line by line with other users!</p>
+                </div>
+                <div class="col-sm-6 col-md-4 item">
+                    <a href="#"><img class="img-fluid" src="public/images/loft.jpg"></a>
+                    <h3 class="name">Share</h3>
+                    <p class="description">Once you're finished, share the book with the rest of the world!</p>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<!-- Search Bar -->
+<div class="container my-3">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Book Name" aria-label="Search Bar"
+            aria-describedby="searchBtn" id="searchBar" name="searchBar">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="searchBtn">Search</button>
+        </div>
+    </div>
+</div>
+<!-- Search Bar End -->
 <div>
     <div class="container">
-        <div class="dropdown"><button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                aria-expanded="false" type="button"
+        <div class="dropdown">
+            <button class="btn btn-transparent dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"
                 style="background-color: rgba(255,255,255,0.4);color: rgb(157,157,157);">Sort By</button>
-            <div class="dropdown-menu" role="menu">
-                <a class="dropdown-item" role="presentation" href="#compBooks" aria-controls="completeBooks" aria-selected="true">Popular</a>
-                <a class="dropdown-item" role="presentation" href="#progBooks" aria-controls="progBooks" aria-selected="false">In Progress</a>
+            <div class="dropdown-menu" role="menu" id="sortBtn">
+                <a class="dropdown-item" role="presentation" href="#newBooks" aria-controls="newBooks"
+                    aria-selected="true">New</a>
+                <a class="dropdown-item" role="presentation" href="#compBooks" aria-controls="completeBooks"
+                    aria-selected="false">Popular</a>
+                <a class="dropdown-item" role="presentation" href="#progBooks" aria-controls="progBooks"
+                    aria-selected="false">In Progress</a>
                 <a class="dropdown-item" role="presentation" href="#">Genre</a>
+                <!-- need to add dropdown when selected for genres-->
             </div>
         </div>
 
-        <div class="row" id="compBooks">
+        <div class="row" id="books">
             <div class="tab-content">
                 <div class="tab-pane" id="compBooks">
+                    <h1>Completed Books</h1>
                     {{#each booksObj}}
                     <!-- Displays all completed books-->
                     {{#if completed}}
@@ -53,6 +78,7 @@
                     {{/each}}
                 </div>
                 <div class="tab-pane" id="progBooks">
+                    <h1>Progress Books</h1>
                     {{#each booksObj}}
                     <!-- Displays all books in progress-->
                     {{#unless completed}}
@@ -67,6 +93,7 @@
                     {{/unless}}
                     {{/each}}
                 </div>
+                <!-- Missing genres tab pane -->
             </div>
         </div>
 

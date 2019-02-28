@@ -1,0 +1,3 @@
+$(() => {
+    const sortBtn = $("#sortBtn").val();
+})
