@@ -1,0 +1,36 @@
+$blue: rgb(2, 164, 211);
+#team {
+    .jumbotron {
+        background-image: url(../images/team/team.jpg);
+        background-color: $blue;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .container {
+            color: #fff;
+            h1 {
+                text-transform: uppercase;
+            }
+        }
+    }
+    #theTeam {
+        .team-member {
+            padding: 25px;
+            box-sizing: border-box;
+            .photo {
+                border-radius: 50%;
+                object-fit: cover;
+            }
+            h5 {
+                margin-bottom: 0;
+            }
+            .title {
+                font-style: italic;
+            }
+        }
+    }
+}
