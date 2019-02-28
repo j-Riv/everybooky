@@ -4,8 +4,6 @@ module.exports = function(app, passport) {
 
     app.get('/api/books', apiController.getBooks);
 
-    app.get('/api/books/:title', apiController.searchBook)
-
     app.post('/api/book', apiController.createBook);
 
     app.put('/api/book/:id', apiController.updateBook);

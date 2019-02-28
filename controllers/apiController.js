@@ -23,8 +23,9 @@ module.exports = {
             console.log(error);
         });
     },
+    // Not sure if 
     searchAuthor: function(req, res) {
-        models.Author.findAll({ where: { username: req.body.name } }).then(results => {
+        models.User.findAll({ where: { username: req.body.username } }).then(results => {
             let author = {
                 name: results
             }
@@ -33,6 +34,17 @@ module.exports = {
         }).catch(error => {
             console.log(error);
         })
+    },
+    searchGenre: function(req, res) {
+        models.Book.findAll({where: {genre: req.body.genre}}).then(results => {
+            let genreBook = {
+                books: results
+            }
+            console.log(genreBook);
+            res.render('result', genreBook);
+        }).catch(error => {
+            console.log(error);
+        });
     },
     createBook: function(req, res) {
         const book = req.body;

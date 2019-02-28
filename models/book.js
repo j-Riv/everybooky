@@ -26,13 +26,13 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         },
         imageUrl: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING
         },
         views: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.INTEGER
         },
         rating: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.DECIMAL(10,2)
         },
         completed: {
             type: DataTypes.BOOLEAN,
