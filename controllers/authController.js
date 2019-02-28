@@ -1,3 +1,5 @@
+const models = require('../models/');
+
 module.exports = {
     homepage: function(req, res) {
         res.render('homepage', {
@@ -43,6 +45,26 @@ module.exports = {
     book: function(req, res) {
         res.render('book', {
             title: 'Book'
+        });
+    },
+    editBook: function(req, res) {
+        let id = req.params.id;
+        models.Post.findAll({
+            where: {
+                BookId: id
+            }
+        }).then(results => {
+            const postsObj = {
+                posts: results
+            };
+            console.log(postsObj);
+            res.render('book', {
+                id: id,
+                title: 'Book',
+                posts: results
+            });
+        }).catch(error => {
+            console.error(error);
         });
     }
 }

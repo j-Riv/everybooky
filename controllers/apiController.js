@@ -13,7 +13,7 @@ module.exports = {
         });
     },
     searchBook: function(req, res) {
-        models.Book.findAll({where: {title: req.body.title}}).then(results => {
+        models.Book.findAll({ where: { title: req.body.title } }).then(results => {
             let booksObj = {
                 books: results
             };
@@ -74,6 +74,23 @@ module.exports = {
             } else {
                 res.status(200).end();
             }
+        }).catch(error => {
+            console.error(error);
+        });
+    },
+    addPost: function(req, res) {
+        models.Post.create({
+            body: req.body.line,
+            AuthorId: req.body.authorId,
+            BookId: req.body.bookId
+        }).then(result => {
+            let postObj = {
+                line: req.body.line
+            }
+            console.log('added line: ');
+            console.log(postObj);
+            req.io.emit('added line', postObj);
+            res.status(200).end();
         }).catch(error => {
             console.error(error);
         });

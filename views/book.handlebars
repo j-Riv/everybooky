@@ -4,6 +4,11 @@
     <div class="jumbotron">
         <h1 class="display-4">Name of Book Will Go Here</h1>
         <p class="lead">Content will be displayed here</p>
+        <div id="bookContent">
+            {{#each posts}}
+            <span>{{this.body}}</span>
+            {{/each}}
+        </div>
         <hr class="my-4">
         {{!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> --}}
         <p>
@@ -13,13 +18,14 @@
             </button>
         </p>
         <div class="collapse" id="collapseExample">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Add your line"
-                    aria-label="Add your line" aria-describedby="button-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+            <form>
+                <div class="input-group mb-3">
+                    <input type="text" id="line" class="form-control" placeholder="Add your line" aria-label="Add your line" aria-describedby="addLine" name="line">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="addLine">Button</button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
