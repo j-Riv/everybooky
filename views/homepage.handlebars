@@ -34,10 +34,16 @@
 <!-- Search Bar -->
 <div class="container my-3">
     <div class="input-group">
-        <input type="text" class="form-control" placeholder="Book Name" aria-label="Search Bar"
+        <input type="text" class="form-control" placeholder="What do you want to search for?" aria-label="Search Bar"
             aria-describedby="searchBtn" id="searchBar" name="searchBar">
         <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" id="searchBtn">Search</button>
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">Search</button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Title</a>
+                <a class="dropdown-item" href="#">Author</a>
+                <a class="dropdown-item" href="#">ID</a>
+            </div>
         </div>
     </div>
 </div>
@@ -45,18 +51,74 @@
 <div>
     <div class="container">
         <div class="dropdown">
-            <button class="btn btn-transparent dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"
-                style="background-color: rgba(255,255,255,0.4);color: rgb(157,157,157);">Sort By</button>
+            <button class="btn btn-transparent dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
+                type="button" style="background-color: rgba(255,255,255,0.4);color: rgb(157,157,157);">Sort By</button>
             <div class="dropdown-menu" role="menu" id="sortBtn">
-                <a class="dropdown-item" role="presentation" href="#newBooks" aria-controls="newBooks"
-                    aria-selected="true">New</a>
-                <a class="dropdown-item" role="presentation" href="#compBooks" aria-controls="completeBooks"
-                    aria-selected="false">Popular</a>
-                <a class="dropdown-item" role="presentation" href="#progBooks" aria-controls="progBooks"
-                    aria-selected="false">In Progress</a>
-                <a class="dropdown-item" role="presentation" href="#">Genre</a>
-                <!-- need to add dropdown when selected for genres-->
+                <a class="dropdown-item active" id="new-tab" data-toggle="tab" href="#new" role="tab"
+                    aria-controls="new">New</a>
+                <a class="dropdown-item" id="popular-tab" data-toggle="tab" href="#popular" role="tab"
+                    aria-controls="popular">Popular</a>
+                <a class="dropdown-item" id="progress-tab" data-toggle="tab" href="#progress" role="tab"
+                    aria-controls="progress">In Progress</a>
+                <a class="dropdown-item" id="genre-tab" data-toggle="tab" href="#genre" role="tab"
+                    aria-controls="genre">Genre</a> <!-- should toggle another button to choose genre-->
             </div>
+        </div>
+
+        <div class="tab-content" id="myTabContent">
+            <!-- Displays all new books-->
+            <div class="tab-pane fade show active" id="new" role="tabpanel" aria-labelledby="new-tab">
+                <div class="row">
+                    <h1>New Books</h1>
+                    {{#each booksObj}}
+                    {{#if completed}}
+                    <div class="col-md-3 mb-3" id="{{this.id}}">
+                        <div class="card book">
+                            <img src="{{this.imgUrl}}" alt="{{this.imgUrl}}" class="card-img w-100 d-block">
+                            <div class="card-img-overlay">
+                                <h4>{{this.title}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+            </div>
+            <!-- Displays all popular books -->
+            <div class="tab-pane fade" id="popular" role="tabpanel" aria-labelledby="popular-tab">
+                <h1>Popular Books</h1>
+                {{#each booksObj}}
+                {{#if completed}}
+                <div class="col-md-3 mb-3" id="{{this.id}}">
+                    <div class="card book">
+                        <img src="{{this.imgUrl}}" alt="{{this.imgUrl}}" class="card-img w-100 d-block">
+                        <div class="card-img-overlay">
+                            <h4>{{this.title}}</h4>
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+                {{/each}}
+            </div>
+            <!-- Displays all books in progress-->
+            <div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab">
+                <h1>Progress Books</h1>
+                {{#each booksObj}}
+                <!-- Displays all books in progress-->
+                {{#unless completed}}
+                <div class="col-md-3 mb-3" id="{{this.id}}">
+                    <div class="card book">
+                        <img src="{{this.imgUrl}}" alt="{{this.imgUrl}}" class="card-img w-100 d-block">
+                        <div class="card-img-overlay">
+                            <h4>{{this.title}}</h4>
+                        </div>
+                    </div>
+                </div>
+                {{/unless}}
+                {{/each}}
+            </div>
+            <!-- Displays books by genre -->
+            <div class="tab-pane fade" id="genre" role="tabpanel" aria-labelledby="genre-tab">...</div>
         </div>
 
         <div class="row" id="books">
