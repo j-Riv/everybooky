@@ -76,52 +76,27 @@ module.exports = {
             .then(function(body) {
                 body = JSON.parse(body);
                 book = body.book;
+                // get book posts
+                let url = 'http://localhost:3000/api/books/' + book.id + '/posts';
+                rp(url)
+                    .then(function(body) {
+                        body = JSON.parse(body);
+                        posts = body.post;
+                        console.log(posts);
+                        res.render('book', {
+                            loggedIn: req.isAuthenticated(),
+                            id: id,
+                            title: 'Book',
+                            bookTitle: book.title,
+                            description: book.body,
+                            genre: book.genre,
+                            posts: posts
+                        });
+                    }).catch(function(error) {
+                        console.error(error);
+                    });
             }).catch(function(error) {
                 console.error(error);
             });
-        // get posts
-        let postsURL = 'http://localhost:3000/api/books/' + id + '/posts';
-        rp(postsURL)
-            .then(function(body) {
-                body = JSON.parse(body);
-                posts = body.post;
-                console.log(posts);
-                res.render('book', {
-                    loggedIn: req.isAuthenticated(),
-                    id: id,
-                    title: 'Book',
-                    bookTitle: book.title,
-                    description: book.body,
-                    genre: book.genre,
-                    posts: posts
-                });
-            }).catch(function(error) {
-                console.error(error);
-            });
-        // get book information
-        // models.Book.findOne({}).then(result => {
-        //     book = result;
-        // }).catch(error => {
-        //     console.error(error);
-        // });
-        // get posts 
-        // models.Post.findAll({
-        //     where: {
-        //         BookId: id
-        //     }
-        // }).then(posts => {
-        //     console.log(posts);
-        //     res.render('book', {
-        //         loggedIn: req.isAuthenticated(),
-        //         id: id,
-        //         title: 'Book',
-        //         bookTitle: book.title,
-        //         description: book.body,
-        //         genre: book.genre,
-        //         posts: posts
-        //     });
-        // }).catch(error => {
-        //     console.error(error);
-        // });
     }
 }
