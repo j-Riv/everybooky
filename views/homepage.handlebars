@@ -1,14 +1,16 @@
 {{> header}}
 <div class="article-list">
-    <div class="container">
-        <div class="intro">
-            <h2 class="text-center">Welcome to Everybooky!</h2>
-            <p class="text-center">Write together and share forever.</p>
+    <div class="jumbotron" id="homeBanner">
+        <div class="intro my-5">
+            <h1 class="text-center text-light logo main-heading">Everybooky</h1>
+            <p class="text-center text-light">Write together and share forever.</p>
             <div class="d-flex justify-content-center">
-                <i class="fas fa-chevron-circle-down" data-toggle="collapse" data-target="#about" aria-expanded="false"
-                    aria-controls="about" style="font-size: 1.5rem"></i>
+                <i class="fas fa-chevron-circle-down text-light" data-toggle="collapse" data-target="#about" aria-expanded="false"
+                    aria-controls="about"></i>
             </div>
         </div>
+    </div>
+    <div class="container">
         <div class="collapse" id="about">
             <div class="row articles text-center">
                 <div class="col-sm-6 col-md-4 item">
@@ -31,37 +33,25 @@
         </div>
     </div>
 </div>
-<!-- Search Bar -->
-<div class="container my-3">
-    <div class="input-group">
-        <input type="text" class="form-control" placeholder="What do you want to search for?" aria-label="Search Bar"
-            aria-describedby="searchBtn" id="searchBar" name="searchBar">
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">Search</button>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Title</a>
-                <a class="dropdown-item" href="#">Author</a>
-                <a class="dropdown-item" href="#">ID</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Search Bar End -->
+
 <div>
     <div class="container">
-        <div class="dropdown">
-            <button class="btn btn-transparent dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
-                type="button" style="background-color: rgba(255,255,255,0.4);color: rgb(157,157,157);">Sort By</button>
-            <div class="dropdown-menu" role="menu" id="sortBtn">
-                <a class="dropdown-item active" id="new-tab" data-toggle="tab" href="#new" role="tab"
-                    aria-controls="new">New</a>
-                <a class="dropdown-item" id="popular-tab" data-toggle="tab" href="#popular" role="tab"
-                    aria-controls="popular">Popular</a>
-                <a class="dropdown-item" id="progress-tab" data-toggle="tab" href="#progress" role="tab"
-                    aria-controls="progress">In Progress</a>
-                <a class="dropdown-item" id="genre-tab" data-toggle="tab" href="#genre" role="tab"
-                    aria-controls="genre">Genre</a> <!-- should toggle another button to choose genre-->
+        <div class="btn-group" role="group">
+            <div class="btn btn-transparent disabled">Sort By</div>
+            <div class="btn-group" role="group">
+                <button class="btn btn-transparent dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
+                    type="button" style="background-color: rgba(255,255,255,0.4);color: rgb(157,157,157);">Sort
+                    By</button>
+                <div class="dropdown-menu" role="menu" id="sortBtn">
+                    <a class="dropdown-item active" id="new-tab" data-toggle="tab" href="#new" role="tab"
+                        aria-controls="new">New</a>
+                    <a class="dropdown-item" id="popular-tab" data-toggle="tab" href="#popular" role="tab"
+                        aria-controls="popular">Popular</a>
+                    <a class="dropdown-item" id="progress-tab" data-toggle="tab" href="#progress" role="tab"
+                        aria-controls="progress">In Progress</a>
+                    <a class="dropdown-item" id="genre-tab" data-toggle="tab" href="#genre" role="tab"
+                        aria-controls="genre">Genre</a> <!-- should toggle another button to choose genre-->
+                </div>
             </div>
         </div>
 
