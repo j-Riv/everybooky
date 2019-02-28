@@ -12,6 +12,17 @@ module.exports = {
             console.error(error);
         });
     },
+    searchBook: function(req, res) {
+        models.Book.findAll({where: {title: req.body.title}}).then(results => {
+            let booksObj = {
+                books: results
+            };
+            console.log(booksObj);
+            res.render('index', booksObj);
+        }).catch(error => {
+            console.log(error);
+        });
+    },
     createBook: function(req, res) {
         const book = req.body;
         models.Book.create({
