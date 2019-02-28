@@ -23,6 +23,17 @@ module.exports = {
             console.log(error);
         });
     },
+    searchAuthor: function(req, res) {
+        models.Author.findAll({where: {username: req.body.name}}).then(results => {
+            let author = {
+                name: results
+            }
+            console.log(author);
+            res.render('index', author);
+        }).catch(error => {
+            console.log(error);
+        })
+    },
     createBook: function(req, res) {
         const book = req.body;
         models.Book.create({
