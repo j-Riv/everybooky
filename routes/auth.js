@@ -13,6 +13,8 @@ module.exports = function(app, passport) {
 
     app.get('/dashboard', isLoggedIn, authController.dashboard);
 
+    app.get('/team', authController.team);
+
     app.get('/book', authController.book);
 
     app.get('/logout', authController.logout);
