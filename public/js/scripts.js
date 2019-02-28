@@ -33,3 +33,9 @@ if (document.getElementById("confirmPassword")) {
     password.onchange = validatePassword;
     confirm_password.onkeyup = validatePassword;
 }
+
+$('#viewTeam').click(function() {
+    $('html, body').animate({
+        scrollTop: $('#theTeam').offset().top
+    }, 2000);
+});

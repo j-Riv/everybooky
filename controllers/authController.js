@@ -24,6 +24,12 @@ module.exports = {
             loggedIn: req.isAuthenticated()
         });
     },
+    team: function(req, res) {
+        res.render('wiifat', {
+            title: 'Team',
+            loggedIn: req.isAuthenticated()
+        });
+    },
     form: function(req, res) {
         res.render('form', {
             id: req.user.id
