@@ -1,0 +1,36 @@
+{{> header}}
+
+<div class="container">
+    <h1>Results</h1>
+    <hr>
+    <!-- Displays message if there are no results -->
+    {{#unless results}}
+    <h3>No results</h3>
+    {{/unless}}
+    <!-- Iterates over results and renders to page-->
+    {{#if results}}
+    {{#each results}}
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <img src="{{this.imageUrl}}" alt="{{this.imageUrl}}" class="w-100">
+                <div class="card-img-overlay">
+                    <h3></h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <h1>{{this.title}}</h1>
+            <h3>{{this.author}}</h3>
+            <h6>Contributors:</h6>
+            <p>{{this.contributors}}</p>
+        </div>
+    </div>
+    <hr>
+    {{/each}}
+    {{/if}}
+</div>
+
+{{> footer}}
+
+{{> login-modal}}
