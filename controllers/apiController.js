@@ -7,43 +7,9 @@ module.exports = {
                 books: results
             };
             console.log(booksObj);
-            res.render('index', booksObj);
+            res.json(booksObj);
         }).catch(error => {
             console.error(error);
-        });
-    },
-    searchBook: function(req, res) {
-        models.Book.findAll({ where: { title: req.body.title } }).then(results => {
-            let booksObj = {
-                books: results
-            };
-            console.log(booksObj);
-            res.render('index', booksObj);
-        }).catch(error => {
-            console.log(error);
-        });
-    },
-    // Not sure if 
-    searchAuthor: function(req, res) {
-        models.User.findAll({ where: { username: req.body.username } }).then(results => {
-            let author = {
-                name: results
-            }
-            console.log(author);
-            res.render('index', author);
-        }).catch(error => {
-            console.log(error);
-        })
-    },
-    searchGenre: function(req, res) {
-        models.Book.findAll({where: {genre: req.body.genre}}).then(results => {
-            let genreBook = {
-                books: results
-            }
-            console.log(genreBook);
-            res.render('result', genreBook);
-        }).catch(error => {
-            console.log(error);
         });
     },
     createBook: function(req, res) {
@@ -54,8 +20,6 @@ module.exports = {
             text_limit: book.limit,
             genre: book.genre
         }).then(result => {
-            // res.redirect('/');
-            // return res.status(200).end();
             let bookObj = {
                 id: result.id,
                 title: book.title
@@ -102,6 +66,51 @@ module.exports = {
             console.error(error);
         });
     },
+    searchBookId: function(req, res) {
+        models.Book.findOne({ where: { id: req.params.id } }).then(results => {
+            let bookObj = {
+                book: results
+            };
+            console.log(bookObj);
+            res.json(bookObj);
+        }).catch(error => {
+            console.log(error);
+        });
+    },
+    searchBookTitle: function(req, res) {
+        models.Book.findAll({ where: { title: req.params.title } }).then(results => {
+            let booksObj = {
+                books: results
+            };
+            console.log(booksObj);
+            res.json(booksObj);
+        }).catch(error => {
+            console.log(error);
+        });
+    },
+    // Not sure if 
+    searchBookAuthor: function(req, res) {
+        models.User.findAll({ where: { username: req.params.username } }).then(results => {
+            let author = {
+                name: results
+            }
+            console.log(author);
+            res.json(author);
+        }).catch(error => {
+            console.log(error);
+        })
+    },
+    searchGenre: function(req, res) {
+        models.Book.findAll({ where: { genre: req.params.genre } }).then(results => {
+            let genreBook = {
+                books: results
+            }
+            console.log(genreBook);
+            res.json(genreBook);
+        }).catch(error => {
+            console.log(error);
+        });
+    },
     addPost: function(req, res) {
         models.Post.create({
             body: req.body.line,
@@ -117,6 +126,30 @@ module.exports = {
             res.status(200).end();
         }).catch(error => {
             console.error(error);
+        });
+    },
+    getPosts: function(req, res) {
+        let id = req.params.id;
+        models.Post.findAll({ where: { BookId: id } }).then(results => {
+            const postsObj = {
+                posts: results
+            };
+            console.log(postsObj);
+            res.json(postsObj);
+        }).catch(error => {
+            console.error(error);
+        });
+    },
+    getCurrentUser: function(req, res) {
+        let id = req.params.id;
+        models.User.findOne({ where: { id: id } }).then(result => {
+            let userObj = {
+                user: result
+            };
+            console.log(userObj);
+            res.json(userObj);
+        }).catch(error => {
+            console.log(error);
         });
     }
 }
