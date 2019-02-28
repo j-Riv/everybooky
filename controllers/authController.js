@@ -3,13 +3,14 @@ const models = require('../models/');
 module.exports = {
     homepage: function(req, res) {
         res.render('homepage', {
-            title: 'Homepage',
-            loggedIn: req.isAuthenticated()
+            loggedIn: req.isAuthenticated(),
+            title: 'Homepage'
         });
     },
     login: function(req, res) {
         if (req.isAuthenticated()) {
             res.render('form', {
+                loggedIn: req.isAuthenticated(),
                 title: 'Form',
                 id: req.user.id
             });
@@ -21,19 +22,20 @@ module.exports = {
     },
     dashboard: function(req, res) {
         res.render('dashboard', {
+            loggedIn: req.isAuthenticated(),
             title: 'Dashboard',
-            id: req.user.id,
-            loggedIn: req.isAuthenticated()
+            id: req.user.id
         });
     },
     team: function(req, res) {
         res.render('wiifat', {
+            loggedIn: req.isAuthenticated(),
             title: 'Team',
-            loggedIn: req.isAuthenticated()
         });
     },
     form: function(req, res) {
         res.render('form', {
+            loggedIn: req.isAuthenticated(),
             id: req.user.id
         });
     },
@@ -44,6 +46,7 @@ module.exports = {
     },
     book: function(req, res) {
         res.render('book', {
+            loggedIn: req.isAuthenticated(),
             title: 'Book'
         });
     },
@@ -64,6 +67,7 @@ module.exports = {
         }).then(posts => {
             console.log(posts);
             res.render('book', {
+                loggedIn: req.isAuthenticated(),
                 id: id,
                 title: 'Book',
                 bookTitle: book.title,
