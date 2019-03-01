@@ -33,6 +33,8 @@ module.exports = {
             .then(body => {
                 body = JSON.parse(body);
                 user = body.user;
+                console.log('The User');
+                console.log(user);
                 res.render('dashboard', {
                     loggedIn: req.isAuthenticated(),
                     title: 'Dashboard',

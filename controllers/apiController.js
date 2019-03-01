@@ -66,7 +66,7 @@ module.exports = {
             console.error(error);
         });
     },
-    searchBookId: (req, res) => {
+    searchBooksById: (req, res) => {
         models.Book.findOne({ where: { id: req.params.id } }).then(results => {
             let bookObj = {
                 book: results
@@ -77,7 +77,7 @@ module.exports = {
             console.log(error);
         });
     },
-    searchBookTitle: (req, res) => {
+    searchBooksByTitle: (req, res) => {
         models.Book.findAll({ where: { title: req.params.title } }).then(results => {
             let booksObj = {
                 books: results
@@ -89,13 +89,17 @@ module.exports = {
         });
     },
     // Not sure if 
-    searchBookAuthor: (req, res) => {
-        models.User.findAll({ where: { username: req.params.username } }).then(results => {
-            let author = {
-                name: results
-            }
-            console.log(author);
-            res.json(author);
+    searchBooksByAuthor: (req, res) => {
+        models.Post.findAll({ where: { UserId: req.params.id } }).then(results => {
+            console.log(results);
+            let bookList = [];
+            results.forEach(book => {
+                // only add unique values
+                if (bookList.indexOf(book.BookId) === -1) {
+                    bookList.push(book.BookId);
+                }
+            });
+            res.json(bookList).end();
         }).catch(error => {
             console.log(error);
         })
