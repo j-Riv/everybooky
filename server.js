@@ -38,12 +38,11 @@ app.engine(
         helpers: {
             eachUnique: function(array, options) {
                 // this is used for the lookup
-                var dupCheck = {};
+                let dupCheck = {};
                 // template buffer
-                var buffer = '';
-                for (var i = 0; i < array.length; i++) {
-                    var book = array[i];
-                    var uniqueKey = book.Book.id;
+                let buffer = '';
+                array.forEach(function(book) {
+                    let uniqueKey = book.Book.id;
                     // check if the book has been added already
                     if (!dupCheck[uniqueKey]) {
                         // here there are only unique values
@@ -51,7 +50,7 @@ app.engine(
                         // add this in the template
                         buffer += options.fn(book);
                     }
-                }
+                });
                 // return the template compiled
                 return buffer;
             }
@@ -68,9 +67,8 @@ app.use(function(req, res, next) {
 });
 
 // Routes
-const authRoute = require('./routes/auth.js')(app, passport);
+require('./routes/auth.js')(app, passport);
 require('./routes/apiRoutes')(app, passport);
-// require("./routes/htmlRoutes")(app);
 
 // Load passport strategies
 require('./config/passport/passport.js')(passport, models.User);
