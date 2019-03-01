@@ -35,12 +35,23 @@ module.exports = {
                 user = body.user;
                 console.log('The User');
                 console.log(user);
-                res.render('dashboard', {
-                    loggedIn: req.isAuthenticated(),
-                    title: 'Dashboard',
-                    id: req.user.id,
-                    user: user
-                });
+                let url = baseUrl + '/api/books/author/' + req.user.id;
+                rp(url)
+                    .then(body => {
+                        body = JSON.parse(body);
+                        const books = body;
+                        console.log('These books');
+                        console.log(books);
+                        res.render('dashboard', {
+                            loggedIn: req.isAuthenticated(),
+                            title: 'Dashboard',
+                            id: req.user.id,
+                            user: user,
+                            books: books
+                        });
+                    }).catch(error => {
+                        console.error(error);
+                    });
             }).catch(error => {
                 console.error(error);
             });

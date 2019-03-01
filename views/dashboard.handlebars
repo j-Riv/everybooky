@@ -6,5 +6,9 @@
     <h3>This is your ID: {{user.id}}</h3>
     <h3>This is your name: {{user.lastname}}, {{user.firstname}}</h3>
     <h3>This is your email: {{user.email}}</h3>
+    <p>These are the books your in:</p>
+    {{#each books}}
+        {{this}}
+    {{/each}}
 </div>
 {{> footer}}
