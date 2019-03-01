@@ -18,7 +18,9 @@ module.exports = {
             title: book.title,
             body: book.body,
             text_limit: book.limit,
-            genre: book.genre
+            genre: book.genre,
+            // type: book.type,
+            // private: book.private
         }).then(result => {
             let bookObj = {
                 id: result.id,
@@ -26,7 +28,7 @@ module.exports = {
             }
             console.log('added book: ');
             console.log(bookObj);
-            return res.status(200).end();
+            return res.json(bookObj).status(200).end();
             // req.io.emit('added book', bookObj);
         }).catch(error => {
             console.error(error);
