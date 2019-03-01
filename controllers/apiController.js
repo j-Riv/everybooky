@@ -1,7 +1,7 @@
 const models = require('../models/');
 
 module.exports = {
-    getBooks: function(req, res) {
+    getBooks: (req, res) => {
         models.Book.findAll({}).then(results => {
             const booksObj = {
                 books: results
@@ -12,7 +12,7 @@ module.exports = {
             console.error(error);
         });
     },
-    createBook: function(req, res) {
+    createBook: (req, res) => {
         const book = req.body;
         models.Book.create({
             title: book.title,
@@ -32,7 +32,7 @@ module.exports = {
             console.error(error);
         });
     },
-    updateBook: function(req, res) {
+    updateBook: (req, res) => {
         models.Book.update({
             title: req.body.title
         }, {
@@ -50,7 +50,7 @@ module.exports = {
             console.error(error);
         });
     },
-    deleteBook: function(req, res) {
+    deleteBook: (req, res) => {
         models.Book.destroy({
             where: {
                 id: req.params.id
@@ -66,7 +66,7 @@ module.exports = {
             console.error(error);
         });
     },
-    searchBookId: function(req, res) {
+    searchBooksById: (req, res) => {
         models.Book.findOne({ where: { id: req.params.id } }).then(results => {
             let bookObj = {
                 book: results
@@ -77,7 +77,7 @@ module.exports = {
             console.log(error);
         });
     },
-    searchBookTitle: function(req, res) {
+    searchBooksByTitle: (req, res) => {
         models.Book.findAll({ where: { title: req.params.title } }).then(results => {
             let booksObj = {
                 books: results
@@ -89,18 +89,22 @@ module.exports = {
         });
     },
     // Not sure if 
-    searchBookAuthor: function(req, res) {
-        models.User.findAll({ where: { username: req.params.username } }).then(results => {
-            let author = {
-                name: results
-            }
-            console.log(author);
-            res.json(author);
+    searchBooksByAuthor: (req, res) => {
+        models.Post.findAll({ where: { UserId: req.params.id } }).then(results => {
+            console.log(results);
+            let bookList = [];
+            results.forEach(book => {
+                // only add unique values
+                if (bookList.indexOf(book.BookId) === -1) {
+                    bookList.push(book.BookId);
+                }
+            });
+            res.json(bookList).end();
         }).catch(error => {
             console.log(error);
         })
     },
-    searchGenre: function(req, res) {
+    searchGenre: (req, res) => {
         models.Book.findAll({ where: { genre: req.params.genre } }).then(results => {
             let genreBook = {
                 books: results
@@ -111,10 +115,10 @@ module.exports = {
             console.log(error);
         });
     },
-    addPost: function(req, res) {
+    addPost: (req, res) => {
         models.Post.create({
             body: req.body.line,
-            AuthorId: req.body.authorId,
+            UserId: req.body.userId,
             BookId: req.body.bookId
         }).then(result => {
             let postObj = {
@@ -128,7 +132,7 @@ module.exports = {
             console.error(error);
         });
     },
-    getPosts: function(req, res) {
+    getPosts: (req, res) => {
         let id = req.params.id;
         models.Post.findAll({ where: { BookId: id } }).then(results => {
             const postsObj = {
@@ -140,7 +144,7 @@ module.exports = {
             console.error(error);
         });
     },
-    getCurrentUser: function(req, res) {
+    getCurrentUser: (req, res) => {
         let id = req.params.id;
         models.User.findOne({ where: { id: id } }).then(result => {
             let userObj = {
