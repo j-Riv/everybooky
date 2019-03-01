@@ -87,8 +87,7 @@ module.exports = {
         }).catch(error => {
             console.log(error);
         });
-    },
-    // Not sure if 
+    }, 
     searchBooksByAuthor: (req, res) => {
         models.Post.findAll({ where: { UserId: req.params.id } }).then(results => {
             console.log(results);
