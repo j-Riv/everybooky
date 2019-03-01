@@ -90,6 +90,12 @@ module.exports = {
             .then(body => {
                 body = JSON.parse(body);
                 book = body.book;
+                let userId;
+                if (req.isAuthenticated()) {
+                    userId = req.user.id;
+                } else {
+                    userId = null;
+                }
                 // get book posts
                 if (book !== null) {
                     let url = baseUrl + '/api/books/' + book.id + '/posts';
@@ -100,8 +106,7 @@ module.exports = {
                             console.log(posts);
                             res.render('book', {
                                 loggedIn: req.isAuthenticated(),
-                                userId: req.user.id,
-                                id: id,
+                                userId: userId,
                                 title: 'Book',
                                 bookId: book.id,
                                 bookTitle: book.title,
