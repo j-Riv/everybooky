@@ -73,8 +73,16 @@ $(function() {
                 <span>${theLine.line}</span>
             `;
         $('#bookContent').append(content);
-    });
+    }); 
 
-    // get input from the form 
-
+    $('#line').keyup(function () {
+        var max = 160;
+        var len = $(this).val().length;
+        if (len >= max) {
+          $('#charNum').text(' you have reached the limit');
+        } else {
+          var char = max - len;
+          $('#charNum').text(char + ' characters left');
+        }
+      });
 });
