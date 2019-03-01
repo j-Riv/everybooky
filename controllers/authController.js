@@ -100,8 +100,10 @@ module.exports = {
                             console.log(posts);
                             res.render('book', {
                                 loggedIn: req.isAuthenticated(),
+                                userId: req.user.id,
                                 id: id,
                                 title: 'Book',
+                                bookId: book.id,
                                 bookTitle: book.title,
                                 description: book.body,
                                 genre: book.genre,

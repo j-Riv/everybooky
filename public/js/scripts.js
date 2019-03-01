@@ -48,7 +48,9 @@ $(function() {
     $('#addLine').on('click', function(e) {
         e.preventDefault();
         const theLine = {
-            line: $('#line').val().trim()
+            line: $('#line').val().trim(),
+            userId: $('#userId').val().trim(),
+            bookId: $('#bookId').val().trim()
         }
         console.log('Line: ' + $('#line').val().trim());
         socket.emit('added line', $('#line').val().trim());
@@ -74,5 +76,5 @@ $(function() {
     });
 
     // get input from the form 
-    
+
 });

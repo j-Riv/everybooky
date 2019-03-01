@@ -1,6 +1,6 @@
 {{> header}}
 
-<div class="container">
+<div class="container" id="editBook">
     <div class="jumbotron">
         <h1 class="display-4">{{bookTitle}}</h1>
         <p class="lead">{{description}}</p>
@@ -22,6 +22,9 @@
             <form>
                 <div class="input-group mb-3">
                     <input type="text" id="line" class="form-control" placeholder="Add your line" aria-label="Add your line" aria-describedby="addLine" name="line">
+                    <input type="text" id="userId" name="userId" hidden value="{{userId}}">
+                    <input type="text" id="bookId" name="bookID" hidden value="{{bookId}}">
+
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" id="addLine">Button</button>
                     </div>
