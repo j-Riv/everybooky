@@ -25,33 +25,19 @@ module.exports = {
     },
     dashboard: (req, res) => {
         let id = req.user.id;
-        // http request
-        console.log(id);
-        let url = baseUrl + '/api/user/' + id;
         // get book information
+        let url = baseUrl + '/api/books/author/' + req.user.id;
         rp(url)
             .then(body => {
                 body = JSON.parse(body);
-                user = body.user;
-                console.log('The User');
-                console.log(user);
-                let url = baseUrl + '/api/books/author/' + req.user.id;
-                rp(url)
-                    .then(body => {
-                        body = JSON.parse(body);
-                        const books = body;
-                        console.log('These books');
-                        console.log(books);
-                        res.render('dashboard', {
-                            loggedIn: req.isAuthenticated(),
-                            title: 'Dashboard',
-                            id: req.user.id,
-                            user: user,
-                            books: books
-                        });
-                    }).catch(error => {
-                        console.error(error);
-                    });
+                const books = body;
+                res.render('dashboard', {
+                    loggedIn: req.isAuthenticated(),
+                    title: 'Dashboard',
+                    id: req.user.id,
+                    books: books,
+                    user: req.user
+                });
             }).catch(error => {
                 console.error(error);
             });
@@ -90,12 +76,6 @@ module.exports = {
             .then(body => {
                 body = JSON.parse(body);
                 book = body.book;
-                let userId;
-                if (req.isAuthenticated()) {
-                    userId = req.user.id;
-                } else {
-                    userId = null;
-                }
                 // get book posts
                 if (book !== null) {
                     let url = baseUrl + '/api/books/' + book.id + '/posts';
@@ -104,16 +84,25 @@ module.exports = {
                             body = JSON.parse(body);
                             posts = body.posts;
                             console.log(posts);
-                            res.render('book', {
-                                loggedIn: req.isAuthenticated(),
-                                userId: userId,
-                                title: 'Book',
-                                bookId: book.id,
-                                bookTitle: book.title,
-                                description: book.body,
-                                genre: book.genre,
-                                posts: posts
-                            });
+                            // if signed in
+                            if (req.isAuthenticated()) {
+                                res.render('book', {
+                                    loggedIn: true,
+                                    user: req.user,
+                                    title: 'Book',
+                                    book: book,
+                                    posts: posts
+                                });
+                            }
+                            // not signed in
+                            else {
+                                res.render('book', {
+                                    loggedIn: false,
+                                    title: 'Book',
+                                    book: book,
+                                    posts: posts
+                                });
+                            }
                         }).catch(error => {
                             console.error(error);
                         });

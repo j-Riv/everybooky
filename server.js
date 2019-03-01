@@ -34,7 +34,28 @@ app.use(passport.session());
 app.engine(
     'handlebars',
     exphbs({
-        defaultLayout: 'main'
+        defaultLayout: 'main',
+        helpers: {
+            eachUnique: function(array, options) {
+                // this is used for the lookup
+                var dupCheck = {};
+                // template buffer
+                var buffer = '';
+                for (var i = 0; i < array.length; i++) {
+                    var book = array[i];
+                    var uniqueKey = book.Book.id;
+                    // check if the book has been added already
+                    if (!dupCheck[uniqueKey]) {
+                        // here there are only unique values
+                        dupCheck[uniqueKey] = true;
+                        // add this in the template
+                        buffer += options.fn(book);
+                    }
+                }
+                // return the template compiled
+                return buffer;
+            }
+        }
     })
 );
 app.set('view engine', 'handlebars');

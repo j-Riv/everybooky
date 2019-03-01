@@ -32,7 +32,7 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER
         },
         rating: {
-            type: DataTypes.DECIMAL(10,2)
+            type: DataTypes.DECIMAL(10, 2)
         },
         completed: {
             type: DataTypes.BOOLEAN,
@@ -46,7 +46,7 @@ module.exports = function(sequelize, DataTypes) {
         models.Book.hasMany(models.User);
     };
     Book.associate = function(models) {
-        models.Book.hasMany(models.User)
+        models.Book.hasMany(models.Post);
     };
     return Book;
 };
