@@ -1,15 +1,16 @@
 const models = require('../models/');
 const request = require('request');
 const rp = require('request-promise');
+const baseUrl = 'http://localhost:3000';
 
 module.exports = {
-    homepage: function(req, res) {
+    homepage: (req, res) => {
         res.render('homepage', {
             loggedIn: req.isAuthenticated(),
             title: 'Homepage'
         });
     },
-    login: function(req, res) {
+    login: (req, res) => {
         if (req.isAuthenticated()) {
             res.render('form', {
                 loggedIn: req.isAuthenticated(),
@@ -22,106 +23,101 @@ module.exports = {
             });
         }
     },
-    dashboard: function(req, res) {
+    dashboard: (req, res) => {
         let id = req.user.id;
         // http request
         console.log(id);
-        let url = 'http://localhost:3000/api/user/' + id;
+        let url = baseUrl + '/api/user/' + id;
         // get book information
         rp(url)
-            .then(function(body) {
+            .then(body => {
                 body = JSON.parse(body);
                 user = body.user;
-                res.render('dashboard', {
-                    loggedIn: req.isAuthenticated(),
-                    title: 'Dashboard',
-                    id: req.user.id,
-                    user: user
-                });
-            }).catch(function(error) {
+                console.log('The User');
+                console.log(user);
+                let url = baseUrl + '/api/books/author/' + req.user.id;
+                rp(url)
+                    .then(body => {
+                        body = JSON.parse(body);
+                        const books = body;
+                        console.log('These books');
+                        console.log(books);
+                        res.render('dashboard', {
+                            loggedIn: req.isAuthenticated(),
+                            title: 'Dashboard',
+                            id: req.user.id,
+                            user: user,
+                            books: books
+                        });
+                    }).catch(error => {
+                        console.error(error);
+                    });
+            }).catch(error => {
                 console.error(error);
             });
     },
-    team: function(req, res) {
+    team: (req, res) => {
         res.render('wiifat', {
             loggedIn: req.isAuthenticated(),
             title: 'Team',
         });
     },
-    form: function(req, res) {
+    form: (req, res) => {
         res.render('form', {
             loggedIn: req.isAuthenticated(),
             id: req.user.id
         });
     },
-    logout: function(req, res) {
-        req.session.destroy(function(err) {
+    logout: (req, res) => {
+        req.session.destroy(err => {
             res.redirect('/');
         });
     },
-    book: function(req, res) {
+    book: (req, res) => {
         res.render('book', {
             loggedIn: req.isAuthenticated(),
             title: 'Book'
         });
     },
-    editBook: function(req, res) {
+    editBook: (req, res) => {
         let id = req.params.id;
         let book;
         // http request
         console.log(id);
-        let url = 'http://localhost:3000/api/books/id/' + id;
+        let url = baseUrl + '/api/books/id/' + id;
         // get book information
         rp(url)
-            .then(function(body) {
+            .then(body => {
                 body = JSON.parse(body);
                 book = body.book;
-            }).catch(function(error) {
+                // get book posts
+                if (book !== null) {
+                    let url = baseUrl + '/api/books/' + book.id + '/posts';
+                    rp(url)
+                        .then(body => {
+                            body = JSON.parse(body);
+                            posts = body.posts;
+                            console.log(posts);
+                            res.render('book', {
+                                loggedIn: req.isAuthenticated(),
+                                id: id,
+                                title: 'Book',
+                                bookTitle: book.title,
+                                description: book.body,
+                                genre: book.genre,
+                                posts: posts
+                            });
+                        }).catch(error => {
+                            console.error(error);
+                        });
+                } else {
+                    res.render('404', {
+                        loggedIn: req.isAuthenticated(),
+                        title: '404 | Not Found'
+                    });
+                }
+            }).catch(error => {
                 console.error(error);
             });
-        // get posts
-        let postsURL = 'http://localhost:3000/api/books/' + id + '/posts';
-        rp(postsURL)
-            .then(function(body) {
-                body = JSON.parse(body);
-                posts = body.post;
-                console.log(posts);
-                res.render('book', {
-                    loggedIn: req.isAuthenticated(),
-                    id: id,
-                    title: 'Book',
-                    bookTitle: book.title,
-                    description: book.body,
-                    genre: book.genre,
-                    posts: posts
-                });
-            }).catch(function(error) {
-                console.error(error);
-            });
-        // get book information
-        // models.Book.findOne({}).then(result => {
-        //     book = result;
-        // }).catch(error => {
-        //     console.error(error);
-        // });
-        // get posts 
-        // models.Post.findAll({
-        //     where: {
-        //         BookId: id
-        //     }
-        // }).then(posts => {
-        //     console.log(posts);
-        //     res.render('book', {
-        //         loggedIn: req.isAuthenticated(),
-        //         id: id,
-        //         title: 'Book',
-        //         bookTitle: book.title,
-        //         description: book.body,
-        //         genre: book.genre,
-        //         posts: posts
-        //     });
-        // }).catch(error => {
-        //     console.error(error);
-        // });
     }
 }
