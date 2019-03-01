@@ -72,4 +72,7 @@ $(function() {
             `;
         $('#bookContent').append(content);
     });
+
+    // get input from the form 
+    
 });
