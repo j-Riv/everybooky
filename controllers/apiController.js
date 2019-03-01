@@ -114,7 +114,7 @@ module.exports = {
     addPost: function(req, res) {
         models.Post.create({
             body: req.body.line,
-            AuthorId: req.body.authorId,
+            UserId: req.body.userId,
             BookId: req.body.bookId
         }).then(result => {
             let postObj = {

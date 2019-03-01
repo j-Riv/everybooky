@@ -1,6 +1,7 @@
 const models = require('../models/');
 const request = require('request');
 const rp = require('request-promise');
+const baseUrl = 'http://localhost:3000';
 
 module.exports = {
     homepage: function(req, res) {
@@ -26,7 +27,7 @@ module.exports = {
         let id = req.user.id;
         // http request
         console.log(id);
-        let url = 'http://localhost:3000/api/user/' + id;
+        let url = baseUrl + '/api/user/' + id;
         // get book information
         rp(url)
             .then(function(body) {
@@ -70,31 +71,38 @@ module.exports = {
         let book;
         // http request
         console.log(id);
-        let url = 'http://localhost:3000/api/books/id/' + id;
+        let url = baseUrl + '/api/books/id/' + id;
         // get book information
         rp(url)
             .then(function(body) {
                 body = JSON.parse(body);
                 book = body.book;
                 // get book posts
-                let url = 'http://localhost:3000/api/books/' + book.id + '/posts';
-                rp(url)
-                    .then(function(body) {
-                        body = JSON.parse(body);
-                        posts = body.post;
-                        console.log(posts);
-                        res.render('book', {
-                            loggedIn: req.isAuthenticated(),
-                            id: id,
-                            title: 'Book',
-                            bookTitle: book.title,
-                            description: book.body,
-                            genre: book.genre,
-                            posts: posts
+                if (book !== null) {
+                    let url = baseUrl + '/api/books/' + book.id + '/posts';
+                    rp(url)
+                        .then(function(body) {
+                            body = JSON.parse(body);
+                            posts = body.posts;
+                            console.log(posts);
+                            res.render('book', {
+                                loggedIn: req.isAuthenticated(),
+                                id: id,
+                                title: 'Book',
+                                bookTitle: book.title,
+                                description: book.body,
+                                genre: book.genre,
+                                posts: posts
+                            });
+                        }).catch(function(error) {
+                            console.error(error);
                         });
-                    }).catch(function(error) {
-                        console.error(error);
+                } else {
+                    res.render('404', {
+                        loggedIn: req.isAuthenticated(),
+                        title: '404 | Not Found'
                     });
+                }
             }).catch(function(error) {
                 console.error(error);
             });
