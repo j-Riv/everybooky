@@ -27,31 +27,39 @@ module.exports = {
         let id = req.user.id;
         // http request
         console.log(id);
-        let url = baseUrl + '/api/user/' + id;
         // get book information
+        let url = baseUrl + '/api/books/author/' + req.user.id;
         rp(url)
             .then(body => {
                 body = JSON.parse(body);
-                user = body.user;
-                console.log('The User');
-                console.log(user);
-                let url = baseUrl + '/api/books/author/' + req.user.id;
-                rp(url)
-                    .then(body => {
-                        body = JSON.parse(body);
-                        const books = body;
-                        console.log('These books');
-                        console.log(books);
-                        res.render('dashboard', {
-                            loggedIn: req.isAuthenticated(),
-                            title: 'Dashboard',
-                            id: req.user.id,
-                            user: user,
-                            books: books
+                const bookIds = body;
+                console.log('These books');
+                console.log(bookIds);
+                var bookList = [];
+                bookIds.forEach(book => {
+                    let bUrl = baseUrl + '/api/books/id/' + book;
+                    rp(bUrl)
+                        .then(body => {
+                            body = JSON.parse(body);
+                            const bookObj = body;
+                            console.log('This Book');
+                            console.log(bookObj);
+                            bookList.push(bookObj);
+                            if (bookIds.length === bookList.length) {
+                                console.log('book list:');
+                                console.log(bookList);
+                                res.render('dashboard', {
+                                    loggedIn: req.isAuthenticated(),
+                                    title: 'Dashboard',
+                                    id: req.user.id,
+                                    books: bookList,
+                                    theLast: req.user.lastname
+                                });
+                            }
+                        }).catch(error => {
+                            console.error(error);
                         });
-                    }).catch(error => {
-                        console.error(error);
-                    });
+                });
             }).catch(error => {
                 console.error(error);
             });

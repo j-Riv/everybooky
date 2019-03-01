@@ -9,6 +9,7 @@
                 </div>
                 <div class="col-sm-8">
                     <h1>{{user.firstname}}</h1>
+                    <p>{{theLast}}</p>
                     <h2>number of books written: </h2>
                 </div>
             </div>
@@ -22,6 +23,9 @@
             <div class="row text-center">
                 <div class="col-sm-12">
                     <p id="allBook"></p>
+                    {{#each books}}
+                        <span>1{{this.id}}</span>
+                    {{/each}}
                 </div>
                 <div class="col-sm-12">
                     <p id="recentBook"></p>
