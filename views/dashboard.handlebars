@@ -1,5 +1,45 @@
 {{> header}}
-<div class="text-center">
+<div class="container">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCeE-XUkjXgBWaqNaMprbN58CCXIOo8UxSQickhEYJw2b3Bae2dA"
+                        class="mr-3" alt="...">
+                </div>
+                <div class="col-sm-8">
+                    <h1>{{user.firstname}}</h1>
+                    <h2>number of books written: </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <button class="btn" id="recentButton">recent books</button>
+                    <button class="btn" id="savedButton">Saved books</button>
+                    <button class="btn" id="allButton">view all books</button>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-sm-12">
+                    <p id="allBook"></p>
+                </div>
+                <div class="col-sm-12">
+                    <p id="recentBook"></p>
+                </div>
+                <div class="col-sm-12" id="savedBook">
+                    <p>saved
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{{> footer}}
+
+{{!-- <div class="text-center">
     <h2>Dashboard</h2>
     <h5>Hurray! you are logged in.</h5>
     <h3>This is your ID: {{id}}</h3>
@@ -10,5 +50,4 @@
     {{#each books}}
         {{this}}
     {{/each}}
-</div>
-{{> footer}}
+</div> --}}

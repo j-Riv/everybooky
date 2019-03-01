@@ -33,3 +33,10 @@ VALUE (
     4.9,
     false
 );
+
+INSERT INTO Post (body, UserId, BookId)
+VALUE (
+    "blah blah blah",
+    1,
+    1
+);
