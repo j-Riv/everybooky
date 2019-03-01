@@ -88,7 +88,6 @@ module.exports = {
             console.log(error);
         });
     },
-    // Not sure if 
     searchBookAuthor: function(req, res) {
         models.User.findAll({ where: { username: req.params.username } }).then(results => {
             let author = {
