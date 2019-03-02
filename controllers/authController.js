@@ -3,14 +3,14 @@ const models = require('../models/');
 module.exports = {
     homepage: (req, res) => {
         models.Book.findAll()
-        .then(result => {
-            console.log(result[0].imageUrl);
-            res.render('homepage', {
-                loggedIn: req.isAuthenticated(),
-                title: 'Homepage',
-                books: result
-            });
-        })
+            .then(result => {
+                console.log(result[0].imageUrl);
+                res.render('homepage', {
+                    loggedIn: req.isAuthenticated(),
+                    title: 'Homepage',
+                    books: result
+                });
+            })
     },
     login: (req, res) => {
         if (req.isAuthenticated()) {
@@ -51,6 +51,7 @@ module.exports = {
         res.render('wiifat', {
             loggedIn: req.isAuthenticated(),
             title: 'Team',
+            user: req.user
         });
     },
     form: (req, res) => {

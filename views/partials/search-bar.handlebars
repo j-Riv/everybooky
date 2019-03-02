@@ -5,11 +5,14 @@
         <button class="btn border-left-0 border-secondary" type="button" id="searchBtn">
             <i class="fas fa-search text-secondary"></i></button>
     </div>
-<div class="form-group">
-    <select class="form-control" id="searchBy"></select>
-      <option value="title">Title</option>
-      <option value="genre">Genre</option>
-      <option value="author">Author</option>
-    </select>
-  </div>
+    <div class="form-group">
+        <label for="searchBy">Search By</label>
+        <select class="form-control" id="searchBy">
+            <option value="title">Title</option>
+            <option value="genre">Genre</option>
+            {{!-- <option value="author">Author</option>
+            <option value="book-id">Book ID</option>
+            <option value="author-id">Author ID</option> --}}
+        </select>
+    </div>
 </form>
