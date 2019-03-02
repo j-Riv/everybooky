@@ -22,7 +22,7 @@ body {
 }
 
 #goToChat {
-    position: absolute;
+    // position: fixed;
     bottom: 0;
     right: 15px;
 }
@@ -70,14 +70,24 @@ body {
 /* Chat page */
 
 #chat {
-    width: 80%;
+    width: 400px;
+    max-width: 80%;
     display: block;
     margin: auto;
+    border: 2px solid #000;
+    border-radius: 25px;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 100px;
+    background: #fff;
     .pages {
         list-style: none;
+        padding: 0;
         .chatArea {
             height: 100%;
             padding-bottom: 60px;
+            padding-left: 0;
             .username {
                 font-weight: 700;
                 overflow: hidden;
@@ -91,12 +101,13 @@ body {
                 // padding: 10px 20px 10px 20px;
                 font-size: 150%;
                 list-style: none;
+                padding: 0;
             }
             .log {
                 color: gray;
                 font-size: 70%;
                 margin: 5px;
-                text-align: center;
+                // text-align: center;
                 list-style: none;
             }
             .message.typing .messageBody {
