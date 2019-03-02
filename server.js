@@ -17,7 +17,6 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use('/public', express.static('public'));
-// app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // For Passport
 // Session secret
@@ -71,7 +70,7 @@ require('./routes/auth.js')(app, passport);
 require('./routes/apiRoutes')(app, passport);
 
 // Load passport strategies
-require('./config/passport/passport.js')(passport, models.User);
+require('./config/passport/passport')(passport, models.User);
 
 const syncOptions = { force: false };
 
@@ -80,6 +79,10 @@ const syncOptions = { force: false };
 if (process.env.NODE_ENV === 'test') {
     syncOptions.force = true;
 }
+
+// socket for chat
+const socketController = require('./controllers/socketController');
+io.on('connection', socketController.respond);
 
 // Starting the server, syncing our models ------------------------------------/
 models.sequelize.sync(syncOptions).then(function() {

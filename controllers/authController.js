@@ -1,7 +1,4 @@
 const models = require('../models/');
-// const request = require('request');
-// const rp = require('request-promise');
-// const baseUrl = 'http://localhost:3000';
 
 module.exports = {
     homepage: (req, res) => {
@@ -90,6 +87,14 @@ module.exports = {
             }
         }).catch(error => {
             console.log(error);
+        });
+    },
+    chat: (req, res) => {
+        res.render('chat', {
+            loggedIn: req.isAuthenticated(),
+            user: req.user,
+            title: 'Chat',
+            isChat: true
         });
     }
 }

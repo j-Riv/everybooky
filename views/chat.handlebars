@@ -1,0 +1,22 @@
+<div class="wrapper">
+    {{> header}}
+    <div id="chat">
+        <ul class="pages">
+            <li class="chat page">
+                <div class="chatArea">
+                    <ul class="messages"></ul>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control inputMessage" placeholder="Type here..." aria-describedby="sendMessage">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" id="sendMessage">Send</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    {{> login-modal}}
+    <div class="push"></div>
+</div>
+{{> footer}}
+{{> chat-scripts}}
