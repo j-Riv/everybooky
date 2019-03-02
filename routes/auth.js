@@ -17,9 +17,7 @@ module.exports = function(app, passport) {
 
     app.get('/team', authController.team);
 
-    app.get('/book/:id', authController.book);
-
-    app.get('/book/edit/:id', authController.editBook);
+    app.get('/book/:id', authController.editBook);
 
     app.get('/logout', authController.logout);
 

@@ -2,10 +2,15 @@ const models = require('../models/');
 
 module.exports = {
     homepage: (req, res) => {
-        res.render('homepage', {
-            loggedIn: req.isAuthenticated(),
-            title: 'Homepage'
-        });
+        models.Book.findAll()
+        .then(result => {
+            console.log(result[0].imageUrl);
+            res.render('homepage', {
+                loggedIn: req.isAuthenticated(),
+                title: 'Homepage',
+                books: result
+            });
+        })
     },
     login: (req, res) => {
         if (req.isAuthenticated()) {
@@ -59,36 +64,36 @@ module.exports = {
             res.redirect('/');
         });
     },
-    book: (req, res) => {
-        let id = req.params.id;
-        models.Book.findOne({
-            where: {
-                id: id
-            }
-        }).then(result => {
-            let obj;
-            // if signed in
-            if (req.isAuthenticated()) {
-                obj = {
-                    loggedIn: true,
-                    user: req.user,
-                    title: 'Book',
-                    book: result.dataValues
-                }
-            }
-            // not signed in
-            else {
-                obj = {
-                    loggedIn: false,
-                    title: 'Book',
-                    book: result.dataValues
-                }
-            }
-            res.render('book', obj);
-        }).catch(error => {
-            console.log(error);
-        });
-    },
+    // book: (req, res) => {
+    //     let id = req.params.id;
+    //     models.Book.findOne({
+    //         where: {
+    //             id: id
+    //         }
+    //     }).then(result => {
+    //         let obj;
+    //         // if signed in
+    //         if (req.isAuthenticated()) {
+    //             obj = {
+    //                 loggedIn: true,
+    //                 user: req.user,
+    //                 title: 'Book',
+    //                 book: result.dataValues
+    //             }
+    //         }
+    //         // not signed in
+    //         else {
+    //             obj = {
+    //                 loggedIn: false,
+    //                 title: 'Book',
+    //                 book: result.dataValues
+    //             }
+    //         }
+    //         res.render('book', obj);
+    //     }).catch(error => {
+    //         console.log(error);
+    //     });
+    // },
     editBook: (req, res) => {
         let id = req.params.id;
         console.log(id);

@@ -75,11 +75,26 @@ $(function() {
         $('#bookContent').append(content);
     }); 
 
+    // This will prevent the user from going past the max amount of characters.
+    $("#line").keypress(function(e) {
+        var max = 160
+        if (e.which <0x20) {
+            return;
+        }
+        if (this.value.length == max) {
+            e.preventDefault();
+        }
+        else if (this.value.length > max) {
+            this.value = this.value.substring(0, max);
+        }
+    })
+
+    // This will count the characters left on screen and tell user they've reached the max.
     $('#line').keyup(function () {
         var max = 160;
         var len = $(this).val().length;
         if (len >= max) {
-          $('#charNum').text(' you have reached the limit');
+            $('#charNum').text(' you have reached the limit');
         } else {
           var char = max - len;
           $('#charNum').text(char + ' characters left');
