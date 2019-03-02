@@ -96,7 +96,7 @@ module.exports = {
             res.json(results).end();
         }).catch(error => {
             console.log(error);
-        })
+        });
     },
     searchGenre: (req, res) => {
         models.Book.findAll({ where: { genre: req.params.genre } }).then(results => {
