@@ -59,36 +59,36 @@ module.exports = {
             res.redirect('/');
         });
     },
-    book: (req, res) => {
-        let id = req.params.id;
-        models.Book.findOne({
-            where: {
-                id: id
-            }
-        }).then(result => {
-            let obj;
-            // if signed in
-            if (req.isAuthenticated()) {
-                obj = {
-                    loggedIn: true,
-                    user: req.user,
-                    title: 'Book',
-                    book: result.dataValues
-                }
-            }
-            // not signed in
-            else {
-                obj = {
-                    loggedIn: false,
-                    title: 'Book',
-                    book: result.dataValues
-                }
-            }
-            res.render('book', obj);
-        }).catch(error => {
-            console.log(error);
-        });
-    },
+    // book: (req, res) => {
+    //     let id = req.params.id;
+    //     models.Book.findOne({
+    //         where: {
+    //             id: id
+    //         }
+    //     }).then(result => {
+    //         let obj;
+    //         // if signed in
+    //         if (req.isAuthenticated()) {
+    //             obj = {
+    //                 loggedIn: true,
+    //                 user: req.user,
+    //                 title: 'Book',
+    //                 book: result.dataValues
+    //             }
+    //         }
+    //         // not signed in
+    //         else {
+    //             obj = {
+    //                 loggedIn: false,
+    //                 title: 'Book',
+    //                 book: result.dataValues
+    //             }
+    //         }
+    //         res.render('book', obj);
+    //     }).catch(error => {
+    //         console.log(error);
+    //     });
+    // },
     editBook: (req, res) => {
         let id = req.params.id;
         console.log(id);
