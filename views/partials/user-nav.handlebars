@@ -4,7 +4,20 @@
                 data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
                     class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav mr-auto"></ul>
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="d-flex flex-row">
+                        <!-- Search Bar Start-->
+                        <form class="form-inline">
+                            <input type="text" class="form-control border-right-0 border-secondary" placeholder="Search"
+                                aria-label="Search Bar" aria-describedby="searchBtn" id="searchBar">
+                            <div class="input-group-append">
+                                <button class="btn border-left-0 border-secondary" type="button" id="searchBtn">
+                                    <i class="fas fa-search text-secondary"></i></button>
+                            </div>
+                        </form>
+                        <!-- Search Bar End -->
+                    </li>
+                </ul>
                 <span class="navbar-text actions">
                     <a class="login" data-toggle="modal" data-target="#formModal">Create</a>
                     <a href="/dashboard" class="login">Profile</a>
