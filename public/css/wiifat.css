@@ -1,3 +1,29 @@
+/* General */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.wrapper {
+  min-height: 100%;
+  /* Equal to height of footer */
+  /* But also accounting for potential margin-bottom of last child */
+  margin-bottom: -207px;
+}
+
+.footer,
+.push {
+  height: 207px;
+}
+
+#goToChat {
+  position: absolute;
+  bottom: 0;
+  right: 15px;
+}
+
+/* Team page */
 #team .jumbotron {
   background-image: url(../images/team/team.jpg);
   background-color: #02a4d3;
@@ -34,4 +60,47 @@
 
 #team #theTeam .team-member .title {
   font-style: italic;
+}
+
+/* Chat page */
+#chat {
+  width: 80%;
+  display: block;
+  margin: auto;
+}
+
+#chat .pages {
+  list-style: none;
+}
+
+#chat .pages .chatArea {
+  height: 100%;
+  padding-bottom: 60px;
+}
+
+#chat .pages .chatArea .username {
+  font-weight: 700;
+  overflow: hidden;
+  padding-right: 15px;
+  text-align: right;
+}
+
+#chat .pages .chatArea .messages {
+  height: 100%;
+  margin: 0;
+  overflow-y: scroll;
+  font-size: 150%;
+  list-style: none;
+}
+
+#chat .pages .chatArea .log {
+  color: gray;
+  font-size: 70%;
+  margin: 5px;
+  text-align: center;
+  list-style: none;
+}
+
+#chat .pages .chatArea .message.typing .messageBody {
+  color: gray;
 }
