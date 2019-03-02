@@ -17,7 +17,13 @@ $(function() {
     var $chatPage = $('.chat.page'); // The chatroom page
 
     // Prompt for setting a username
-    var username = '{{ user.firstname }}';
+    var username;
+    {{#if user.username}}
+        username = '{{user.username}}';
+    {{else}}
+        username = '{{user.firstname}}';
+    {{/if}}
+    
     var connected = false;
     var typing = false;
     var lastTypingTime;

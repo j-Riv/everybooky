@@ -1,4 +1,5 @@
 const bCrypt = require('bcrypt-nodejs');
+const path = require('path');
 
 module.exports = function(passport, user) {
     const User = user;
@@ -28,12 +29,14 @@ module.exports = function(passport, user) {
                             message: 'That email is already taken'
                         });
                     } else {
+                        let photo = '/public/images/dummy/default-tom.jpg';
                         let userPassword = generateHash(password);
                         let data = {
                             email: email,
                             password: userPassword,
                             firstname: req.body.firstname,
                             lastname: req.body.lastname,
+                            photo: photo
                         };
 
                         User.create(
@@ -50,8 +53,7 @@ module.exports = function(passport, user) {
                             });
                     }
                 });
-        }
-    ));
+        }));
 
     // local sign in
     passport.use('local-signin', new LocalStrategy({
