@@ -1,22 +1,3 @@
-<!-------------------------------------
-+++++ Delete Wwhen Done +++++
-user.firstname
-user.lastname
-user.username
-user.about
-user.photo
-user.email
---------------------------------------->
-<!-------------------------------------
-+++++ Delete Wwhen Done +++++
-books
-book.id
-book.title
-book.body
-book.genre
-book.imageUrl
---------------------------------------->
-
 {{> header}}
 
 <div class="container" id="editBook">
@@ -40,13 +21,13 @@ book.imageUrl
         <div class="collapse" id="collapseExample">
             <form>
                 <div class="input-group mb-3">
-                    <input type="text" id="line" class="form-control" placeholder="Add your line" aria-label="Add your line" aria-describedby="addLine" name="line">
+                    <input type="text" id="line" class="form-control" placeholder="Add your line" aria-label="Add your line" aria-describedby="addLine" name="line" onkeyup="countChar(this)">
                     <input type="text" id="userId" name="userId" hidden value="{{user.id}}">
                     <input type="text" id="bookId" name="bookID" hidden value="{{book.id}}">
-
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" id="addLine">Button</button>
+                        <button class="btn btn-outline-secondary" type="button" id="addLine">Submit</button>
                     </div>
+                    <p id="charNum"></p>
                 </div>
             </form>
         </div>
