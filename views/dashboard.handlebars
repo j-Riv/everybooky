@@ -31,23 +31,33 @@ this.Book.imageUrl
                 </div>
                 <div class="col-sm-8">
                     <h1>{{user.firstname}} {{user.lastname}}</h1>
-                    <h5>{{user.username}}</h5>
-                    <h2>Number of Books Written: </h2>
+                    <h2>{{user.username}}</h2>
                     <h3>About:</h3>
                     <p>{{user.about}}</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12 text-center">
-                    <button class="btn" id="allButton">view all books</button>
+                    <button class="btn btn-primary" id="allButton">View all books</button>
                 </div>
             </div>
             <div class="row text-center">
                 <div class="col-sm-12">
                     <ul class="list-unstyled" id="allBook">
-                        {{#eachUnique books}}
-                        <li>{{this.Book.id}} - {{this.Book.title}}</li>
-                        {{/eachUnique}}
+                        <div class="row">
+                            {{#eachUnique books}}
+                            <div class="col-md-3 mb-3">
+                                <div class="card book">
+                                    <a href="/book/{{this.Book.id}}">
+                                        <img src="{{this.Book.imageUrl}}" alt="{{this.Book.title}}" class="card-img w-100 d-block">
+                                        <div class="card-img-overlay">
+                                            <h4>{{this.Book.title}}</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            {{/eachUnique}}
+                        </div>
                     </ul>
                 </div>
             </div>
