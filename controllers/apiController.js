@@ -18,7 +18,9 @@ module.exports = {
             title: book.title,
             body: book.body,
             text_limit: book.limit,
-            genre: book.genre
+            genre: book.genre,
+            // type: book.type,
+            // private: book.private
         }).then(result => {
             let bookObj = {
                 id: result.id,
@@ -26,7 +28,7 @@ module.exports = {
             }
             console.log('added book: ');
             console.log(bookObj);
-            return res.status(200).end();
+            return res.json(bookObj).status(200).end();
             // req.io.emit('added book', bookObj);
         }).catch(error => {
             console.error(error);
@@ -87,21 +89,14 @@ module.exports = {
         }).catch(error => {
             console.log(error);
         });
-    }, 
+    },
     searchBooksByAuthor: (req, res) => {
-        models.Post.findAll({ where: { UserId: req.params.id } }).then(results => {
+        models.Post.findAll({ where: { UserId: req.params.id }, include: [models.Book] }).then(results => {
             console.log(results);
-            let bookList = [];
-            results.forEach(book => {
-                // only add unique values
-                if (bookList.indexOf(book.BookId) === -1) {
-                    bookList.push(book.BookId);
-                }
-            });
-            res.json(bookList).end();
+            res.json(results).end();
         }).catch(error => {
             console.log(error);
-        })
+        });
     },
     searchGenre: (req, res) => {
         models.Book.findAll({ where: { genre: req.params.genre } }).then(results => {
@@ -153,6 +148,30 @@ module.exports = {
             res.json(userObj);
         }).catch(error => {
             console.log(error);
+        });
+    },
+    updateUser: (req, res) => {
+        let user = req.body;
+        models.User.update({
+            firstname: user.firstname,
+            lastname: user.lastname,
+            username: user.username,
+            about: user.about,
+            photo: user.photo,
+            email: user.email
+        }, {
+            where: {
+                id: req.params.id
+            }
+        }).then(result => {
+            if (result.changedRows === 0) {
+                // error id must not exist
+                return res.status(404).end();
+            } else {
+                res.status(200).end();
+            }
+        }).catch(error => {
+            console.error(error);
         });
     }
 }

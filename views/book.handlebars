@@ -1,9 +1,28 @@
+<!-------------------------------------
++++++ Delete Wwhen Done +++++
+user.firstname
+user.lastname
+user.username
+user.about
+user.photo
+user.email
+--------------------------------------->
+<!-------------------------------------
++++++ Delete Wwhen Done +++++
+books
+book.id
+book.title
+book.body
+book.genre
+book.imageUrl
+--------------------------------------->
+
 {{> header}}
 
 <div class="container" id="editBook">
     <div class="jumbotron">
-        <h1 class="display-4">{{bookTitle}}</h1>
-        <p class="lead">{{description}}</p>
+        <h1 class="display-4">{{book.title}}</h1>
+        <p class="lead">{{book.description}}</p>
         <hr class="my-4">
         <!-- the posts -->
         <div id="bookContent">
@@ -22,8 +41,8 @@
             <form>
                 <div class="input-group mb-3">
                     <input type="text" id="line" class="form-control" placeholder="Add your line" aria-label="Add your line" aria-describedby="addLine" name="line">
-                    <input type="text" id="userId" name="userId" hidden value="{{userId}}">
-                    <input type="text" id="bookId" name="bookID" hidden value="{{bookId}}">
+                    <input type="text" id="userId" name="userId" hidden value="{{user.id}}">
+                    <input type="text" id="bookId" name="bookID" hidden value="{{book.id}}">
 
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" id="addLine">Button</button>
