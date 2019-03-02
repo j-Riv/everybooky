@@ -4,7 +4,30 @@
     <div class="container-fluid">
         <h1 class="display-4">{{book.title}}</h1>
         <p class="lead">{{book.body}}</p>
-        <hr class="my-4">
+        <div class="btn-group dropright float-right mb-2">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                Contributors
+            </button>
+            <div class="dropdown-menu">
+                <!-- Dropdown that shows contributors (hard coded for now until ajax call)-->
+                <ul id="contList">
+                    <li>mig</li>
+                    <li>jose</li>
+                    <li>dav</li>
+                    <li>ty</li>
+                    <li>mig</li>
+                    <li>jose</li>
+                    <li>dav</li>
+                    <li>ty</li>
+                    <li>mig</li>
+                    <li>jose</li>
+                    <li>dav</li>
+                    <li>ty</li>
+                </ul>
+            </div>
+        </div>
+        <hr class="my-4" style="clear: both">
         <!-- the posts -->
         <div id="bookContent">
             {{#each posts}}

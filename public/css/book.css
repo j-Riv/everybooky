@@ -9,3 +9,7 @@
   border-color: #02a4d3;
   color: white;
 }
+
+#editBook #contList {
+  list-style-type: none;
+}
