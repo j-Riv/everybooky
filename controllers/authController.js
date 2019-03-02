@@ -4,11 +4,11 @@ module.exports = {
     homepage: (req, res) => {
         models.Book.findAll()
             .then(result => {
-                console.log(result[0].imageUrl);
                 res.render('homepage', {
                     loggedIn: req.isAuthenticated(),
                     title: 'Homepage',
-                    books: result
+                    books: result,
+                    displayChat: false
                 });
             })
     },
@@ -17,7 +17,8 @@ module.exports = {
             res.render('form', {
                 loggedIn: req.isAuthenticated(),
                 title: 'Form',
-                id: req.user.id
+                id: req.user.id,
+                displayChat: false
             });
         } else {
             res.render('login', {
@@ -34,14 +35,13 @@ module.exports = {
             },
             include: [models.Book]
         }).then(results => {
-            console.log(results);
             const books = results;
             res.render('dashboard', {
                 loggedIn: req.isAuthenticated(),
                 title: 'Dashboard',
-                id: req.user.id,
                 books: books,
-                user: req.user
+                user: req.user,
+                displayChat: true
             });
         }).catch(error => {
             console.log(error);
@@ -51,13 +51,8 @@ module.exports = {
         res.render('wiifat', {
             loggedIn: req.isAuthenticated(),
             title: 'Team',
-            user: req.user
-        });
-    },
-    form: (req, res) => {
-        res.render('form', {
-            loggedIn: req.isAuthenticated(),
-            id: req.user.id
+            user: req.user,
+            displayChat: false
         });
     },
     logout: (req, res) => {
@@ -65,36 +60,6 @@ module.exports = {
             res.redirect('/');
         });
     },
-    // book: (req, res) => {
-    //     let id = req.params.id;
-    //     models.Book.findOne({
-    //         where: {
-    //             id: id
-    //         }
-    //     }).then(result => {
-    //         let obj;
-    //         // if signed in
-    //         if (req.isAuthenticated()) {
-    //             obj = {
-    //                 loggedIn: true,
-    //                 user: req.user,
-    //                 title: 'Book',
-    //                 book: result.dataValues
-    //             }
-    //         }
-    //         // not signed in
-    //         else {
-    //             obj = {
-    //                 loggedIn: false,
-    //                 title: 'Book',
-    //                 book: result.dataValues
-    //             }
-    //         }
-    //         res.render('book', obj);
-    //     }).catch(error => {
-    //         console.log(error);
-    //     });
-    // },
     editBook: (req, res) => {
         let id = req.params.id;
         console.log(id);
@@ -105,61 +70,29 @@ module.exports = {
             },
             include: [models.Book]
         }).then(results => {
-            console.log('this is it');
-            console.log(results);
-            if (results.length > 0) {
-                let obj;
-                // if signed in
-                if (req.isAuthenticated()) {
-                    obj = {
-                        loggedIn: true,
-                        user: req.user,
-                        title: 'Book',
-                        book: results[0].Book,
-                        posts: results
-                    }
+            let obj;
+            // if signed in
+            if (req.isAuthenticated()) {
+                obj = {
+                    loggedIn: true,
+                    user: req.user,
+                    title: 'Book',
+                    book: results[0].Book,
+                    posts: results,
+                    displayChat: true
                 }
-                // not signed in
-                else {
-                    obj = {
-                        loggedIn: false,
-                        title: 'Book',
-                        book: results[0].Book,
-                        posts: results
-                    }
-                }
-                res.render('book', obj);
             }
-            // else no posts
+            // not signed in
             else {
-                models.Book.findOne({
-                    where: {
-                        id: id
-                    }
-                }).then(result => {
-                    let nobj;
-                    // if signed in
-                    if (req.isAuthenticated()) {
-                        nobj = {
-                            loggedIn: true,
-                            user: req.user,
-                            title: 'Book',
-                            book: result.dataValues
-                        }
-                    }
-                    // not signed in
-                    else {
-                        nobj = {
-                            loggedIn: false,
-                            title: 'Book',
-                            book: result.dataValues
-                        }
-                    }
-                    return res.render('book', nobj);
-                }).catch(error => {
-                    console.log(error);
-                });
+                obj = {
+                    loggedIn: false,
+                    title: 'Book',
+                    book: results[0].Book,
+                    posts: results,
+                    displayChat: false
+                }
             }
+            res.render('book', obj);
         }).catch(error => {
             console.log(error);
         });
