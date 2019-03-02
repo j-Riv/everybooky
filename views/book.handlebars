@@ -3,7 +3,7 @@
 <div class="container" id="editBook">
     <div class="container-fluid">
         <h1 class="display-4">{{book.title}}</h1>
-        <p class="lead">{{book.description}}</p>
+        <p class="lead">{{book.body}}</p>
         <hr class="my-4">
         <!-- the posts -->
         <div id="bookContent">
@@ -13,21 +13,22 @@
         </div>
         {{!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> --}}
         <p>
-            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
-                aria-expanded="false" aria-controls="collapseExample">
+            <button class="btn btn-primary" id="add-line-btn" type="button" data-toggle="collapse"
+                data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 Add your line!
             </button>
         </p>
         <div class="collapse" id="collapseExample">
             <form>
                 <div class="input-group mb-3">
-                    <input type="text" id="line" class="form-control" placeholder="Add your line" aria-label="Add your line" aria-describedby="addLine" name="line" onkeyup="countChar(this)">
+                    <input type="text" id="line" class="form-control" placeholder="Add your line"
+                        aria-label="Add your line" aria-describedby="addLine" name="line" onkeyup="countChar(this)">
                     <input type="text" id="userId" name="userId" hidden value="{{user.id}}">
                     <input type="text" id="bookId" name="bookID" hidden value="{{book.id}}">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" id="addLine">Submit</button>
                     </div>
-                    
+
                 </div>
                 <p id="charNum"></p>
             </form>
