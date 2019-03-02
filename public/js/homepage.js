@@ -12,5 +12,4 @@ $(() => {
         $(this).siblings().find('.active').removeClass('active');
     });
 
-    
 });

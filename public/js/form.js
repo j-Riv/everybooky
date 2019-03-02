@@ -7,6 +7,7 @@ $(() => {
             title: $('#title').val().trim(),
             genre: $('#genre').val().trim(),
             limit: $('#limit').val().trim(),
+            imageUrl: $('#imageUrl').val().trim(),
             // type: $('#type').val().trim(),
             // colab: $('#maxCol').val().trim(),
             body: $('#body').val().trim(),
