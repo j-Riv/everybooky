@@ -19,8 +19,9 @@ module.exports = {
             body: book.body,
             text_limit: book.limit,
             genre: book.genre,
-            // type: book.type,
-            // private: book.private
+            imageUrl: book.imageUrl
+                // type: book.type,
+                // private: book.private
         }).then(result => {
             let bookObj = {
                 id: result.id,
