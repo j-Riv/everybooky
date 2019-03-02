@@ -1,5 +1,6 @@
 $(() => {
     const aboutBtn = $("#aboutBtn");
+    const book = $(".book");
 
     aboutBtn.click(() => {
         aboutBtn.toggleClass("fa-chevron-circle-down fa-chevron-circle-up");
@@ -12,5 +13,8 @@ $(() => {
         $(this).siblings().find('.active').removeClass('active');
     });
 
-    
+    book.click(function() {
+        let id = $(this).attr("data-id");
+        window.location.href = "/book/" + id;
+    })
 });
