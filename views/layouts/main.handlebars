@@ -23,15 +23,6 @@
   {{#if loggedIn}}
   {{> create-modal}}
   {{/if}}
-  {{#unless isChat}}
-    {{#if loggedIn}}
-    <a id="goToChat" class="btn btn-primary" data-toggle="collapse" href="#collapseChat" role="button" aria-expanded="false"
-      aria-controls="collapseChat">
-      Chat <i class="fas fa-comment-alt"></i>
-    </a>
-    {{> chat}}
-    {{/if}}
-  {{/unless}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
   <script src="/public/js/scripts.js"></script>
   <script src="/public/js/form.js"></script>

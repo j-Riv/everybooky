@@ -1,5 +1,6 @@
 // variables
 $blue: rgb(2, 164, 211);
+$grey: #e9ecef;
 
 /* General */
 
@@ -22,7 +23,7 @@ body {
 }
 
 #goToChat {
-    // position: fixed;
+    position: fixed;
     bottom: 0;
     right: 15px;
 }
@@ -75,12 +76,14 @@ body {
     display: block;
     margin: auto;
     border: 2px solid #000;
-    border-radius: 25px;
+    border-bottom: none;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
     padding: 10px;
     position: fixed;
     bottom: 0;
-    left: 100px;
-    background: #fff;
+    right: 96px;
+    background: $grey;
     .pages {
         list-style: none;
         padding: 0;
