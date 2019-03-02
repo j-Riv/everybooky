@@ -75,11 +75,12 @@ module.exports = {
                 id: req.params.id
             }
         }).then(results => {
-            let bookObj = {
-                book: results
+            let books = {
+                booksObj: results
             };
-            console.log(bookObj);
-            res.json(bookObj);
+            console.log('SODIJFAOSDFAOISEJF');
+            console.log(books);
+            res.render('result', books);
         }).catch(error => {
             console.log(error);
         });
@@ -90,11 +91,10 @@ module.exports = {
                 title: req.params.title
             }
         }).then(results => {
-            let booksObj = {
-                books: results
+            let books = {
+                booksObj: results
             };
-            console.log(booksObj);
-            res.json(booksObj);
+            res.render('result', books);
         }).catch(error => {
             console.log(error);
         });
@@ -106,8 +106,10 @@ module.exports = {
             },
             include: [models.Book]
         }).then(results => {
-            console.log(results);
-            res.json(results).end();
+            let books = {
+                booksObj: results
+            };
+            res.render('result', books);
         }).catch(error => {
             console.log(error);
         });
@@ -118,11 +120,10 @@ module.exports = {
                 genre: req.params.genre
             }
         }).then(results => {
-            let genreBook = {
-                books: results
-            }
-            console.log(genreBook);
-            res.json(genreBook);
+            let books = {
+                booksObj: results
+            };
+            res.render('result', books);
         }).catch(error => {
             console.log(error);
         });

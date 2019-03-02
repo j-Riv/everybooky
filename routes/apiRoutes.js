@@ -13,11 +13,11 @@ module.exports = function(app, passport) {
     // search
     app.get('/api/books/id/:id', apiController.searchBooksById);
 
-    app.get('/api/books/:title', apiController.searchBooksByTitle);
+    app.get('/api/books/title/:title', apiController.searchBooksByTitle);
 
     app.get('/api/books/author/:id', apiController.searchBooksByAuthor);
 
-    app.get('/api/books/:genre', apiController.searchGenre);
+    app.get('/api/books/genre/:genre', apiController.searchGenre);
 
     // posts
     app.post('/api/book/post', apiController.addPost);

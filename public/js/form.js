@@ -29,8 +29,6 @@ $(() => {
                     type: "POST",
                     data: post
                 }).then(result => {
-                    console.log(result)
-                    console.log('should redirect')
                     window.location.href = "/book/" + bookId;
                 })
             }
