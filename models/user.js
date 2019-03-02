@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.TEXT
         },
         photo: {
-            type: DataTypes.TEXT,
+            type: DataTypes.TEXT
         },
         about: {
             type: DataTypes.TEXT
