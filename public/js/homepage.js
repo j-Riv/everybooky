@@ -1,10 +1,12 @@
 $(() => {
     const aboutBtn = $("#aboutBtn");
-    const book = $(".book");
+    const searchBy = $('#toggleSwitch');
 
+    // Controls the little button in the jumbotron
     aboutBtn.click(() => {
         aboutBtn.toggleClass("fa-chevron-circle-down fa-chevron-circle-up");
     });
+
 
     $(".dropdown-menu li a").click(function (e) {
         e.preventDefault();
@@ -13,8 +15,7 @@ $(() => {
         $(this).siblings().find('.active').removeClass('active');
     });
 
-    book.click(function() {
-        let id = $(this).attr("data-id");
-        window.location.href = "/book/" + id;
+    searchBy.click( () => {
+        $('#searchOptions').toggleClass("d-none");
     })
 });
