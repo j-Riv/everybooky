@@ -11,4 +11,6 @@ $(() => {
         $(this).siblings().removeClass('active');
         $(this).siblings().find('.active').removeClass('active');
     });
+
+    
 });
