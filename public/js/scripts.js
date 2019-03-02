@@ -85,4 +85,5 @@ $(function() {
           $('#charNum').text(char + ' characters left');
         }
       });
+    
 });
