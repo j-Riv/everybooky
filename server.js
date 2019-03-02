@@ -22,7 +22,7 @@ app.use('/public', express.static('public'));
 // For Passport
 // Session secret
 app.use(session({
-    secret: 'keybaord cat',
+    secret: process.env.PASSPORT_SECRET,
     resave: true,
     saveUninitalized: true
 }));
