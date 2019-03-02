@@ -1,14 +1,64 @@
+<!-------------------------------------
++++++ Delete Wwhen Done +++++
+user.firstname
+user.lastname
+user.username
+user.about
+user.photo
+user.email
+--------------------------------------->
+<!-------------------------------------
++++++ Delete Wwhen Done +++++
+books
+this.Book.id
+this.Book.title
+this.Book.body
+this.Book.genre
+this.Book.imageUrl
+--------------------------------------->
 {{> header}}
-<div class="text-center">
-    <h2>Dashboard</h2>
-    <h5>Hurray! you are logged in.</h5>
-    <h3>This is your ID: {{id}}</h3>
-    <h3>This is your ID: {{user.id}}</h3>
-    <h3>This is your name: {{user.lastname}}, {{user.firstname}}</h3>
-    <h3>This is your email: {{user.email}}</h3>
-    <p>These are the books your in:</p>
-    {{#each books}}
-        {{this}}
-    {{/each}}
+<div class="container">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="{{user.photo}}" class="mr-3 w-100" alt="...">
+                </div>
+                <div class="col-sm-8">
+                    <h1>{{user.firstname}}</h1>
+                    <p>{{user.lastname}}</p>
+                    <h2>number of books written: </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <button class="btn" id="recentButton">recent books</button>
+                    <button class="btn" id="savedButton">Saved books</button>
+                    <button class="btn" id="allButton">view all books</button>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-sm-12">
+                    <p id="allBook"></p>
+                    <ul>
+                        {{#eachUnique books}}
+                            <li>ID:{{this.Book.id}} - {{this.Book.title}}</li>
+                        {{/eachUnique}}
+                    </ul>
+
+                </div>
+                <div class="col-sm-12">
+                    <p id="recentBook"></p>
+                </div>
+                <div class="col-sm-12" id="savedBook">
+                    <p>saved
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
+
 {{> footer}}

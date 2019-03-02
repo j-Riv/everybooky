@@ -27,6 +27,8 @@ module.exports = function(app, passport) {
     // user
     app.get('/api/user/:id', apiController.getCurrentUser);
 
+    app.put('/api/user/:id', apiController.updateUser);
+
     function isLoggedIn(req, res, next) {
         if (req.isAuthenticated()) return next();
         res.status(403).end();

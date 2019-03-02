@@ -34,7 +34,27 @@ app.use(passport.session());
 app.engine(
     'handlebars',
     exphbs({
-        defaultLayout: 'main'
+        defaultLayout: 'main',
+        helpers: {
+            eachUnique: function(array, options) {
+                // this is used for the lookup
+                let dupCheck = {};
+                // template buffer
+                let buffer = '';
+                array.forEach(function(book) {
+                    let uniqueKey = book.Book.id;
+                    // check if the book has been added already
+                    if (!dupCheck[uniqueKey]) {
+                        // here there are only unique values
+                        dupCheck[uniqueKey] = true;
+                        // add this in the template
+                        buffer += options.fn(book);
+                    }
+                });
+                // return the template compiled
+                return buffer;
+            }
+        }
     })
 );
 app.set('view engine', 'handlebars');
@@ -47,9 +67,8 @@ app.use(function(req, res, next) {
 });
 
 // Routes
-const authRoute = require('./routes/auth.js')(app, passport);
+require('./routes/auth.js')(app, passport);
 require('./routes/apiRoutes')(app, passport);
-// require("./routes/htmlRoutes")(app);
 
 // Load passport strategies
 require('./config/passport/passport.js')(passport, models.User);
