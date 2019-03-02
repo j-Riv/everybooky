@@ -13,11 +13,13 @@ module.exports = function(app, passport) {
 
     app.get('/dashboard', isLoggedIn, authController.dashboard);
 
+    app.get('/chat', authController.chat);
+
     app.get('/team', authController.team);
 
-    app.get('/book', authController.book);
+    app.get('/book/:id', authController.book);
 
-    app.get('/book/:id', authController.editBook);
+    app.get('/book/edit/:id', authController.editBook);
 
     app.get('/logout', authController.logout);
 

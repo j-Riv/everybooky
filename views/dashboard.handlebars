@@ -21,11 +21,22 @@ this.Book.imageUrl
     <div class="jumbotron">
         <div class="container">
             <div class="row">
+                <div class="col-sm-12">
+                    <i class="fas fa-cog float-right" data-toggle="modal" data-target="#exampleModal"></i>
+                </div>
+            </div>
+            <div class=" row">
                 <div class="col-sm-4">
                     <img src="{{user.photo}}" class="mr-3 w-100" alt="...">
                 </div>
                 <div class="col-sm-8">
                     <h1>{{user.firstname}}</h1>
+                    <h2>Number of Books Written: </h2>
+                    <h3>About:</h3>
+                    <p id="about">sometimes I dream that im a lake looking up into a sky hoping that one day
+                        I can become a cloud
+                        also my parents take turns beating me :D
+                    </p>
                     <p>{{user.lastname}}</p>
                     <h2>number of books written: </h2>
                 </div>
@@ -59,6 +70,29 @@ this.Book.imageUrl
         </div>
     </div>
 
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Settings</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+                <input class="form-control" type="text" placeholder="Profile Picture">
+                <input class="form-control" type="text" placeholder="About">
+                <input class="form-control" type="text" placeholder="Username">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 {{> footer}}

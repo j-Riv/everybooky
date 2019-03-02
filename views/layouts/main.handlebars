@@ -14,6 +14,9 @@
   <link rel="stylesheet" href="/public/css/wiifat.css">
   <link rel="stylesheet" href="/public/css/homepage.css">
   <link rel="stylesheet" href="/public/css/book.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
 </head>
 
 <body>
@@ -21,6 +24,11 @@
   {{#if loggedIn}}
   {{> create-modal}}
   {{/if}}
+    {{#unless isChat}}
+    {{#if loggedIn}}
+      <a id="goToChat" class="btn btn-primary" href="/chat" role="button">Chat <i class="fas fa-comment-alt"></i></a>
+    {{/if}}
+  {{/unless}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
