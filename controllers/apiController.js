@@ -69,7 +69,11 @@ module.exports = {
         });
     },
     searchBooksById: (req, res) => {
-        models.Book.findOne({ where: { id: req.params.id } }).then(results => {
+        models.Book.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then(results => {
             let bookObj = {
                 book: results
             };
@@ -80,7 +84,11 @@ module.exports = {
         });
     },
     searchBooksByTitle: (req, res) => {
-        models.Book.findAll({ where: { title: req.params.title } }).then(results => {
+        models.Book.findAll({
+            where: {
+                title: req.params.title
+            }
+        }).then(results => {
             let booksObj = {
                 books: results
             };
@@ -91,7 +99,12 @@ module.exports = {
         });
     },
     searchBooksByAuthor: (req, res) => {
-        models.Post.findAll({ where: { UserId: req.params.id }, include: [models.Book] }).then(results => {
+        models.Post.findAll({
+            where: {
+                UserId: req.params.id
+            },
+            include: [models.Book]
+        }).then(results => {
             console.log(results);
             res.json(results).end();
         }).catch(error => {
@@ -99,7 +112,11 @@ module.exports = {
         });
     },
     searchGenre: (req, res) => {
-        models.Book.findAll({ where: { genre: req.params.genre } }).then(results => {
+        models.Book.findAll({
+            where: {
+                genre: req.params.genre
+            }
+        }).then(results => {
             let genreBook = {
                 books: results
             }
@@ -128,7 +145,11 @@ module.exports = {
     },
     getPosts: (req, res) => {
         let id = req.params.id;
-        models.Post.findAll({ where: { BookId: id } }).then(results => {
+        models.Post.findAll({
+            where: {
+                BookId: id
+            }
+        }).then(results => {
             const postsObj = {
                 posts: results
             };
@@ -140,7 +161,11 @@ module.exports = {
     },
     getCurrentUser: (req, res) => {
         let id = req.params.id;
-        models.User.findOne({ where: { id: id } }).then(result => {
+        models.User.findOne({
+            where: {
+                id: id
+            }
+        }).then(result => {
             let userObj = {
                 user: result
             };

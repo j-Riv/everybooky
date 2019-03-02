@@ -1,4 +1,35 @@
+// variables
 $blue: rgb(2, 164, 211);
+
+/* General */
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.wrapper {
+    min-height: 100%;
+    /* Equal to height of footer */
+    /* But also accounting for potential margin-bottom of last child */
+    margin-bottom: -207px;
+}
+
+.footer,
+.push {
+    height: 207px;
+}
+
+#goToChat {
+    position: absolute;
+    bottom: 0;
+    right: 15px;
+}
+
+
+/* Team page */
+
 #team {
     .jumbotron {
         background-image: url(../images/team/team.jpg);
@@ -30,6 +61,46 @@ $blue: rgb(2, 164, 211);
             }
             .title {
                 font-style: italic;
+            }
+        }
+    }
+}
+
+
+/* Chat page */
+
+#chat {
+    width: 80%;
+    display: block;
+    margin: auto;
+    .pages {
+        list-style: none;
+        .chatArea {
+            height: 100%;
+            padding-bottom: 60px;
+            .username {
+                font-weight: 700;
+                overflow: hidden;
+                padding-right: 15px;
+                text-align: right;
+            }
+            .messages {
+                height: 100%;
+                margin: 0;
+                overflow-y: scroll;
+                // padding: 10px 20px 10px 20px;
+                font-size: 150%;
+                list-style: none;
+            }
+            .log {
+                color: gray;
+                font-size: 70%;
+                margin: 5px;
+                text-align: center;
+                list-style: none;
+            }
+            .message.typing .messageBody {
+                color: gray;
             }
         }
     }
