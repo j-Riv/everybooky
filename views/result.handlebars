@@ -4,12 +4,12 @@
     <h1>Results</h1>
     <hr>
     <!-- Displays message if there are no results -->
-    {{#unless genreBook}}
+    {{#unless booksObj}}
     <h3>No results</h3>
     {{/unless}}
     <!-- Iterates over results and renders to page-->
-    {{#if genreBook}}
-    {{#each genreBook}}
+    {{#if booksObj}}
+    {{#each booksObj}}
     <div class="row">
         <div class="col-md-3">
             <div class="card">
