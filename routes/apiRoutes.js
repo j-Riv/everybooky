@@ -20,6 +20,8 @@ module.exports = function(app, passport) {
 
     app.put('/api/user/:id', apiController.updateUser);
 
+    app.get('/api/users/book/:id', apiController.getUsersByBook);
+
     function isLoggedIn(req, res, next) {
         if (req.isAuthenticated()) return next();
         res.status(403).end();

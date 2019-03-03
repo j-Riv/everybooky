@@ -85,3 +85,11 @@
     </div>
 </div>
 {{> login-modal}}
+<script>
+    // scroll to element
+    $('#viewTeam').click(function() {
+        $('html, body').animate({
+            scrollTop: $('#theTeam').offset().top
+        }, 2000);
+    });
+</script>

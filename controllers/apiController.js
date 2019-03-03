@@ -141,5 +141,42 @@ module.exports = {
         }).catch(error => {
             console.error(error);
         });
+    },
+    getUsersByBook: (req, res) => {
+        let id = req.params.id;
+        models.Post.findAll({
+            where: {
+                BookId: id
+            },
+            include: [models.Book]
+        }).then(results => {
+            var userObj = [];
+            // save ids to list
+            let userIdList = [];
+            results.forEach(post => {
+                userIdList.push(post.UserId);
+            });
+            // loop through user list
+            userIdList.forEach(id => {
+                models.User.findOne({
+                    where: {
+                        id: id
+                    }
+                }).then(result => {
+                    userObj.push(result);
+                    if (userIdList.length === userObj.length) {
+                        res.json(userObj);
+                    } else {
+                        return false;
+                    }
+                }).catch(error => {
+                    console.log(error);
+                });
+            });
+            // original call for all posts
+            return false;
+        }).catch(error => {
+            console.log(error);
+        });
     }
 }
