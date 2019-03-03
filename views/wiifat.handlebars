@@ -1,5 +1,4 @@
-<div id="team" class="wrapper">
-    {{> header}}
+<div id="team">
     <div class="jumbotron jumbotron-fluid text-center">
         <div class="container">
             <h1 class="display-4">We are WiiF@</h1>
@@ -84,7 +83,13 @@
             </div>
         </section>
     </div>
-    <div class="push"></div>
 </div>
 {{> login-modal}}
-{{> footer}}
+<script>
+    // scroll to element
+    $('#viewTeam').click(function() {
+        $('html, body').animate({
+            scrollTop: $('#theTeam').offset().top
+        }, 2000);
+    });
+</script>
