@@ -1,3 +1,8 @@
+{{#if displayChat}}
+{{#if loggedIn}}
+{{> chat}}
+{{/if}}
+{{/if}}
 <div class="footer footer-basic">
     
     <footer>
@@ -19,14 +24,5 @@
         <p class="copyright">Wiiph@ © 2019</p>
         <!-- End: Copyright -->
     </footer>
-    {{#if displayChat}}
-        {{#if loggedIn}}
-        <a id="goToChat" class="btn btn-primary" data-toggle="collapse" href="#collapseChat" role="button" aria-expanded="false"
-            aria-controls="collapseChat">
-            Chat <i class="fas fa-comment-alt"></i>
-        </a>
-        {{> chat}}
-        {{/if}}
-    {{/if}}
 </div>
 

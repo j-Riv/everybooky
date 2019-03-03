@@ -14,12 +14,7 @@ module.exports = {
     },
     login: (req, res) => {
         if (req.isAuthenticated()) {
-            res.render('form', {
-                loggedIn: req.isAuthenticated(),
-                title: 'Form',
-                id: req.user.id,
-                displayChat: false
-            });
+            res.redirect('/dashboard');
         } else {
             res.render('login', {
                 title: 'Log In / Sign Up'
@@ -97,12 +92,68 @@ module.exports = {
             console.log(error);
         });
     },
-    chat: (req, res) => {
-        res.render('chat', {
-            loggedIn: req.isAuthenticated(),
-            user: req.user,
-            title: 'Chat',
-            isChat: true
+    searchBooksById: (req, res) => {
+        models.Book.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then(results => {
+            console.log(results);
+            res.render('result', {
+                loggedIn: req.isAuthenticated(),
+                title: 'Results',
+                booksObj: results,
+                displayChat: false
+            });
+        }).catch(error => {
+            console.log(error);
+        });
+    },
+    searchBooksByTitle: (req, res) => {
+        models.Book.findAll({
+            where: {
+                title: req.params.title
+            }
+        }).then(results => {
+            res.render('result', {
+                loggedIn: req.isAuthenticated(),
+                title: 'Results',
+                booksObj: results,
+                displayChat: false
+            });
+        }).catch(error => {
+            console.log(error);
+        });
+    },
+    searchBooksByAuthor: (req, res) => {
+        models.Post.findAll({
+            where: {
+                UserId: req.params.id
+            },
+            include: [models.Book]
+        }).then(results => {
+            let books = {
+                booksObj: results
+            };
+            res.render('result', books);
+        }).catch(error => {
+            console.log(error);
+        });
+    },
+    searchGenre: (req, res) => {
+        models.Book.findAll({
+            where: {
+                genre: req.params.genre
+            }
+        }).then(results => {
+            res.render('result', {
+                loggedIn: req.isAuthenticated(),
+                title: 'Results',
+                booksObj: results,
+                displayChat: false
+            });
+        }).catch(error => {
+            console.log(error);
         });
     }
 }

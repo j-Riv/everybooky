@@ -1,4 +1,10 @@
 // variables
+// screen sizes
+$small: 480px;
+$medium: 768px;
+$large: 992px;
+$x-large: 1200px;
+// colors
 $blue: rgb(2, 164, 211);
 $grey: #e9ecef;
 
@@ -22,10 +28,30 @@ body {
     height: 207px;
 }
 
-#goToChat {
-    position: fixed;
-    bottom: 0;
-    right: 15px;
+
+/* Helpers */
+
+@mixin prefix($property, $value) {
+    -webkit-#{$property}: #{$value};
+    -moz-#{$property}: #{$value};
+    -ms-#{$property}: #{$value};
+    -o-#{$property}: #{$value};
+    #{$property}: #{$value};
+}
+
+.compressed {
+    max-height: 0;
+    visibility: hidden;
+    opacity: 0;
+    padding: 0 !important;
+    @include prefix('transition', 'height 500ms ease-in-out, opacity 250ms ease-in-out, visibility 250ms ease-in-out');
+}
+
+.expanded {
+    max-height: 100%;
+    visibility: visible;
+    opacity: 1;
+    @include prefix('transition-delay', '0ms');
 }
 
 
@@ -70,27 +96,57 @@ body {
 
 /* Chat page */
 
-#chat {
-    width: 400px;
-    max-width: 80%;
-    display: block;
-    margin: auto;
-    border: 2px solid #000;
-    border-bottom: none;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    padding: 10px;
+#goToChat,
+.go-to-chat {
     position: fixed;
     bottom: 0;
-    right: 96px;
-    background: $grey;
-    .pages {
-        list-style: none;
-        padding: 0;
+    // right: 15px;
+    // width: 81px;
+}
+
+#chatWrapper {
+    .nav-tabs {
+        border-bottom: 1px solid $grey;
+        #letsChat {
+            background-color: $grey;
+            border-top: 1px solid #000;
+            border-left: 1px solid #000;
+            border-right: 1px solid #000;
+            border-bottom: 1px solid $grey;
+            margin-bottom: -2px;
+        }
+    }
+    position: fixed;
+    z-index: 10000;
+    text-align: center;
+    height: 500px;
+    width: 400px;
+    max-width: 100%;
+    right: 0;
+    left: 0;
+    // margin-right: auto;
+    // margin-left: auto;
+    bottom: -458px;
+    &.slide-up {
+        bottom: 0px !important;
+    }
+    &.slide-down {
+        bottom: -458px !important;
+    }
+    #chat {
+        width: 400px;
+        max-width: 100%;
+        height: 100%;
+        display: block;
+        padding: 10px;
+        background: $grey;
+        border-top: 1px solid #000;
+        border-left: 1px solid #000;
+        border-right: 1px solid #000;
+        border-top-right-radius: .25rem;
         .chatArea {
-            height: 100%;
-            padding-bottom: 60px;
-            padding-left: 0;
+            height: 80%;
+            overflow-y: scroll;
             .username {
                 font-weight: 700;
                 overflow: hidden;
@@ -116,6 +172,18 @@ body {
             .message.typing .messageBody {
                 color: gray;
             }
+        }
+        #chatForm {
+            position: absolute;
+            right: 0;
+            left: 0;
+            bottom: 0;
+        }
+    }
+    @media screen and (max-width: $small) {
+        width: 100%;
+        #chat {
+            width: 100%;
         }
     }
 }

@@ -69,65 +69,6 @@ module.exports = {
             console.error(error);
         });
     },
-    searchBooksById: (req, res) => {
-        models.Book.findOne({
-            where: {
-                id: req.params.id
-            }
-        }).then(results => {
-            let books = {
-                booksObj: results
-            };
-            console.log('SODIJFAOSDFAOISEJF');
-            console.log(books);
-            res.render('result', books);
-        }).catch(error => {
-            console.log(error);
-        });
-    },
-    searchBooksByTitle: (req, res) => {
-        models.Book.findAll({
-            where: {
-                title: req.params.title
-            }
-        }).then(results => {
-            let books = {
-                booksObj: results
-            };
-            res.render('result', books);
-        }).catch(error => {
-            console.log(error);
-        });
-    },
-    searchBooksByAuthor: (req, res) => {
-        models.Post.findAll({
-            where: {
-                UserId: req.params.id
-            },
-            include: [models.Book]
-        }).then(results => {
-            let books = {
-                booksObj: results
-            };
-            res.render('result', books);
-        }).catch(error => {
-            console.log(error);
-        });
-    },
-    searchGenre: (req, res) => {
-        models.Book.findAll({
-            where: {
-                genre: req.params.genre
-            }
-        }).then(results => {
-            let books = {
-                booksObj: results
-            };
-            res.render('result', books);
-        }).catch(error => {
-            console.log(error);
-        });
-    },
     addPost: (req, res) => {
         models.Post.create({
             body: req.body.line,
