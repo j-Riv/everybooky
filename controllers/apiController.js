@@ -69,65 +69,6 @@ module.exports = {
             console.error(error);
         });
     },
-    searchBooksById: (req, res) => {
-        models.Book.findOne({
-            where: {
-                id: req.params.id
-            }
-        }).then(results => {
-            let books = {
-                booksObj: results
-            };
-            console.log('SODIJFAOSDFAOISEJF');
-            console.log(books);
-            res.render('result', books);
-        }).catch(error => {
-            console.log(error);
-        });
-    },
-    searchBooksByTitle: (req, res) => {
-        models.Book.findAll({
-            where: {
-                title: req.params.title
-            }
-        }).then(results => {
-            let books = {
-                booksObj: results
-            };
-            res.render('result', books);
-        }).catch(error => {
-            console.log(error);
-        });
-    },
-    searchBooksByAuthor: (req, res) => {
-        models.Post.findAll({
-            where: {
-                UserId: req.params.id
-            },
-            include: [models.Book]
-        }).then(results => {
-            let books = {
-                booksObj: results
-            };
-            res.render('result', books);
-        }).catch(error => {
-            console.log(error);
-        });
-    },
-    searchGenre: (req, res) => {
-        models.Book.findAll({
-            where: {
-                genre: req.params.genre
-            }
-        }).then(results => {
-            let books = {
-                booksObj: results
-            };
-            res.render('result', books);
-        }).catch(error => {
-            console.log(error);
-        });
-    },
     addPost: (req, res) => {
         models.Post.create({
             body: req.body.line,
@@ -199,6 +140,43 @@ module.exports = {
             }
         }).catch(error => {
             console.error(error);
+        });
+    },
+    getUsersByBook: (req, res) => {
+        let id = req.params.id;
+        models.Post.findAll({
+            where: {
+                BookId: id
+            },
+            include: [models.Book]
+        }).then(results => {
+            var userObj = [];
+            // save ids to list
+            let userIdList = [];
+            results.forEach(post => {
+                userIdList.push(post.UserId);
+            });
+            // loop through user list
+            userIdList.forEach(id => {
+                models.User.findOne({
+                    where: {
+                        id: id
+                    }
+                }).then(result => {
+                    userObj.push(result);
+                    if (userIdList.length === userObj.length) {
+                        res.json(userObj);
+                    } else {
+                        return false;
+                    }
+                }).catch(error => {
+                    console.log(error);
+                });
+            });
+            // original call for all posts
+            return false;
+        }).catch(error => {
+            console.log(error);
         });
     }
 }
