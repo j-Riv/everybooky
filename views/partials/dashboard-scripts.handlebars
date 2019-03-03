@@ -8,29 +8,29 @@
             $('#allBook').toggle();
         });
 
-        $('#modalSubmit').click((e) => {
-            e.preventDefault();
-            var profilePic = $('#profilePic').val().trim();
-            var aboutMe = $('#aboutInput').val().trim();
-            var username = $('#username').val().trim();
-            var modal = {
-                firstname: '{{user.firstname}}',
-                lastname: '{{user.lastname}}',
-                email: '{{user.email}}',
-                about: aboutMe,
-                photo: profilePic,
-                username: username
-            }
-            console.log(profilePic, aboutMe, username);
-            $.ajax('/api/user/' + {{ user.id }}, {
-                type: "PUT",
-                data: modal
-            }).then(result => {
-                console.log(result);
-                location.reload();
-            }).catch(err => {
-                console.error(err);
-            });
+
+    $('#modalSubmit').click((e) => {
+        e.preventDefault();
+        var profilePic = $('#profilePic').val().trim();
+        var aboutMe = $('#aboutInput').val().trim();
+        var username = $('#username').val().trim();
+        var modal = {
+            firstname: '{{user.firstname}}',
+            lastname: '{{user.lastname}}',
+            email: '{{user.email}}',
+            about: aboutMe,
+            photo: profilePic,
+            username: username
+        }
+        console.log(profilePic, aboutMe, username);
+        $.ajax('/api/user/' + {{ user.id }}, {
+            type: "PUT",
+            data: modal
+        }).then(result => {
+            location.reload();
+        }).catch(err => {
+            console.error(err);
+        });
     });
 });
 </script>

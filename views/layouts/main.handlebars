@@ -19,7 +19,12 @@
 </head>
 
 <body>
-  {{{body}}}
+  <div class="wrapper">
+    {{> header}}
+    {{{body}}}
+    <div class="push"></div>
+  </div>
+  {{> footer}}
   {{#if loggedIn}}
   {{> create-modal}}
   {{/if}}

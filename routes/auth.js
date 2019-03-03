@@ -13,8 +13,6 @@ module.exports = function(app, passport) {
 
     app.get('/dashboard', isLoggedIn, authController.dashboard);
 
-    app.get('/chat', authController.chat);
-
     app.get('/team', authController.team);
 
     app.get('/book/:id', authController.editBook);
@@ -25,6 +23,15 @@ module.exports = function(app, passport) {
         successRedirect: '/dashboard',
         failureRedirect: '/login'
     }));
+
+    // search
+    app.get('/search/books/id/:id', authController.searchBooksById);
+
+    app.get('/search/books/title/:title', authController.searchBooksByTitle);
+
+    app.get('/search/books/author/:id', authController.searchBooksByAuthor);
+
+    app.get('/search/books/genre/:genre', authController.searchGenre);
 
     function isLoggedIn(req, res, next) {
         if (req.isAuthenticated()) return next();

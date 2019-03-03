@@ -24,3 +24,15 @@
     transform: scale(1.1);
     cursor: pointer;
 }
+
+.grow:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+}
+
+.grow-double:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+}
