@@ -8,11 +8,11 @@
             </div>
             <div class=" row">
                 <div class="col-sm-4">
-                    <img src="{{user.photo}}" class="mr-3 w-100" alt="...">
+                    <img src="{{user.photo}}" class="circle-image mr-3 w-100" alt="{{user.firstname}} {{user.lastname}}">
                 </div>
                 <div class="col-sm-8">
                     <h1>{{user.firstname}} {{user.lastname}}</h1>
-                    <h2>{{user.username}}</h2>
+                    <h6>{{user.username}}</h6>
                     <h3>About:</h3>
                     <p>{{user.about}}</p>
                 </div>
@@ -22,16 +22,15 @@
                     <button class="btn btn-blue" id="allButton">View all books</button>
                 </div>
             </div>
-            <div class="row text-center">
+            <div class="row text-center pt-3">
                 <div class="col-sm-12">
-                    <ul class="list-unstyled" id="allBook">
+                    <hr />
+                    <ul class="pt-3 list-unstyled" id="allBook">
                         <div class="row">
                             {{#eachUnique books}}
-                            <div class="col-md-3 mb-3">
-                                <div class="card book">
+                            <div class="col-md-3 mb-3 text-white">
+                                <div class="card book grow text-white" style="background-image: url('{{this.Book.imageUrl}}');">
                                     <a href="/book/{{this.Book.id}}">
-                                        <img src="{{this.Book.imageUrl}}" alt="{{this.Book.title}}"
-                                            class="card-img w-100 d-block">
                                         <div class="card-img-overlay">
                                             <h4>{{this.Book.title}}</h4>
                                         </div>

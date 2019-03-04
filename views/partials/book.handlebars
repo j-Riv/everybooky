@@ -1,4 +1,14 @@
-<div class="col-md-3 mb-3">
+<div class="col-md-3 mb-3 text-white">
+    <div class="card book grow text-white" style="background-image: url('{{this.imageUrl}}');">
+        <a href="/book/{{this.id}}">
+            <div class="card-img-overlay">
+                <h4>{{this.title}}</h4>
+            </div>
+        </a>
+    </div>
+</div>
+
+{{!-- <div class="col-md-3 mb-3">
     <div class="card book grow">
         <a href="/book/{{this.id}}">
             <img src="{{this.imageUrl}}" alt="{{this.imageUrl}}" class="card-img w-100 d-block">
@@ -7,4 +17,4 @@
             </div>
         </a>
     </div>
-</div>
+</div> --}}

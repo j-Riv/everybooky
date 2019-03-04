@@ -70,6 +70,15 @@ module.exports = {
         });
     },
     addPost: (req, res) => {
+        models.Book.findOne({
+            where: {
+                id: req.body.bookId
+            }
+        }).then(book => {
+            return book.increment('posts', { by: 1 });
+        }).catch(error => {
+            console.error(error);
+        });
         models.Post.create({
             body: req.body.line,
             UserId: req.body.userId,
