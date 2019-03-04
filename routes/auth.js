@@ -4,6 +4,8 @@ module.exports = function(app, passport) {
 
     app.get('/', authController.homepage);
 
+    app.get('/sorted/:type', authController.getBooksSorted);
+
     app.get('/login', authController.login);
 
     app.post('/signup', passport.authenticate('local-signup', {
