@@ -29,7 +29,12 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING
         },
         views: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            defaultValue: 0
+        },
+        posts: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
         },
         rating: {
             type: DataTypes.DECIMAL(10, 2)

@@ -12,6 +12,25 @@ module.exports = {
                 });
             })
     },
+    getBooksSorted: (req, res) => {
+        let sortType = req.params.type
+        models.Book.findAll({}).then(results => {
+            if (sortType === 'new') {
+                results.sort((a, b) => (a.id < b.id) ? 1 : -1)
+            } else if (sortType === 'popular') {
+                results.sort((a, b) => (a.posts < b.posts) ? 1 : -1)
+            }
+            console.log(results);
+            res.render('homepage', {
+                loggedIn: req.isAuthenticated(),
+                title: 'Homepage',
+                books: results,
+                displayChat: false
+            });
+        }).catch(error => {
+            console.error(error);
+        });
+    },
     login: (req, res) => {
         if (req.isAuthenticated()) {
             res.redirect('/dashboard');
@@ -57,7 +76,16 @@ module.exports = {
     },
     editBook: (req, res) => {
         let id = req.params.id;
-        console.log(id);
+        // update views
+        models.Book.findOne({
+            where: {
+                id: id
+            }
+        }).then(book => {
+            return book.increment('views', { by: 1 });
+        }).catch(error => {
+            console.error(error);
+        });
         // get book information
         models.Post.findAll({
             where: {
