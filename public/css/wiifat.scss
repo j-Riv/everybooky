@@ -5,7 +5,8 @@ $medium: 768px;
 $large: 992px;
 $x-large: 1200px;
 // colors
-$blue: rgb(2, 164, 211);
+$blue: #02A4D3;
+$darker-blue: #0183A8;
 $grey: #e9ecef;
 
 /* General */
@@ -74,6 +75,16 @@ input[type="color"]:focus,
     visibility: visible;
     opacity: 1;
     @include prefix('transition-delay', '0ms');
+}
+
+.btn-blue {
+    background-color: $blue;
+    color: #fff;
+    transition: all .5s;
+    // &:hover {
+    //     background-color: $darker-blue;
+    //     background-color: #fff;
+    // }
 }
 
 
@@ -168,7 +179,6 @@ input[type="color"]:focus,
         border-top-right-radius: .25rem;
         .chatArea {
             height: 80%;
-            overflow-y: scroll;
             .username {
                 font-weight: 700;
                 overflow: hidden;
@@ -179,16 +189,19 @@ input[type="color"]:focus,
                 height: 100%;
                 margin: 0;
                 overflow-y: scroll;
-                // padding: 10px 20px 10px 20px;
                 font-size: 150%;
                 list-style: none;
                 padding: 0;
+                -ms-overflow-style: none; // IE 10+
+                overflow: -moz-scrollbars-none; // firefox
+                &::-webkit-scrollbar {
+                    display: none; // chrome & safari
+                }
             }
             .log {
                 color: gray;
                 font-size: 70%;
                 margin: 5px;
-                // text-align: center;
                 list-style: none;
             }
             .message.typing .messageBody {
