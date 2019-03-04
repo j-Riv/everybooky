@@ -5,7 +5,8 @@ $medium: 768px;
 $large: 992px;
 $x-large: 1200px;
 // colors
-$blue: rgb(2, 164, 211);
+$blue: #02A4D3;
+$darker-blue: #0183A8;
 $grey: #e9ecef;
 
 /* General */
@@ -74,6 +75,16 @@ input[type="color"]:focus,
     visibility: visible;
     opacity: 1;
     @include prefix('transition-delay', '0ms');
+}
+
+.btn-blue {
+    background-color: $blue;
+    color: #fff;
+    transition: all .5s;
+    // &:hover {
+    //     background-color: $darker-blue;
+    //     background-color: #fff;
+    // }
 }
 
 

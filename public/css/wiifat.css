@@ -61,10 +61,16 @@ input[type="color"]:focus,
   transition-delay: 0ms;
 }
 
+.btn-blue {
+  background-color: #02A4D3;
+  color: #fff;
+  transition: all .5s;
+}
+
 /* Team page */
 #team .jumbotron {
   background-image: url(../images/team/team.jpg);
-  background-color: #02a4d3;
+  background-color: #02A4D3;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
