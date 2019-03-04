@@ -22,6 +22,7 @@
             {{/each}}
         </div>
         {{!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> --}}
+        {{#if loggedIn}}
         <p>
             <button class="btn btn-primary" id="add-line-btn" type="button" data-toggle="collapse"
                 data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -38,11 +39,12 @@
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" id="addLine">Submit</button>
                     </div>
-
-                </div>
-                <p id="charNum"></p>
-            </form>
-        </div>
+                    <p id="charNum"></p>
+                </form>
+            </div>
+        {{else}}
+            <h1>Want to contribute?</h1> 
+        {{/if}}       
     </div>
 </div>
 {{> login-modal}}
