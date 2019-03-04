@@ -195,7 +195,7 @@ input[type="color"]:focus,
                 -ms-overflow-style: none; // IE 10+
                 overflow: -moz-scrollbars-none; // firefox
                 &::-webkit-scrollbar {
-                    display: none;
+                    display: none; // chrome & safari
                 }
             }
             .log {
