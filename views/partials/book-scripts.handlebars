@@ -1,7 +1,32 @@
 <script>
     // socket.io
     $(function () {
-        var socket = io();
+        const socket = io();
+        let bookContributors = [];
+
+        function getContributors() {
+            console.log('Getting contributors');
+            const contributors = $('#contList');
+            // empty before pull
+            contributors.empty();
+            $.ajax('/api/users/book/' + {{ book.id }}, {
+            type: 'GET'
+        }).then(
+            function (results) {
+                console.log(results);
+                let temp = [];
+                results.forEach(author => {
+                    if (!temp.includes(author.id)) {
+                        let contributor = `
+                        <li>${author.lastname}, ${author.firstname}</li>
+                    `;
+                        contributors.append(contributor);
+                    }
+                    temp.push(author.id);
+                });
+                bookContributors = temp;
+            });
+        }
 
         $('#addLine').on('click', function (e) {
             e.preventDefault();
@@ -25,12 +50,17 @@
         });
 
         //get changes
-        socket.on('added line', function (theLine) {
-            console.log('added line: ' + theLine.line);
+        socket.on('added line', function (res) {
+            console.log('added line: ' + res.line);
             let content = `
-            <span>${theLine.line}</span>
-        `;
+                <span>${res.line}</span>
+            `;
             $('#bookContent').append(content);
+            // if new contributor pull contributors again
+            if (!bookContributors.includes(Number(res.contributorId))) {
+                console.log('not in list');
+                getContributors();
+            }
         });
 
         // This will prevent the user from going past the max amount of characters.
@@ -59,23 +89,7 @@
             }
         });
 
-        // get contributors
-        $.ajax('/api/users/book/' + {{ book.id }}, {
-            type: 'GET'
-        }).then(
-            function (results) {
-                console.log(results);
-                let temp = [];
-                results.forEach(author => {
-                    if (!temp.includes(author.id)) {
-                        let content = `
-                    <li>${author.lastname}, ${author.firstname}</li>
-                `;
-                        $('#contList').append(content);
-                    }
-                    temp.push(author.id);
-                });
-            });
-
+        // get contributors on load
+        getContributors();
     });
 </script>

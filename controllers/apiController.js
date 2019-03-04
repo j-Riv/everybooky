@@ -76,10 +76,9 @@ module.exports = {
             BookId: req.body.bookId
         }).then(result => {
             let postObj = {
-                line: req.body.line
+                line: req.body.line,
+                contributorId: req.body.userId
             }
-            console.log('added line: ');
-            console.log(postObj);
             req.io.emit('added line', postObj);
             res.status(200).end();
         }).catch(error => {

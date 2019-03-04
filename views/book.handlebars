@@ -22,6 +22,7 @@
             {{/each}}
         </div>
         {{!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> --}}
+        {{#if loggedIn}}
         <p>
             <button class="btn btn-primary" id="add-line-btn" type="button" data-toggle="collapse"
                 data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -32,17 +33,30 @@
             <form>
                 <div class="input-group mb-3">
                     <input type="text" id="line" class="form-control" placeholder="Add your line"
-                        aria-label="Add your line" aria-describedby="addLine" name="line" onkeyup="countChar(this)">
+                        aria-label="Add your line" aria-describedby="addLine" name="line">
                     <input type="text" id="user-Id" name="userId" hidden value="{{user.id}}">
                     <input type="text" id="book-Id" name="bookID" hidden value="{{book.id}}">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" id="addLine">Submit</button>
                     </div>
-
-                </div>
-                <p id="charNum"></p>
+                    <p id="charNum"></p>
             </form>
         </div>
+        {{else}}
+        <p>
+            <button class="btn btn-primary action-button grow" id="add-line-btn" type="button" data-toggle="collapse"
+                data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Want to Contribute?
+            </button>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <a href="#" class="login btn btn-transparent action-button grow float-left mr-2" style="margin-left: -10px;" data-toggle="modal"
+                data-target="#loginModalCenter" role="button">Log In</a>
+            or
+            <a class="btn btn-transparent action-button grow ml-2" role="button" href="/login">Sign Up</a>
+        </div>
+
+        {{/if}}
     </div>
 </div>
 {{> login-modal}}
