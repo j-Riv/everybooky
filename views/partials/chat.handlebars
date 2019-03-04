@@ -14,6 +14,9 @@
             <ul class="messages"></ul>
         </div>
         <div id="chatForm" class="input-group mb-1">
+            <div class="input-group-prepend">
+                <img id="chatPhoto" src="{{user.photo}}">
+            </div>
             <input type="text" class="form-control inputMessage" placeholder="Type here..." aria-describedby="sendMessage">
             <div class="input-group-append">
                 <button class="btn btn-primary" type="button" id="sendMessage">Send</button>
