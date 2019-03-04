@@ -30,5 +30,5 @@ Temporary Items
 .apdisk
 
 # Wii Fat delete this at end
-# /config/config.json
-# package-lock.json
+/config/config.json
+package-lock.json
