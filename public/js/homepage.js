@@ -8,14 +8,14 @@ $(() => {
     });
 
 
-    $(".dropdown-menu li a").click(function (e) {
+    $(".dropdown-menu li a").click(function(e) {
         e.preventDefault();
         $("#sortBtn:first-child").html($(this).text());
         $(this).siblings().removeClass('active');
         $(this).siblings().find('.active').removeClass('active');
     });
 
-    searchBy.click( () => {
+    searchBy.click(() => {
         $('#searchOptions').toggleClass("d-none");
-    })
+    });
 });
