@@ -161,7 +161,6 @@ input[type="color"]:focus,
 
 #chatWrapper #chat .chatArea {
   height: 80%;
-  overflow-y: scroll;
 }
 
 #chatWrapper #chat .chatArea .username {
@@ -178,6 +177,12 @@ input[type="color"]:focus,
   font-size: 150%;
   list-style: none;
   padding: 0;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+}
+
+#chatWrapper #chat .chatArea .messages::-webkit-scrollbar {
+  display: none;
 }
 
 #chatWrapper #chat .chatArea .log {
