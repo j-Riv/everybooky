@@ -72,6 +72,14 @@ input[type="color"]:focus,
   transition: all .5s;
 }
 
+.bg-blue {
+  background-color: #02A4D3;
+}
+
+.text-blue {
+  color: #02A4D3;
+}
+
 .text-black {
   color: #000;
 }
