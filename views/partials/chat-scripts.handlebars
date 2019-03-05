@@ -1,5 +1,25 @@
 <script>
 $(function() {
+
+    {{!-- $('#letsChat').on('click', function(e) {
+        e.preventDefault();
+        $chat = $('#chat');
+        $chat.toggleClass('expanded');
+    }); --}}
+
+      $('#letsChat').click(function (e) {
+          console.log('clicked');
+        e.preventDefault();
+        var $chat = $('#chatWrapper');
+        if ($chat.hasClass('slide-up')) {
+            $chat.addClass('slide-down', 1000, 'easeOutBounce');
+            $chat.removeClass('slide-up');
+        } else {
+            $chat.removeClass('slide-down');
+            $chat.addClass('slide-up', 1000, 'easeOutBounce');
+        }
+    });
+
     var FADE_TIME = 150; // ms
     var TYPING_TIMER_LENGTH = 400; // ms
     var COLORS = [
@@ -89,11 +109,35 @@ $(function() {
         addMessageElement($messageDiv, options);
     }
 
+    // Adds the visual chat message to the message list
+    const addChatTypingMessage = (data, options) => {
+        // Don't fade the message in if there is an 'X was typing'
+        var $typingMessages = getTypingMessages(data);
+        options = options || {};
+        if ($typingMessages.length !== 0) {
+            options.fade = false;
+            $typingMessages.remove();
+        }
+
+        var $usernameDiv = $('<span class="username"/>')
+            .text(data.username)
+            .css('color', getUsernameColor(data.username));
+        var $messageBodyDiv = $('<span class="messageBody">')
+            .append('<img class="chat-bubble" src="/public/images/chat-bubble.gif"/>');
+
+        var typingClass = data.typing ? 'typing' : '';
+        var $messageDiv = $('<li class="message"/>')
+            .data('username', data.username)
+            .addClass(typingClass)
+            .append($usernameDiv, $messageBodyDiv);
+
+        addMessageElement($messageDiv, options);
+    }
+
     // Adds the visual chat typing message
     const addChatTyping = (data) => {
         data.typing = true;
-        data.message = 'is typing';
-        addChatMessage(data);
+        addChatTypingMessage(data);
     }
 
     // Removes the visual chat typing message
@@ -218,7 +262,7 @@ $(function() {
     socket.on('login', (data) => {
         connected = true;
         // Display the welcome message
-        var message = "Welcome";
+        var message = "Welcome, " + username;
         log(message, {
             prepend: true
         });

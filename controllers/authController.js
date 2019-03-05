@@ -12,14 +12,28 @@ module.exports = {
                 });
             })
     },
-    login: (req, res) => {
-        if (req.isAuthenticated()) {
-            res.render('form', {
+    getBooksSorted: (req, res) => {
+        let sortType = req.params.type
+        models.Book.findAll({}).then(results => {
+            if (sortType === 'new') {
+                results.sort((a, b) => (a.id < b.id) ? 1 : -1)
+            } else if (sortType === 'popular') {
+                results.sort((a, b) => (a.views < b.views) ? 1 : -1)
+            }
+            console.log(results);
+            res.render('homepage', {
                 loggedIn: req.isAuthenticated(),
-                title: 'Form',
-                id: req.user.id,
+                title: 'Homepage',
+                books: results,
                 displayChat: false
             });
+        }).catch(error => {
+            console.error(error);
+        });
+    },
+    login: (req, res) => {
+        if (req.isAuthenticated()) {
+            res.redirect('/dashboard');
         } else {
             res.render('login', {
                 title: 'Log In / Sign Up'
@@ -62,7 +76,16 @@ module.exports = {
     },
     editBook: (req, res) => {
         let id = req.params.id;
-        console.log(id);
+        // update views
+        models.Book.findOne({
+            where: {
+                id: id
+            }
+        }).then(book => {
+            return book.increment('views', { by: 1 });
+        }).catch(error => {
+            console.error(error);
+        });
         // get book information
         models.Post.findAll({
             where: {
@@ -97,12 +120,71 @@ module.exports = {
             console.log(error);
         });
     },
-    chat: (req, res) => {
-        res.render('chat', {
-            loggedIn: req.isAuthenticated(),
-            user: req.user,
-            title: 'Chat',
-            isChat: true
+    searchBooksById: (req, res) => {
+        models.Book.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then(results => {
+            console.log(results);
+            res.render('result', {
+                loggedIn: req.isAuthenticated(),
+                title: 'Results',
+                booksObj: results,
+                displayChat: false,
+                user: req.user
+            });
+        }).catch(error => {
+            console.log(error);
+        });
+    },
+    searchBooksByTitle: (req, res) => {
+        models.Book.findAll({
+            where: {
+                title: req.params.title
+            }
+        }).then(results => {
+            res.render('result', {
+                loggedIn: req.isAuthenticated(),
+                title: 'Results',
+                booksObj: results,
+                displayChat: false,
+                user: req.user
+            });
+        }).catch(error => {
+            console.log(error);
+        });
+    },
+    searchBooksByAuthor: (req, res) => {
+        models.Post.findAll({
+            where: {
+                UserId: req.params.id
+            },
+            include: [models.Book]
+        }).then(results => {
+            let books = {
+                booksObj: results
+            };
+            res.render('result', books);
+        }).catch(error => {
+            console.log(error);
+        });
+    },
+    searchGenre: (req, res) => {
+        models.Book.findAll({
+            where: {
+                genre: req.params.genre
+            }
+        }).then(results => {
+            res.render('result', {
+                loggedIn: req.isAuthenticated(),
+                title: 'Results',
+                booksObj: results,
+                displayChat: false,
+                user: req.user
+            });
+        }).catch(error => {
+            console.log(error);
         });
     }
 }

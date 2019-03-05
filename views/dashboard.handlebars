@@ -1,72 +1,55 @@
-<!-------------------------------------
-+++++ Delete Wwhen Done +++++
-user.firstname
-user.lastname
-user.username
-user.about
-user.photo
-user.email
---------------------------------------->
-<!-------------------------------------
-+++++ Delete Wwhen Done +++++
-books
-this.Book.id
-this.Book.title
-this.Book.body
-this.Book.genre
-this.Book.imageUrl
---------------------------------------->
-{{> header}}
 <div class="container">
     <div class="jumbotron">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <i class="fas fa-cog float-right" data-toggle="modal" data-target="#exampleModal"></i>
+                    <i class="fas fa-cog float-right" data-toggle="modal" data-target="#updateUserModal"></i>
                 </div>
             </div>
             <div class=" row">
                 <div class="col-sm-4">
-                    <img src="{{user.photo}}" class="mr-3 w-100" alt="...">
+                    <img src="{{user.photo}}" class="circle-image mr-3 w-100" alt="{{user.firstname}} {{user.lastname}}">
                 </div>
                 <div class="col-sm-8">
                     <h1>{{user.firstname}} {{user.lastname}}</h1>
-                    <h2>{{user.username}}</h2>
+                    <h6>{{user.username}}</h6>
                     <h3>About:</h3>
                     <p>{{user.about}}</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <button class="btn btn-primary" id="allButton">View all books</button>
-                </div>
-            </div>
-            <div class="row text-center">
+
+            <div class="row text-center pt-2">
                 <div class="col-sm-12">
-                    <ul class="list-unstyled" id="allBook">
-                        <div class="row">
-                            {{#eachUnique books}}
-                            <div class="col-md-3 mb-3">
-                                <div class="card book">
-                                    <a href="/book/{{this.Book.id}}">
-                                        <img src="{{this.Book.imageUrl}}" alt="{{this.Book.title}}" class="card-img w-100 d-block">
-                                        <div class="card-img-overlay">
-                                            <h4>{{this.Book.title}}</h4>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            {{/eachUnique}}
-                        </div>
-                    </ul>
+                    <button class="btn btn-blue" type="button" data-toggle="collapse" data-target="#collapseBooks"
+                        aria-expanded="false" aria-controls="collapseBooks">
+                        View All Books
+                    </button>
                 </div>
             </div>
+
+            <div class="collapse" id="collapseBooks">
+                <hr />
+                <ul class="pt-3 list-unstyled">
+                    <div class="row">
+                        {{#eachUnique books}}
+                        <div class="col-md-3 mb-3 text-white">
+                            <div class="card book grow text-white" style="background-image: url('{{this.Book.imageUrl}}');">
+                                <a href="/book/{{this.Book.id}}">
+                                    <div class="card-img-overlay">
+                                        <h4>{{this.Book.title}}</h4>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        {{/eachUnique}}
+                    </div>
+                </ul>
+            </div>
+
         </div>
     </div>
 </div>
-
-</div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="updateUserModal" tabindex="-1" role="dialog" aria-labelledby="updateUserModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -77,21 +60,24 @@ this.Book.imageUrl
                 </button>
             </div>
             <div class="modal-body">
-                <h6>Profile Picture</h6>
-                <input class="form-control" type="text" id="profilePic" placeholder="Profile Picture"
-                    value="{{user.photo}}">
-                <h7>About Me</h7>
-                <input class="form-control" type="text" id="aboutInput" placeholder="About" value="{{user.about}}">
-                <h8>Username</h8>
-                <input class="form-control" type="text" id="username" placeholder="Username" value="{{user.username}}">
+                <div class="form-group">
+                    <label for="profilePic">Profile Picture</label>
+                    <input class="form-control" type="text" id="profilePic" placeholder="Profile Picture" value="{{user.photo}}">
+                </div>
+                <div class="form-group">
+                    <label for="aboutInput">About</label>
+                    <input class="form-control" type="text" id="aboutInput" placeholder="About" value="{{user.about}}">
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input class="form-control" type="text" id="username" placeholder="Username" value="{{user.username}}">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="modalSubmit">Save changes</button>
+                <button type="button" class="btn btn-blue" id="modalSubmit">Save changes</button>
             </div>
         </div>
     </div>
 </div>
-
-{{> footer}}
 {{> dashboard-scripts}}

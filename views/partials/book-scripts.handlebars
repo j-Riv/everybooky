@@ -1,0 +1,124 @@
+<script>
+    // socket.io
+    $(function () {
+        const socket = io();
+        let bookContributors = [];
+
+        function getContributors() {
+            console.log('Getting contributors');
+            const contributors = $('#contList');
+            // empty before pull
+            contributors.empty();
+            $.ajax('/api/users/book/' + {{ book.id }}, {
+            type: 'GET'
+            }).then(
+            function (results) {
+                console.log(results);
+                let temp = [];
+                results.forEach(author => {
+                    if (!temp.includes(author.id)) {
+                        let contributor = `
+                        <li>${author.lastname}, ${author.firstname}</li>
+                    `;
+                        contributors.append(contributor);
+                    }
+                    temp.push(author.id);
+                });
+                bookContributors = temp;
+            });
+        }
+
+        $('#addLine').on('click', function (e) {
+            e.preventDefault();
+            const theLine = {
+                line: $('#line').val().trim(),
+                userId: $('#user-Id').val().trim(),
+                bookId: $('#book-Id').val().trim()
+            }
+            console.log('Line: ' + $('#line').val().trim());
+            socket.emit('added line', $('#line').val().trim());
+            $.ajax('/api/book/post', {
+                type: 'POST',
+                data: theLine
+            }).then(
+                function (result) {
+                    console.log('response from server:' + result);
+                }
+            );
+            $('#line').val('');
+            $('#charNum').text('160 characters left');
+            return false;
+        });
+
+        //get changes
+        socket.on('added line', function (res) {
+            console.log('added line: ' + res.line);
+            let content = `
+                <span>${res.line}</span>
+            `;
+            $('#bookContent').append(content);
+            // if new contributor pull contributors again
+            if (!bookContributors.includes(Number(res.contributorId))) {
+                console.log('not in list');
+                getContributors();
+            }
+        });
+
+        // This will prevent the user from going past the max amount of characters.
+        $("#line").keypress(function (e) {
+            const max = 160
+            if (e.which < 0x20) {
+                return;
+            }
+            if (this.value.length == max) {
+                e.preventDefault();
+            }
+            else if (this.value.length > max) {
+                this.value = this.value.substring(0, max);
+            }
+        })
+
+        // This will count the characters left on screen and tell user they've reached the max.
+        $('#line').keyup(function () {
+            const max = 160;
+            let len = $(this).val().length;
+            if (len >= max) {
+                $('#charNum').text(' you have reached the limit');
+            } else {
+                let char = max - len;
+                $('#charNum').text(char + ' characters left');
+            }
+        });
+
+        // update book information
+        $('#updateBook').click((e) => {
+            e.preventDefault();
+
+            const bookTitle = $('#bookTitle').val().trim();
+            const bookImage = $('#bookImageUrl').val().trim();
+            const bookDescription = $('#bookDescription').val().trim();
+            const bookTextLimit = $('#bookTextLimit').val().trim();
+            const bookGenre = $('#bookGenre').val().trim();
+
+            const book = {
+                title: bookTitle,
+                body: bookDescription,
+                limit: bookTextLimit,
+                genre: bookGenre,
+                imageUrl: bookImage
+            }
+
+            $.ajax('/api/book/' + {{ book.id }}, {
+                type: "PUT",
+                data: book
+            }).then(result => {
+                location.reload();
+            }).catch(err => {
+                console.error(err);
+            });
+        });
+
+        // get contributors on load
+        getContributors();
+    });
+</script>

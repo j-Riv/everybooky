@@ -1,4 +1,3 @@
-{{> header}}
 <div class="article-list">
     <div class="jumbotron" id="homeBanner">
         <div class="intro my-5">
@@ -14,18 +13,18 @@
         <div class="collapse" id="about">
             <div class="row articles text-center">
                 <div class="col-sm-6 col-md-4 item">
-                    <img class="img-fluid" src="public/images/desk.jpg">
+                    <img class="img-fluid" src="/public/images/desk.jpg">
                     <h3 class="name">Ideas</h3>
                     <p class="description">Have an idea for a story? Create a new book with others who share the
                         same ideas!</p>
                 </div>
                 <div class="col-sm-6 col-md-4 item">
-                    <a href="#"><img class="img-fluid" src="public/images/building.jpg"></a>
+                    <a href="#"><img class="img-fluid" src="/public/images/building.jpg"></a>
                     <h3 class="name">Collaborate</h3>
                     <p class="description">You'll be able to write the story line by line with other users!</p>
                 </div>
                 <div class="col-sm-6 col-md-4 item">
-                    <a href="#"><img class="img-fluid" src="public/images/loft.jpg"></a>
+                    <a href="#"><img class="img-fluid" src="/public/images/loft.jpg"></a>
                     <h3 class="name">Share</h3>
                     <p class="description">Once you're finished, share the book with the rest of the world!</p>
                 </div>
@@ -38,77 +37,39 @@
 <div>
     <div class="container">
         <div class="btn-group" role="group">
-            <div class="btn btn-transparent disabled">Sort By</div>
             <div class="btn-group" role="group">
                 <button class="btn btn-transparent dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
-                    type="button" style="background-color: rgba(255,255,255,0.4);color: rgb(157,157,157);"
-                    id="sortBtn">Sort
-                    By</button>
+                    type="button" style="background-color: rgba(255,255,255,0.4);color: rgb(157,157,157);" id="sortBtn">Sort By</button>
                 <ul class="dropdown-menu dropdown">
-                    <li><a class="dropdown-item" id="new-tab" data-toggle="tab" href="#new" role="tab"
-                            aria-controls="new">New</a></li>
-                    <li><a class="dropdown-item" id="popular-tab" data-toggle="tab" href="#popular" role="tab"
-                            aria-controls="popular">Popular</a></li>
-                    <li><a class="dropdown-item" id="progress-tab" data-toggle="tab" href="#progress" role="tab"
-                            aria-controls="progress">In Progress</a></li>
-                    <li><a class="dropdown-item" id="genre-tab" data-toggle="tab" href="#genre" role="tab"
-                            aria-controls="genre">Genre</a></li>
+                    <li>
+                        <a class="dropdown-item" href="/sorted/new">
+                            New to Old
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/">
+                            Old to New
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/sorted/popular">
+                            Popular
+                        </a>
+                    </li>
                 </ul>
-
-                {{!-- <div class="dropdown-menu" role="menu" id="sortBtn">
-                    <a class="dropdown-item" id="new-tab" data-toggle="tab" href="#new" role="tab"
-                        aria-controls="new">New</a>
-                    <a class="dropdown-item" id="popular-tab" data-toggle="tab" href="#popular" role="tab"
-                        aria-controls="popular">Popular</a>
-                    <a class="dropdown-item" id="progress-tab" data-toggle="tab" href="#progress" role="tab"
-                        aria-controls="progress">In Progress</a>
-                    <a class="dropdown-item" id="genre-tab" data-toggle="tab" href="#genre" role="tab"
-                        aria-controls="genre">Genre</a> <!-- should toggle another button to choose genre-->
-                </div> --}}
             </div>
         </div>
 
         <hr>
 
-        <div class="tab-content" id="myTabContent">
-            <!-- Displays all new books-->
-            <div class="tab-pane fade show active" id="new" role="tabpanel" aria-labelledby="new-tab">
-                <div class="row">
-                    {{#each books}}
-                    {{> book}}
-                    {{/each}}
-                </div>
-            </div>
-            <!-- Displays all popular books -->
-            <div class="tab-pane fade" id="popular" role="tabpanel" aria-labelledby="popular-tab">
-                <h1>Popular Books</h1>
-                <div class="row">
-                    {{#each books}}
-                    {{#if completed}}
-                    {{> book}}
-                    {{/if}}
-                    {{/each}}
-                </div>
-            </div>
-            <!-- Displays all books in progress-->
-            <div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab">
-                <h1>Progress Books</h1>
-                <div class="row">
-                    {{#each books}}
-                    {{#unless completed}}
-                    {{> book}}
-                    {{/unless}}
-                    {{/each}}
-                </div>
-            </div>
-            <!-- Displays books by genre -->
-            <div class="tab-pane fade" id="genre" role="tabpanel" aria-labelledby="genre-tab">
-                
+        <!-- Displays all books -->
+        <div class="container" id="bookContainer">
+            <div class="row">
+                {{#each books}}
+                {{> book}}
+                {{/each}}
             </div>
         </div>
+
     </div>
 </div>
-
-{{> footer}}
-
-{{> login-modal}}

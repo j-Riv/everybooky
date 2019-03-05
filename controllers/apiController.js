@@ -29,15 +29,23 @@ module.exports = {
             }
             console.log('added book: ');
             console.log(bookObj);
-            return res.json(bookObj).status(200).end();
+            return res.json(bookObj).status(201).end();
             // req.io.emit('added book', bookObj);
         }).catch(error => {
             console.error(error);
+            return res.json(error.error).status(406).end;
         });
     },
     updateBook: (req, res) => {
+        const book = req.body;
+        console.log('this book');
+        console.log(book.imageUrl);
         models.Book.update({
-            title: req.body.title
+            title: book.title,
+            body: book.body,
+            text_limit: book.limit,
+            genre: book.genre,
+            imageUrl: book.imageUrl
         }, {
             where: {
                 id: req.params.id
@@ -69,76 +77,25 @@ module.exports = {
             console.error(error);
         });
     },
-    searchBooksById: (req, res) => {
+    addPost: (req, res) => {
         models.Book.findOne({
             where: {
-                id: req.params.id
+                id: req.body.bookId
             }
-        }).then(results => {
-            let books = {
-                booksObj: results
-            };
-            console.log('SODIJFAOSDFAOISEJF');
-            console.log(books);
-            res.render('result', books);
+        }).then(book => {
+            return book.increment('posts', { by: 1 });
         }).catch(error => {
-            console.log(error);
+            console.error(error);
         });
-    },
-    searchBooksByTitle: (req, res) => {
-        models.Book.findAll({
-            where: {
-                title: req.params.title
-            }
-        }).then(results => {
-            let books = {
-                booksObj: results
-            };
-            res.render('result', books);
-        }).catch(error => {
-            console.log(error);
-        });
-    },
-    searchBooksByAuthor: (req, res) => {
-        models.Post.findAll({
-            where: {
-                UserId: req.params.id
-            },
-            include: [models.Book]
-        }).then(results => {
-            let books = {
-                booksObj: results
-            };
-            res.render('result', books);
-        }).catch(error => {
-            console.log(error);
-        });
-    },
-    searchGenre: (req, res) => {
-        models.Book.findAll({
-            where: {
-                genre: req.params.genre
-            }
-        }).then(results => {
-            let books = {
-                booksObj: results
-            };
-            res.render('result', books);
-        }).catch(error => {
-            console.log(error);
-        });
-    },
-    addPost: (req, res) => {
         models.Post.create({
             body: req.body.line,
             UserId: req.body.userId,
             BookId: req.body.bookId
         }).then(result => {
             let postObj = {
-                line: req.body.line
+                line: req.body.line,
+                contributorId: req.body.userId
             }
-            console.log('added line: ');
-            console.log(postObj);
             req.io.emit('added line', postObj);
             res.status(200).end();
         }).catch(error => {
@@ -199,6 +156,43 @@ module.exports = {
             }
         }).catch(error => {
             console.error(error);
+        });
+    },
+    getUsersByBook: (req, res) => {
+        let id = req.params.id;
+        models.Post.findAll({
+            where: {
+                BookId: id
+            },
+            include: [models.Book]
+        }).then(results => {
+            var userObj = [];
+            // save ids to list
+            let userIdList = [];
+            results.forEach(post => {
+                userIdList.push(post.UserId);
+            });
+            // loop through user list
+            userIdList.forEach(id => {
+                models.User.findOne({
+                    where: {
+                        id: id
+                    }
+                }).then(result => {
+                    userObj.push(result);
+                    if (userIdList.length === userObj.length) {
+                        res.json(userObj);
+                    } else {
+                        return false;
+                    }
+                }).catch(error => {
+                    console.log(error);
+                });
+            });
+            // original call for all posts
+            return false;
+        }).catch(error => {
+            console.log(error);
         });
     }
 }

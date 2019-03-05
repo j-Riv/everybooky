@@ -1,19 +1,27 @@
-<div class="collapse" id="collapseChat">
-    <div id="chat">
-        <ul class="pages text-center">
-            <li class="chat page">
+<div id="chatWrapper">
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a id="letsChat" class="nav-item nav-link active" href="#">Chat <i class="fas fa-comment-alt"></i></a>
+    </div>
+    <div id="chat" class="tab-content">
+        {{!-- <div class="pages text-center">
+            <div class="chat page">
                 <div class="chatArea">
                     <ul class="messages"></ul>
                 </div>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control inputMessage" placeholder="Type here..."
-                        aria-describedby="sendMessage">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button" id="sendMessage">Send</button>
-                    </div>
-                </div>
-            </li>
-        </ul>
+            </div>
+        </div> --}}
+        <div class="chatArea">
+            <ul class="messages"></ul>
+        </div>
+        <div id="chatForm" class="input-group mb-1">
+            <div class="input-group-prepend">
+                <img id="chatPhoto" src="{{user.photo}}">
+            </div>
+            <input type="text" class="form-control inputMessage" placeholder="Type here..." aria-describedby="sendMessage">
+            <div class="input-group-append">
+                <button class="btn btn-blue" type="button" id="sendMessage">Send</button>
+            </div>
+        </div>
     </div>
 </div>
 

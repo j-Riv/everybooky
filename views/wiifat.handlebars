@@ -1,10 +1,9 @@
-<div id="team" class="wrapper">
-    {{> header}}
+<div id="team">
     <div class="jumbotron jumbotron-fluid text-center">
         <div class="container">
             <h1 class="display-4">We are WiiF@</h1>
             <p class="lead">We had the runs now wii just fat.</p>
-            <button type="button" class="btn btn-primary" id="viewTeam">More</button>
+            <button type="button" class="btn btn-blue" id="viewTeam">Meet the Team</button>
         </div>
     </div>
     <div class="container">
@@ -16,7 +15,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-3 team-member">
-                    <img src="../public/images/dummy/dummy-profile-photo.jpg" class="card-img-top photo" alt="Dafydd Zephyr">
+                    <img src="../public/images/team/dafydd.jpg" class="card-img-top photo" alt="Dafydd Zephyr">
                     <div class="card-body">
                         <h5 class="name">Dafydd Zephyr</h5>
                         <p class="title">Title</p>
@@ -25,8 +24,8 @@
                             content.</p>
                         <div class="row text-center">
                             <div class="col-sm-12">
-                                <a class="social-link p-1" href="https://www.linkedin.com/in/dafyddxzephyr/" target="_blank"><i class="fab fa-2x fa-linkedin"></i></a>
-                                <a class="social-link p-1" href="https://github.com/helloimdavidhaha" target="_blank"><i class="fab fa-2x fa-github"></i></a>
+                                <a class="social-link p-1" href="https://www.linkedin.com/in/dafyddxzephyr/" target="_blank"><i class="fab fa-2x fa-linkedin text-blue"></i></a>
+                                <a class="social-link p-1" href="https://github.com/helloimdavidhaha" target="_blank"><i class="fab fa-2x fa-github text-blue"></i></a>
                             </div>
                         </div>
                     </div>
@@ -42,15 +41,15 @@
                             content.</p>
                         <div class="row text-center">
                             <div class="col-sm-12">
-                                <a class="social-link p-1" href="https://www.linkedin.com/in/jose-alfredo-rivera-turcios/" target="_blank"><i class="fab fa-2x fa-linkedin"></i></a>
-                                <a class="social-link p-1" href="https://github.com/j-Riv" target="_blank"><i class="fab fa-2x fa-github"></i></a>
+                                <a class="social-link p-1" href="https://www.linkedin.com/in/jose-alfredo-rivera-turcios/" target="_blank"><i class="fab fa-2x fa-linkedin text-blue"></i></a>
+                                <a class="social-link p-1" href="https://github.com/j-Riv" target="_blank"><i class="fab fa-2x fa-github text-blue"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
     
                 <div class="col-sm-12 col-md-6 col-lg-3 team-member">
-                    <img src="../public/images/dummy/dummy-profile-photo.jpg" class="card-img-top photo" alt="Miguel Landin">
+                    <img src="../public/images/team/miguel.jpg" class="card-img-top photo" alt="Miguel Landin">
                     <div class="card-body">
                         <h5 class="name">Miguel Landin</h5>
                         <p class="title">Title</p>
@@ -59,14 +58,14 @@
                             content.</p>
                         <div class="row text-center">
                             <div class="col-sm-12">
-                                <a class="social-link p-1" href="https://github.com/MigPerLan" target="_blank"><i class="fab fa-2x fa-github"></i></a>
+                                <a class="social-link p-1" href="https://github.com/MigPerLan" target="_blank"><i class="fab fa-2x fa-github text-blue"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
     
                 <div class="col-sm-12 col-md-6 col-lg-3 team-member">
-                    <img src="../public/images/dummy/dummy-profile-photo.jpg" class="card-img-top photo" alt="Tyler Maples">
+                    <img src="../public/images/team/tyler.jpg" class="card-img-top photo" alt="Tyler Maples">
                     <div class="card-body">
                         <h5 class="name">Tyler Maples</h5>
                         <p class="title">Title</p>
@@ -75,7 +74,7 @@
                             content.</p>
                         <div class="row text-center">
                             <div class="col-sm-12">
-                                <a class="social-link p-1" href="https://github.com/tylerkmaples" target="_blank"><i class="fab fa-2x fa-github"></i></a>
+                                <a class="social-link p-1" href="https://github.com/tylerkmaples" target="_blank"><i class="fab fa-2x fa-github text-blue"></i></a>
                             </div>
                         </div>
                     </div>
@@ -84,7 +83,12 @@
             </div>
         </section>
     </div>
-    <div class="push"></div>
 </div>
-{{> login-modal}}
-{{> footer}}
+<script>
+    // scroll to element
+    $('#viewTeam').click(function() {
+        $('html, body').animate({
+            scrollTop: $('#theTeam').offset().top
+        }, 1200);
+    });
+</script>

@@ -1,10 +1,26 @@
+{{#if displayChat}}
+{{#if loggedIn}}
+{{> chat}}
+{{/if}}
+{{/if}}
 <div class="footer footer-basic">
     
     <footer>
         <!-- Start: Social Icons -->
-        <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i
-                    class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a
-                href="#"><i class="icon ion-social-facebook"></i></a></div>
+        <div class="social">
+            <a href="https://instagram.com" target="_blank">
+                <i class="icon ion-social-instagram"></i>
+            </a>
+            <a href="https://github.com/j-Riv/project_2" target="_blank">
+                <i class="icon ion-social-github"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank">
+                <i class="icon ion-social-twitter"></i>
+            </a>
+            <a href="https://facebook.com" target="_blank">
+                <i class="icon ion-social-facebook"></i>
+            </a>
+        </div>
         <!-- End: Social Icons -->
         <!-- Start: Links -->
         <ul class="list-inline">
@@ -19,14 +35,5 @@
         <p class="copyright">Wiiph@ © 2019</p>
         <!-- End: Copyright -->
     </footer>
-    {{#if displayChat}}
-        {{#if loggedIn}}
-        <a id="goToChat" class="btn btn-primary" data-toggle="collapse" href="#collapseChat" role="button" aria-expanded="false"
-            aria-controls="collapseChat">
-            Chat <i class="fas fa-comment-alt"></i>
-        </a>
-        {{> chat}}
-        {{/if}}
-    {{/if}}
 </div>
 

@@ -1,33 +1,26 @@
-{{> header}}
-
 <div class="container">
     <h1>Results</h1>
     <hr>
     <!-- Displays message if there are no results -->
     {{#unless booksObj}}
-    <h3>No results</h3>
+    <h3>No results, please try again.</h3>
     {{/unless}}
     <!-- Iterates over results and renders to page-->
     {{#if booksObj}}
     {{#each booksObj}}
     <div class="row">
         <div class="col-md-3">
-            <div class="card">
-                <img src="{{this.imageUrl}}" alt="{{this.imageUrl}}" class="w-100">
-            </div>
+            <a href="/book/{{this.id}}">
+                <div class="card book grow text-white" style="background-image: url('{{this.imageUrl}}');">
+                </div>
+            </a>
         </div>
-        <div class="col-md-9">
-            <h1>{{this.title}}</h1>
-            <h3>{{this.author}}</h3>
-            <h6>Contributors:</h6>
-            <p>{{this.contributors}}</p>
+        <div class="col-md-9 text-black">
+            <h1><a class="text-black" href="/book/{{this.id}}">{{this.title}}</a></h1>
+            <h6><i>{{this.body}}</i></h6>
         </div>
     </div>
     <hr>
     {{/each}}
     {{/if}}
 </div>
-
-{{> footer}}
-
-{{> login-modal}}
