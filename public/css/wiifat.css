@@ -5,7 +5,8 @@ body {
   margin: 0;
 }
 
-a {
+a,
+.fas {
   cursor: pointer;
 }
 
@@ -71,9 +72,38 @@ input[type="color"]:focus,
   transition: all .5s;
 }
 
+.text-black {
+  color: #000;
+}
+
 .circle-image {
   border-radius: 50%;
   object-fit: cover;
+}
+
+.huge-text {
+  font-size: 5em;
+}
+
+#searchBarForm #searchBar {
+  border: 1px solid #e9ecef;
+}
+
+#searchBarForm .btn {
+  border: 1px solid #e9ecef;
+}
+
+#searchBarForm .btn:focus {
+  border: 1px solid #e9ecef;
+}
+
+#searchBarForm #searchDropDown {
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+#searchBarForm .dropdown-menu {
+  position: absolute;
 }
 
 /* Team page */
@@ -246,4 +276,8 @@ input[type="color"]:focus,
   color: #fff;
   text-transform: uppercase;
   text-shadow: 5px 5px 20px #000;
+}
+
+#pageNotFound img {
+  max-width: 100%;
 }

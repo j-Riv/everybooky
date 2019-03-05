@@ -11,7 +11,7 @@
             contributors.empty();
             $.ajax('/api/users/book/' + {{ book.id }}, {
             type: 'GET'
-        }).then(
+            }).then(
             function (results) {
                 console.log(results);
                 let temp = [];
@@ -66,7 +66,7 @@
 
         // This will prevent the user from going past the max amount of characters.
         $("#line").keypress(function (e) {
-            var max = 160
+            const max = 160
             if (e.which < 0x20) {
                 return;
             }
@@ -80,14 +80,42 @@
 
         // This will count the characters left on screen and tell user they've reached the max.
         $('#line').keyup(function () {
-            var max = 160;
-            var len = $(this).val().length;
+            const max = 160;
+            let len = $(this).val().length;
             if (len >= max) {
                 $('#charNum').text(' you have reached the limit');
             } else {
-                var char = max - len;
+                let char = max - len;
                 $('#charNum').text(char + ' characters left');
             }
+        });
+
+        // update book information
+        $('#updateBook').click((e) => {
+            e.preventDefault();
+
+            const bookTitle = $('#bookTitle').val().trim();
+            const bookImage = $('#bookImageUrl').val().trim();
+            const bookDescription = $('#bookDescription').val().trim();
+            const bookTextLimit = $('#bookTextLimit').val().trim();
+            const bookGenre = $('#bookGenre').val().trim();
+
+            const book = {
+                title: bookTitle,
+                body: bookDescription,
+                limit: bookTextLimit,
+                genre: bookGenre,
+                imageUrl: bookImage
+            }
+
+            $.ajax('/api/book/' + {{ book.id }}, {
+                type: "PUT",
+                data: book
+            }).then(result => {
+                location.reload();
+            }).catch(err => {
+                console.error(err);
+            });
         });
 
         // get contributors on load

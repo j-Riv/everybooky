@@ -17,7 +17,8 @@ body {
     margin: 0;
 }
 
-a {
+a,
+.fas {
     cursor: pointer;
 }
 
@@ -91,9 +92,39 @@ input[type="color"]:focus,
     // }
 }
 
+.text-black {
+    color: #000;
+}
+
 .circle-image {
     border-radius: 50%;
     object-fit: cover;
+}
+
+.huge-text {
+    font-size: 5em;
+}
+
+// search
+#searchBarForm {
+    #searchBar {
+        border: 1px solid $grey;
+    }
+    .btn {
+        border: 1px solid $grey;
+        &:focus {
+            border: 1px solid $grey;
+            // box-shadow: none;
+        }
+    }
+    #searchDropDown {
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 50px;
+    }
+    // fix for mobile
+    .dropdown-menu {
+        position: absolute;
+    }
 }
 
 
@@ -243,6 +274,7 @@ input[type="color"]:focus,
     }
 }
 
+// book partial
 .book {
     height: 300px;
     background-color: $grey;
@@ -253,5 +285,12 @@ input[type="color"]:focus,
         color: #fff;
         text-transform: uppercase;
         text-shadow: 5px 5px 20px #000;
+    }
+}
+
+// 404 page
+#pageNotFound {
+    img {
+        max-width: 100%;
     }
 }
