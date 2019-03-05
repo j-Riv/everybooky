@@ -92,6 +92,14 @@ input[type="color"]:focus,
     // }
 }
 
+.bg-blue {
+    background-color: $blue;
+}
+
+.text-blue {
+    color: $blue;
+}
+
 .text-black {
     color: #000;
 }
