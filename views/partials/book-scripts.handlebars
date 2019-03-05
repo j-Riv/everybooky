@@ -54,7 +54,7 @@
         socket.on('added line', function (res) {
             console.log('added line: ' + res.line);
             let content = `
-                <span>${res.line}</span>
+                <span id="line-${res.id}" class="post-line">${res.line}</span>
             `;
             $('#bookContent').append(content);
             // if new contributor pull contributors again
@@ -111,6 +111,40 @@
             $.ajax('/api/book/' + {{ book.id }}, {
                 type: "PUT",
                 data: book
+            }).then(result => {
+                location.reload();
+            }).catch(err => {
+                console.error(err);
+            });
+        });
+
+        // edit post
+        $('#editPosts').on('click', (e) => {
+            const posts = $('.post-line');
+            posts.addClass('edit-line');
+        });
+        $(document).on('click', '.edit-line', function() {
+            const post = $(this);
+            const line = post.html();
+            const id = post.attr('id');
+            const updatedLine = $('#updateLine');
+            const updateId = $('#updateLineId');
+            // update this line
+            updatedLine.val(line);
+            updateId.val(id);
+            // toggle modal
+            $('#updatePostModal').modal('toggle')
+        });
+
+        $('#updatePost').on('click', () => {
+            // make obj
+            const postObj = {
+                id: updateId.val().trim(),
+                updatedLine: updatedLine.val().trim()
+            };
+            $.ajax('/api/books/post/', {
+                type: "PUT",
+                data: postObj
             }).then(result => {
                 location.reload();
             }).catch(err => {

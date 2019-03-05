@@ -27,7 +27,7 @@
         <!-- the posts -->
         <div id="bookContent">
             {{#each posts}}
-            <span>{{this.body}}</span>
+            <span id="line-{{this.id}}" class="post-line">{{this.body}}</span>
             {{/each}}
         </div>
         {{!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> --}}
@@ -100,5 +100,30 @@
         </div>
     </div>
 </div>
-<!-- /update book modal -->
+<!-- update post/line modal -->
+<div class="modal fade" id="updatePostModal" tabindex="-1" role="dialog" aria-labelledby="updatePostModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Line</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="updatedLine">Line</label>
+                    <input class="form-control" type="text" id="updateLine" placeholder="Line">
+                </div>
+                <input class="form-control" type="text" id="updateLineId" hidden>
+                <input class="form-control" type="text" value="{{user.id}}" hidden>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-blue" id="updatePost">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 {{> book-scripts}}
