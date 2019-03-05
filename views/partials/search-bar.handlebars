@@ -1,19 +1,14 @@
-<form class="form-inline">
-    <input type="text" class="form-control border-right-0 border-secondary" placeholder="Search" aria-label="Search Bar"
-        aria-describedby="searchBtn" id="searchBar">
+<div class="input-group" id="searchBarForm">
+    <input type="text" class="form-control" aria-label="Search" id="searchBar">
     <div class="input-group-append">
-        <button class="btn border-left-0 border-secondary" type="button" id="searchBtn">
-            <i class="fas fa-search text-secondary"></i></button>
+        <button type="button" class="btn" id="searchButton"><i class="fas fa-search text-secondary"></i></button>
+        <button type="button" class="btn dropdown-toggle dropdown-toggle-split"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="searchDropDown">
+            <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <div class="dropdown-menu" id="typeList">
+            <a class="dropdown-item" href="#">Title</a>
+            <a class="dropdown-item" href="#">Genre</a>
+        </div>
     </div>
-    <i class="fas fa-caret-right grow-double ml-3" id="toggleSwitch"></i>
-    <div class="form-group d-none" id="searchOptions">
-        <label for="searchBy">Search By</label>
-        <select class="form-control" id="searchBy">
-            <option value="title">Title</option>
-            <option value="genre">Genre</option>
-            {{!-- <option value="author">Author</option>
-            <option value="book-id">Book ID</option>
-            <option value="author-id">Author ID</option> --}}
-        </select>
-    </div>
-</form>
+</div>

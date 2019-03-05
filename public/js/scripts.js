@@ -32,4 +32,27 @@ if (document.getElementById("confirmPassword")) {
 
     password.onchange = validatePassword;
     confirm_password.onkeyup = validatePassword;
+
 }
+
+// search
+let searchType;
+// get search type
+$('#typeList a').on('click', function() {
+    searchType = $(this).html();
+    console.log('search type: ' + searchType);
+});
+// do the search
+$('#searchButton').on('click', function() {
+    console.log('search clicked');
+    const searchTerm = $('#searchBar').val().trim();
+    // if not empty
+    if (searchTerm !== '') {
+        if (searchType === 'Title') {
+            window.location.href = '/search/books/title/' + searchTerm;
+        }
+        if (searchType === 'Genre') {
+            window.location.href = '/search/books/genre/' + searchTerm;
+        }
+    }
+});

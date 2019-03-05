@@ -29,15 +29,23 @@ module.exports = {
             }
             console.log('added book: ');
             console.log(bookObj);
-            return res.json(bookObj).status(200).end();
+            return res.json(bookObj).status(201).end();
             // req.io.emit('added book', bookObj);
         }).catch(error => {
             console.error(error);
+            return res.json(error.error).status(406).end;
         });
     },
     updateBook: (req, res) => {
+        const book = req.body;
+        console.log('this book');
+        console.log(book.imageUrl);
         models.Book.update({
-            title: req.body.title
+            title: book.title,
+            body: book.body,
+            text_limit: book.limit,
+            genre: book.genre,
+            imageUrl: book.imageUrl
         }, {
             where: {
                 id: req.params.id

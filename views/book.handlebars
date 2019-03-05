@@ -1,7 +1,16 @@
 <div class="container" id="editBook">
     <div class="container-fluid">
-        <h1 class="display-4">{{book.title}}</h1>
-        <p class="lead">{{book.body}}</p>
+        <div class="row">
+            <div class="col-10">
+                <h1 class="display-4">{{book.title}}</h1>
+                <p class="lead">{{book.body}}</p>
+            </div>
+            <div class="col-2">
+                {{#if loggedIn}}
+                    <i class="fas fa-cog float-right" data-toggle="modal" data-target="#updateBookModal"></i>
+                {{/if}}
+            </div>
+        </div>
         <div class="btn-group dropright float-right mb-2">
             <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
@@ -60,5 +69,36 @@
         {{/if}}
     </div>
 </div>
-{{> login-modal}}
+<!-- update book modal -->
+<div class="modal fade" id="updateBookModal" tabindex="-1" role="dialog" aria-labelledby="updateBookModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Book</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="bookTitle">Book Title</label>
+                    <input class="form-control" type="text" id="bookTitle" placeholder="Book Title" value="{{book.title}}">
+                </div>
+                <div class="form-group">
+                    <label for="bookCover">Book Cover</label>
+                    <input class="form-control" type="text" id="bookImageUrl" placeholder="Image Url" value="{{book.imageUrl}}">
+                </div>    
+                <input class="form-control" type="text" id="bookDescription" value="{{book.body}}" hidden>
+                <input class="form-control" type="text" id="bookTextLimit" value="{{book.text_limit}}" hidden>
+                <input class="form-control" type="text" id="bookGenre" value="{{book.genre}}" hidden>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-blue" id="updateBook">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /update book modal -->
 {{> book-scripts}}
