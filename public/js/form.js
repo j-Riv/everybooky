@@ -1,8 +1,9 @@
-$(() => {
-    const submitBtn = $('#createBook');
-
-    submitBtn.click((e) => {
-        e.preventDefault();
+$('#createBookForm').submit(function(event) {
+    event.preventDefault();
+    if ($('#createBookForm')[0].checkValidity() === false) {
+        event.stopPropagation();
+    } else {
+        //do your ajax submition here
         let book = {
             title: $('#title').val().trim(),
             genre: $('#genre').val().trim(),
@@ -35,6 +36,7 @@ $(() => {
             // else redirects to error page
         }).catch(error => {
             console.log(error);
-        })
-    });
+        });
+    }
+    $('#createBookForm').addClass('was-validated');
 });
