@@ -11,7 +11,7 @@
             contributors.empty();
             $.ajax('/api/users/book/' + {{ book.id }}, {
             type: 'GET'
-        }).then(
+            }).then(
             function (results) {
                 console.log(results);
                 let temp = [];

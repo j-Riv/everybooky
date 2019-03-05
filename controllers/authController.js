@@ -186,13 +186,5 @@ module.exports = {
         }).catch(error => {
             console.log(error);
         });
-    },
-    pageNotFound: (req, res) => {
-        res.render('404', {
-            loggedIn: req.isAuthenticated(),
-            title: '404 | Not Found',
-            displayChat: false,
-            user: req.user
-        });
     }
 }
