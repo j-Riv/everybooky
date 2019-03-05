@@ -163,7 +163,6 @@ input[type="color"]:focus,
 #chatWrapper {
   position: fixed;
   z-index: 10000;
-  text-align: center;
   height: 500px;
   width: 400px;
   max-width: 100%;
@@ -218,10 +217,11 @@ input[type="color"]:focus,
 }
 
 #chatWrapper #chat .chatArea .messages {
+  text-align: left;
   height: 100%;
   margin: 0;
   overflow-y: scroll;
-  font-size: 150%;
+  font-size: 100%;
   list-style: none;
   padding: 0;
   -ms-overflow-style: none;
@@ -237,6 +237,7 @@ input[type="color"]:focus,
   font-size: 70%;
   margin: 5px;
   list-style: none;
+  text-align: center;
 }
 
 #chatWrapper #chat .chatArea .message.typing .messageBody {
