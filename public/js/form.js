@@ -30,7 +30,7 @@ $(() => {
                     data: post
                 }).then(result => {
                     window.location.href = "/book/" + bookId;
-                })
+                });
             }
             // else redirects to error page
         }).catch(error => {
