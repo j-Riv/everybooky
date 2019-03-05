@@ -18,7 +18,7 @@ module.exports = {
             if (sortType === 'new') {
                 results.sort((a, b) => (a.id < b.id) ? 1 : -1)
             } else if (sortType === 'popular') {
-                results.sort((a, b) => (a.posts < b.posts) ? 1 : -1)
+                results.sort((a, b) => (a.views < b.views) ? 1 : -1)
             }
             console.log(results);
             res.render('homepage', {
@@ -131,7 +131,8 @@ module.exports = {
                 loggedIn: req.isAuthenticated(),
                 title: 'Results',
                 booksObj: results,
-                displayChat: false
+                displayChat: false,
+                user: req.user
             });
         }).catch(error => {
             console.log(error);
@@ -147,7 +148,8 @@ module.exports = {
                 loggedIn: req.isAuthenticated(),
                 title: 'Results',
                 booksObj: results,
-                displayChat: false
+                displayChat: false,
+                user: req.user
             });
         }).catch(error => {
             console.log(error);
@@ -178,7 +180,8 @@ module.exports = {
                 loggedIn: req.isAuthenticated(),
                 title: 'Results',
                 booksObj: results,
-                displayChat: false
+                displayChat: false,
+                user: req.user
             });
         }).catch(error => {
             console.log(error);
