@@ -8,6 +8,7 @@ module.exports = {
                     loggedIn: req.isAuthenticated(),
                     title: 'Homepage',
                     books: result,
+                    user: req.user,
                     displayChat: false
                 });
             })
