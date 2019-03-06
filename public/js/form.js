@@ -9,10 +9,8 @@ $('#createBookForm').submit(function(event) {
             genre: $('#genre').val().trim(),
             limit: $('#limit').val().trim(),
             imageUrl: $('#imageUrl').val().trim(),
-            // type: $('#type').val().trim(),
-            // colab: $('#maxCol').val().trim(),
-            body: $('#body').val().trim(),
-            // private: $('#private').val().trim()
+            author: $('#userId').val().trim(),
+            body: $('#body').val().trim()
         }
         console.log(book);
         $.ajax('/api/book', {

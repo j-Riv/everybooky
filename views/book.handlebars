@@ -14,7 +14,9 @@
             </div>
             <div class="col-2">
                 {{#if loggedIn}}
-                <i class="fas fa-cog float-right" data-toggle="modal" data-target="#updateBookModal"></i>
+                    {{#ifEquals user.id book.author}}
+                        <i class="fas fa-cog float-right" data-toggle="modal" data-target="#updateBookModal"></i>
+                    {{/ifEquals}}
                 {{/if}}
             </div>
         </div>
@@ -39,50 +41,52 @@
         </div>
         {{!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> --}}
         {{#if loggedIn}}
-        <p class="pt-5">
-            <a class="btn btn-blue" data-toggle="collapse" href="#multiCollapseAddLine" role="button"
-                aria-expanded="false" aria-controls="multiCollapseAddLine">Add a Line</a>
-            <button id="editPosts" class="btn btn-blue" type="button" data-toggle="collapse"
-                data-target="#multiCollapseUpdatePost" aria-expanded="false"
-                aria-controls="multiCollapseUpdatePost">Edit a Line</button>
-        </p>
 
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="collapse multi-collapse" id="multiCollapseAddLine">
-                    <form>
-                        <div class="input-group mb-3">
-                            <input type="text" id="line" class="form-control" placeholder="Add your line"
-                                aria-label="Add your line" aria-describedby="addLine" name="line">
-                            <input type="text" id="user-Id" name="userId" hidden value="{{user.id}}">
-                            <input type="text" id="book-Id" name="bookID" hidden value="{{book.id}}">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary rounded-right" type="button"
-                                    id="addLine">Submit</button>
+            <p class="pt-5">
+                <a class="btn btn-blue" data-toggle="collapse" href="#multiCollapseAddLine" role="button" aria-expanded="false"
+                    aria-controls="multiCollapseAddLine">Add a Line</a>
+                {{#ifEquals user.id book.author}}
+                <button id="editPosts" class="btn btn-blue" type="button" data-toggle="collapse" data-target="#multiCollapseUpdatePost"
+                    aria-expanded="false" aria-controls="multiCollapseUpdatePost">Edit a Line</button>
+                {{/ifEquals}}
+            </p>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="collapse multi-collapse" id="multiCollapseAddLine">
+                        <form>
+                            <div class="input-group mb-3">
+                                <input type="text" id="line" class="form-control" placeholder="Add your line" aria-label="Add your line"
+                                    aria-describedby="addLine" name="line">
+                                <input type="text" id="user-Id" name="userId" hidden value="{{user.id}}">
+                                <input type="text" id="book-Id" name="bookID" hidden value="{{book.id}}">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary rounded-right" type="button" id="addLine">Submit</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                    <p id="charNum"></p>
+                        </form>
+                        <p id="charNum"></p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="collapse multi-collapse" id="multiCollapseUpdatePost">
-                    <form>
-                        <h2>Update Line</h2>
-                        <p>Click on the line you want to edit...</p>
-                        <div class="input-group mb-3">
-                            <input class="form-control" type="text" id="updateLine" placeholder="Line">
-                            <input class="form-control" type="text" id="updateLineId" hidden>
-                            <div class="input-group-append">
-                                <button class="btn btn-blue rounded-right" type="button" id="updatePost">Submit</button>
+            {{#ifEquals user.id book.author}}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="collapse multi-collapse" id="multiCollapseUpdatePost">
+                        <form>
+                            <h2>Update Line</h2>
+                            <p>Click on the line you want to edit...</p>
+                            <div class="input-group mb-3">
+                                <input class="form-control" type="text" id="updateLine" placeholder="Line">
+                                <input class="form-control" type="text" id="updateLineId" hidden>
+                                <div class="input-group-append">
+                                    <button class="btn btn-blue rounded-right" type="button" id="updatePost">Submit</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+            {{/ifEquals}}
 
         {{else}}
         <p>
