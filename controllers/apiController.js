@@ -97,7 +97,7 @@ module.exports = {
                 line: req.body.line,
                 contributorId: req.body.userId
             }
-            req.io.emit('added line', postObj);
+            req.io.emit('added line: ' + req.body.bookTitle, postObj);
             res.status(200).end();
         }).catch(error => {
             console.error(error);
@@ -132,6 +132,11 @@ module.exports = {
                 // error id must not exist
                 return res.status(404).end();
             } else {
+                // let postObj = {
+                //     id: result.id,
+                //     line: post.updatedLine
+                // }
+                // req.io.emit('added line: ' + req.body.bookTitle, postObj);
                 res.status(200).end();
             }
         }).catch(error => {
