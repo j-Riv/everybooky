@@ -51,27 +51,13 @@ module.exports = {
             include: [models.Book]
         }).then(results => {
             const books = results;
-            // authored
-            models.Book.findAll({
-                where: {
-                    author: req.user.id
-                }
-            }).then(results => {
-                const authoredBooks = results;
-                console.log('authoredd');
-                console.log(results);
-                res.render('dashboard', {
-                    loggedIn: req.isAuthenticated(),
-                    title: 'Dashboard',
-                    books: books,
-                    authoredBooks: authoredBooks,
-                    user: req.user,
-                    displayChat: true
-                });
-            }).catch(error => {
-                console.error(error);
+            res.render('dashboard', {
+                loggedIn: req.isAuthenticated(),
+                title: 'Dashboard',
+                books: books,
+                user: req.user,
+                displayChat: true
             });
-            return false;
         }).catch(error => {
             console.log(error);
         });

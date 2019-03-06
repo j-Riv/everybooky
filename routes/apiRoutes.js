@@ -10,8 +10,6 @@ module.exports = function(app, passport) {
 
     app.delete('/api/book/:id', apiController.deleteBook);
 
-    app.get('/api/book/author/:id', apiController.authoredBooks);
-
     // posts
     app.post('/api/book/post', apiController.addPost);
 
