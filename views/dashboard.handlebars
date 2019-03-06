@@ -43,17 +43,19 @@
                         <h5>Books You've Contributed To</h5>
                         <div class="row">
                             {{#eachUnique books}}
-                            <div class="col-md-3 mb-3 text-white">
-                                <div class="card book grow text-white"
-                                    style="background-image: url('{{this.Book.imageUrl}}');">
-                                    <a href="/book/{{this.Book.id}}">
-                                        <div class="card-img-overlay">
-                                            <h4>{{this.Book.title}}</h4>
-                                        </div>
-                                    </a>
+                                {{#if this.Book.id}}
+                                <div class="col-md-3 mb-3 text-white">
+                                    <div class="card book grow text-white"
+                                        style="background-image: url('{{this.Book.imageUrl}}');">
+                                        <a href="/book/{{this.Book.id}}">
+                                            <div class="card-img-overlay">
+                                                <h4>{{this.Book.title}}</h4>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <button class="delete-btn btn text-blue" data-id="{{this.Book.id}}"><i class="fas fa-trash-alt"></i></button>
                                 </div>
-                                <button class="delete-btn btn text-blue" data-id="{{this.Book.id}}"><i class="fas fa-trash-alt"></i></button>
-                            </div>
+                                {{/if}}
                             {{/eachUnique}}
                         </div>
                     </div>
@@ -68,16 +70,18 @@
                         <h5>Books You've Started</h5>
                             <div class="row">                               
                             {{#each authoredBooks}}
-                            <div class="col-md-3 mb-3 text-white">
-                                <div class="card book grow text-white" style="background-image: url('{{this.imageUrl}}');">
-                                    <a href="/book/{{this.id}}">
-                                        <div class="card-img-overlay">
-                                            <h4>{{this.title}}</h4>
-                                        </div>
-                                    </a>
+                                {{#if this.id}}
+                                <div class="col-md-3 mb-3 text-white">
+                                    <div class="card book grow text-white" style="background-image: url('{{this.imageUrl}}');">
+                                        <a href="/book/{{this.id}}">
+                                            <div class="card-img-overlay">
+                                                <h4>{{this.title}}</h4>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <button class="delete-btn btn text-blue" data-id="{{this.id}}"><i class="fas fa-trash-alt"></i></button>
                                 </div>
-                                <button class="delete-btn btn text-blue" data-id="{{this.id}}"><i class="fas fa-trash-alt"></i></button>
-                            </div>
+                                {{/if}}
                             {{/each}}
                         </div>
                     </div>

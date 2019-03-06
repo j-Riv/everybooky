@@ -58,7 +58,6 @@ module.exports = {
                 }
             }).then(results => {
                 const authoredBooks = results;
-                console.log('authoredd');
                 console.log(results);
                 res.render('dashboard', {
                     loggedIn: req.isAuthenticated(),
