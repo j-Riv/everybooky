@@ -68,6 +68,15 @@ app.use(function(req, res, next) {
 // Routes
 require('./routes/auth.js')(app, passport);
 require('./routes/apiRoutes')(app, passport);
+// anything else
+app.get('*', (req, res) => {
+    res.render('404', {
+        loggedIn: req.isAuthenticated(),
+        title: '404 | Not Found',
+        displayChat: false,
+        user: req.user
+    });
+});
 
 // Load passport strategies
 require('./config/passport/passport')(passport, models.User);

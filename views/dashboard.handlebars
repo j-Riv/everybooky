@@ -17,31 +17,35 @@
                     <p>{{user.about}}</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <button class="btn btn-blue" id="allButton">View all books</button>
-                </div>
-            </div>
-            <div class="row text-center pt-3">
+
+            <div class="row text-center pt-2">
                 <div class="col-sm-12">
-                    <hr />
-                    <ul class="pt-3 list-unstyled" id="allBook">
-                        <div class="row">
-                            {{#eachUnique books}}
-                            <div class="col-md-3 mb-3 text-white">
-                                <div class="card book grow text-white" style="background-image: url('{{this.Book.imageUrl}}');">
-                                    <a href="/book/{{this.Book.id}}">
-                                        <div class="card-img-overlay">
-                                            <h4>{{this.Book.title}}</h4>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            {{/eachUnique}}
-                        </div>
-                    </ul>
+                    <button class="btn btn-blue" type="button" data-toggle="collapse" data-target="#collapseBooks"
+                        aria-expanded="false" aria-controls="collapseBooks">
+                        View All Books
+                    </button>
                 </div>
             </div>
+
+            <div class="collapse" id="collapseBooks">
+                <hr />
+                <ul class="pt-3 list-unstyled">
+                    <div class="row">
+                        {{#eachUnique books}}
+                        <div class="col-md-3 mb-3 text-white">
+                            <div class="card book grow text-white" style="background-image: url('{{this.Book.imageUrl}}');">
+                                <a href="/book/{{this.Book.id}}">
+                                    <div class="card-img-overlay">
+                                        <h4>{{this.Book.title}}</h4>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        {{/eachUnique}}
+                    </div>
+                </ul>
+            </div>
+
         </div>
     </div>
 </div>
@@ -56,13 +60,18 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h6>Profile Picture</h6>
-                <input class="form-control" type="text" id="profilePic" placeholder="Profile Picture"
-                    value="{{user.photo}}">
-                <h7>About Me</h7>
-                <input class="form-control" type="text" id="aboutInput" placeholder="About" value="{{user.about}}">
-                <h8>Username</h8>
-                <input class="form-control" type="text" id="username" placeholder="Username" value="{{user.username}}">
+                <div class="form-group">
+                    <label for="profilePic">Profile Picture</label>
+                    <input class="form-control" type="text" id="profilePic" placeholder="Profile Picture" value="{{user.photo}}">
+                </div>
+                <div class="form-group">
+                    <label for="aboutInput">About</label>
+                    <input class="form-control" type="text" id="aboutInput" placeholder="About" value="{{user.about}}">
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input class="form-control" type="text" id="username" placeholder="Username" value="{{user.username}}">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

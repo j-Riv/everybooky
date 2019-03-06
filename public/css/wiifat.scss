@@ -17,7 +17,8 @@ body {
     margin: 0;
 }
 
-a {
+a,
+.fas {
     cursor: pointer;
 }
 
@@ -91,9 +92,47 @@ input[type="color"]:focus,
     // }
 }
 
+.bg-blue {
+    background-color: $blue;
+}
+
+.text-blue {
+    color: $blue;
+}
+
+.text-black {
+    color: #000;
+}
+
 .circle-image {
     border-radius: 50%;
     object-fit: cover;
+}
+
+.huge-text {
+    font-size: 5em;
+}
+
+// search
+#searchBarForm {
+    #searchBar {
+        border: 1px solid $grey;
+    }
+    .btn {
+        border: 1px solid $grey;
+        &:focus {
+            border: 1px solid $grey;
+            // box-shadow: none;
+        }
+    }
+    #searchDropDown {
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 50px;
+    }
+    // fix for mobile
+    .dropdown-menu {
+        position: absolute;
+    }
 }
 
 
@@ -147,6 +186,16 @@ input[type="color"]:focus,
 }
 
 #chatWrapper {
+    position: fixed;
+    z-index: 10000;
+    height: 500px;
+    width: 400px;
+    max-width: 100%;
+    right: 0;
+    left: 0;
+    // margin-right: auto;
+    // margin-left: auto;
+    bottom: -458px;
     .nav-tabs {
         border-bottom: 1px solid $grey;
         #letsChat {
@@ -158,17 +207,6 @@ input[type="color"]:focus,
             margin-bottom: -2px;
         }
     }
-    position: fixed;
-    z-index: 10000;
-    text-align: center;
-    height: 500px;
-    width: 400px;
-    max-width: 100%;
-    right: 0;
-    left: 0;
-    // margin-right: auto;
-    // margin-left: auto;
-    bottom: -458px;
     &.slide-up {
         bottom: 0px !important;
     }
@@ -195,10 +233,11 @@ input[type="color"]:focus,
                 text-align: right;
             }
             .messages {
+                text-align: left;
                 height: 100%;
                 margin: 0;
                 overflow-y: scroll;
-                font-size: 150%;
+                font-size: 100%;
                 list-style: none;
                 padding: 0;
                 -ms-overflow-style: none; // IE 10+
@@ -212,6 +251,7 @@ input[type="color"]:focus,
                 font-size: 70%;
                 margin: 5px;
                 list-style: none;
+                text-align: center;
             }
             .message.typing .messageBody {
                 color: gray;
@@ -243,6 +283,7 @@ input[type="color"]:focus,
     }
 }
 
+// book partial
 .book {
     height: 300px;
     background-color: $grey;
@@ -253,5 +294,12 @@ input[type="color"]:focus,
         color: #fff;
         text-transform: uppercase;
         text-shadow: 5px 5px 20px #000;
+    }
+}
+
+// 404 page
+#pageNotFound {
+    img {
+        max-width: 100%;
     }
 }
