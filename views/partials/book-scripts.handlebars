@@ -33,10 +33,11 @@
             const theLine = {
                 line: $('#line').val().trim(),
                 userId: $('#user-Id').val().trim(),
-                bookId: $('#book-Id').val().trim()
+                bookId: $('#book-Id').val().trim(),
+                bookTitle: '{{book.title}}'
             }
             console.log('Line: ' + $('#line').val().trim());
-            socket.emit('added line', $('#line').val().trim());
+            socket.emit('added line: {{book.title}}', $('#line').val().trim());
             $.ajax('/api/book/post', {
                 type: 'POST',
                 data: theLine
@@ -51,10 +52,10 @@
         });
 
         //get changes
-        socket.on('added line', function (res) {
+        socket.on('added line: {{book.title}}', function (res) {
             console.log('added line: ' + res.line);
             let content = `
-                <span>${res.line}</span>
+                <span id="line-${res.id}" class="post-line" data-id="${res.id}">${res.line}</span>
             `;
             $('#bookContent').append(content);
             // if new contributor pull contributors again
@@ -111,6 +112,40 @@
             $.ajax('/api/book/' + {{ book.id }}, {
                 type: "PUT",
                 data: book
+            }).then(result => {
+                location.reload();
+            }).catch(err => {
+                console.error(err);
+            });
+        });
+
+        // edit post
+        $('#editPosts').on('click', (e) => {
+            const posts = $('.post-line');
+            posts.addClass('edit-line');
+        });
+        $(document).on('click', '.edit-line', function() {
+            const post = $(this);
+            const line = post.html();
+            const id = post.attr('data-id');
+            // update this line
+            $('#updateLine').val(line);
+            $('#updateLineId').val(id);
+            // toggle modal
+            $('#updatePostModal').modal('toggle')
+        });
+
+        $('#updatePost').on('click', () => {
+            console.log('clicked');
+            // make obj
+            const postObj = {
+                id: $('#updateLineId').val().trim(),
+                updatedLine: $('#updateLine').val().trim(),
+                bookTitle: '{{book.title}}'
+            };
+            $.ajax('/api/books/post/', {
+                type: "PUT",
+                data: postObj
             }).then(result => {
                 location.reload();
             }).catch(err => {

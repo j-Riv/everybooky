@@ -93,10 +93,11 @@ module.exports = {
             BookId: req.body.bookId
         }).then(result => {
             let postObj = {
+                id: result.id,
                 line: req.body.line,
                 contributorId: req.body.userId
             }
-            req.io.emit('added line', postObj);
+            req.io.emit('added line: ' + req.body.bookTitle, postObj);
             res.status(200).end();
         }).catch(error => {
             console.error(error);
@@ -114,6 +115,30 @@ module.exports = {
             };
             console.log(postsObj);
             res.json(postsObj);
+        }).catch(error => {
+            console.error(error);
+        });
+    },
+    updatePost: (req, res) => {
+        let post = req.body;
+        models.Post.update({
+            body: post.updatedLine
+        }, {
+            where: {
+                id: post.id
+            }
+        }).then(result => {
+            if (result.changedRows === 0) {
+                // error id must not exist
+                return res.status(404).end();
+            } else {
+                // let postObj = {
+                //     id: result.id,
+                //     line: post.updatedLine
+                // }
+                // req.io.emit('added line: ' + req.body.bookTitle, postObj);
+                res.status(200).end();
+            }
         }).catch(error => {
             console.error(error);
         });
