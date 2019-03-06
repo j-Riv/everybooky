@@ -11,6 +11,7 @@ module.exports = function(sequelize, DataTypes) {
     Post.associate = function(models) {
         Post.belongsTo(models.Book, {
             onDelete: "CASCADE",
+            hooks: true,
             foreignKey: {
                 allowNull: false
             }
