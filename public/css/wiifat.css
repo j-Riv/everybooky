@@ -286,7 +286,7 @@ input[type="color"]:focus,
   background-size: cover;
 }
 
-.book a {
+.book h4 {
   color: #fff;
   text-transform: uppercase;
   text-shadow: 5px 5px 20px #000;
