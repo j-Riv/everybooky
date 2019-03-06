@@ -4,6 +4,10 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.TEXT,
             allowNull: false,
             len: [1, 160]
+        },
+        UserId: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     }, {
         freezeTableName: true
