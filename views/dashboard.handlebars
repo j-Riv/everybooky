@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="jumbotron">
+    <div class="jumbotron bg-transparent">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -10,9 +10,9 @@
                 <div class="col-sm-4">
                     <img src="{{user.photo}}" class="circle-image mr-3 w-100" alt="{{user.firstname}} {{user.lastname}}">
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-8" style="word-wrap: break-word">
                     <h1>{{user.firstname}} {{user.lastname}}</h1>
-                    <h6>{{user.username}}</h6>
+                    <h6> {{user.username}}</h6>
                     <h3>About:</h3>
                     <p>{{user.about}}</p>
                 </div>
@@ -70,7 +70,7 @@
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input class="form-control" type="text" id="username" placeholder="Username" value="{{user.username}}">
+                    <input class="form-control" type="text" id="username" placeholder="Username" value="{{user.username}}" maxlength="20">
                 </div>
             </div>
             <div class="modal-footer">
