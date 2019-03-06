@@ -48,11 +48,12 @@ $('#searchButton').on('click', function() {
     const searchTerm = $('#searchBar').val().trim();
     // if not empty
     if (searchTerm !== '') {
-        if (searchType === 'Title') {
-            window.location.href = '/search/books/title/' + searchTerm;
-        }
-        if (searchType === 'Genre') {
-            window.location.href = '/search/books/genre/' + searchTerm;
-        }
+        searchTerm = 'Title'
+    }
+    if (searchType === 'Title') {
+        window.location.href = '/search/books/title/' + searchTerm;
+    }
+    if (searchType === 'Genre') {
+        window.location.href = '/search/books/genre/' + searchTerm;
     }
 });

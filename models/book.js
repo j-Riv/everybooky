@@ -5,6 +5,10 @@ module.exports = function(sequelize, DataTypes) {
             autoIncrement: true,
             primaryKey: true
         },
+        author: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         title: {
             type: DataTypes.STRING,
             allowNull: false,

@@ -52,10 +52,14 @@ app.engine(
                 });
                 // return the template compiled
                 return buffer;
+            },
+            ifEquals: function(arg1, arg2, options) {
+                return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
             }
         }
     })
 );
+
 app.set('view engine', 'handlebars');
 
 // Place this middleware before any other route definitions
