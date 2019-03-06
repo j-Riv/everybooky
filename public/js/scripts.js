@@ -45,7 +45,7 @@ $('#typeList a').on('click', function() {
 // do the search
 $('#searchButton').on('click', function() {
     console.log('search clicked');
-    const searchTerm = $('#searchBar').val().trim();
+    let searchTerm = $('#searchBar').val().trim();
     // if not empty
     if (searchTerm !== '') {
         searchTerm = 'Title'
