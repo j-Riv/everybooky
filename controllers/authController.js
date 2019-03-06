@@ -201,5 +201,13 @@ module.exports = {
         }).catch(error => {
             console.log(error);
         });
+    },
+    privacyPolicy: (req, res) => {
+        res.render('privacy-policy', {
+            loggedIn: req.isAuthenticated(),
+            title: 'Privacy Policy',
+            displayChat: false,
+            user: req.user
+        });
     }
 }
