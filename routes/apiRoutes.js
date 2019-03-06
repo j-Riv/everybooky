@@ -15,6 +15,8 @@ module.exports = function(app, passport) {
 
     app.get('/api/books/:id/posts/', apiController.getPosts);
 
+    app.put('/api/books/post/', apiController.updatePost);
+
     // user
     app.get('/api/user/:id', apiController.getCurrentUser);
 
