@@ -72,6 +72,11 @@ input[type="color"]:focus,
   transition: all .5s;
 }
 
+.btn-outline-blue {
+  color: #02A4D3;
+  border: 1px solid #02A4D3;
+}
+
 .bg-blue {
   background-color: #02A4D3;
 }

@@ -35,6 +35,9 @@ module.exports = function(app, passport) {
 
     app.get('/search/books/genre/:genre', authController.searchGenre);
 
+    // random
+    app.get('/privacy-policy/', authController.privacyPolicy);
+
     function isLoggedIn(req, res, next) {
         if (req.isAuthenticated()) return next();
         res.redirect('/login');
