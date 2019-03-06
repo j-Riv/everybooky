@@ -65,18 +65,6 @@
             }
         });
 
-        // Delete book button
-        $('.delete-button').click(function(e) {
-            e.preventDefault();
-            $.ajax('/api/book/' + {{ this.id }}, {
-                type: "DELETE"
-            }).then(result => {
-                location.reload();
-            }).catch(error => {
-                console.log(error);
-            });
-        });
-
         // This will prevent the user from going past the max amount of characters.
         $("#line").keypress(function (e) {
             const max = 160
