@@ -290,3 +290,7 @@ input[type="color"]:focus,
 #pageNotFound img {
   max-width: 100%;
 }
+
+.edit-line {
+  cursor: pointer;
+}
