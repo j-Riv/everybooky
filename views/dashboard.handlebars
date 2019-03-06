@@ -21,66 +21,72 @@
 
             <div class="row text-center">
                 <div class="col-sm-12">
-
+                    {{#if books}}
                     <button class="btn btn-blue" type="button" data-toggle="collapse" data-target="#collapseBooks"
                         aria-expanded="false" aria-controls="collapseBooks">
                         View All Books
                     </button>
+                    {{/if}}
+                    {{#if authoredBooks}}
                     <button class="btn btn-blue" type="button" data-toggle="collapse" data-target="#collapseAuthor"
                         aria-expanded="false" aria-controls="collapseAuthor">
                         Your Books
                     </button>
+                    {{/if}}
                 </div>
             </div>
+            {{#if books}}
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 text-center">
                     <div class="collapse" id="collapseBooks">
                         <hr />
-                        <ul class="pt-3 list-unstyled">
-                            <div class="row">
-                                {{#eachUnique books}}
-                                <div class="col-md-3 mb-3 text-white">
-                                    <div class="card book grow text-white"
-                                        style="background-image: url('{{this.Book.imageUrl}}');">
-                                        <a href="/book/{{this.Book.id}}">
-                                            <div class="card-img-overlay">
-                                                <h4>{{this.Book.title}}</h4>
-                                            </div>
-                                        </a>
-                                    </div>
+                        <h5>Books You've Contributed To</h5>
+                        <div class="row">
+                            {{#eachUnique books}}
+                            <div class="col-md-3 mb-3 text-white">
+                                <div class="card book grow text-white"
+                                    style="background-image: url('{{this.Book.imageUrl}}');">
+                                    <a href="/book/{{this.Book.id}}">
+                                        <div class="card-img-overlay">
+                                            <h4>{{this.Book.title}}</h4>
+                                        </div>
+                                    </a>
                                 </div>
-                                {{/eachUnique}}
+                                <button class="delete-btn btn text-blue" data-id="{{this.Book.id}}"><i
+                                        class="fas fa-trash-alt"></i></button>
                             </div>
-                            <button class="delete-button btn btn-blue" id="{{this.id}}">Delete</button>
-                            </ul>
+                            {{/eachUnique}}
                         </div>
-                
-                    </div>
-                </div>
-           
-            <div class="row">
-                       <div class="col-sm-12">
-                    <div class="collapse" id="collapseAuthor">
-                        <hr />
-                        <ul class="pt-3 list-unstyled">
-                            <div class="row">
-                                {{#each authoredBooks}}
-                                <div class="col-md-3 mb-3 text-white">
-                                    <div class="card book grow text-white" style="background-image: url('{{this.imageUrl}}');">
-                                        <a href="/book/{{this.id}}">
-                                            <div class="card-img-overlay">
-                                                <h4>{{this.title}}</h4>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                {{/each}}
-                            </div>
-                        </ul>
                     </div>
                 </div>
             </div>
-
+            {{/if}}
+            {{#if authoredBooks}}
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <div class="collapse" id="collapseAuthor">
+                        <hr />
+                        <h5>Books You've Started</h5>
+                        <div class="row">
+                            {{#each authoredBooks}}
+                            <div class="col-md-3 mb-3 text-white">
+                                <div class="card book grow text-white"
+                                    style="background-image: url('{{this.imageUrl}}');">
+                                    <a href="/book/{{this.id}}">
+                                        <div class="card-img-overlay">
+                                            <h4>{{this.title}}</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                                <button class="delete-btn btn text-blue" data-id="{{this.id}}"><i
+                                        class="fas fa-trash-alt"></i></button>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
         </div>
     </div>
     {{!-- modal --}}

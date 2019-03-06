@@ -40,20 +40,33 @@ let searchType;
 // get search type
 $('#typeList a').on('click', function() {
     searchType = $(this).html();
-    console.log('search type: ' + searchType);
 });
 // do the search
 $('#searchButton').on('click', function() {
-    console.log('search clicked');
     let searchTerm = $('#searchBar').val().trim();
     // if not empty
-    if (searchTerm !== '') {
-        searchTerm = 'Title'
+    if (searchType === '') {
+        searchType = 'Title'
     }
-    if (searchType === 'Title') {
-        window.location.href = '/search/books/title/' + searchTerm;
+    if (searchType !== '' && searchTerm !== '') {
+        if (searchType === 'Title') {
+            window.location.href = '/search/books/title/' + searchTerm;
+        }
+        if (searchType === 'Genre') {
+            window.location.href = '/search/books/genre/' + searchTerm;
+        }
     }
-    if (searchType === 'Genre') {
-        window.location.href = '/search/books/genre/' + searchTerm;
-    }
+});
+
+// Delete book button
+$('.delete-btn').click(function(e) {
+    e.preventDefault();
+    let id = $(this).attr('data-id');
+    $.ajax('/api/book/' + id, {
+        type: 'DELETE'
+    }).then(result => {
+        location.reload();
+    }).catch(error => {
+        console.log(error);
+    });
 });
