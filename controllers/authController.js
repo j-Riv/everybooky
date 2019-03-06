@@ -4,7 +4,7 @@ module.exports = {
     homepage: (req, res) => {
         models.Book.findAll()
             .then(result => {
-                res.render('homepage', {
+                res.render('Everbooky | Write together and share forever', {
                     loggedIn: req.isAuthenticated(),
                     title: 'Homepage',
                     books: result,
@@ -22,7 +22,7 @@ module.exports = {
                 results.sort((a, b) => (a.views < b.views) ? 1 : -1)
             }
             console.log(results);
-            res.render('homepage', {
+            res.render('Everbooky | Write together and share forever', {
                 loggedIn: req.isAuthenticated(),
                 title: 'Homepage',
                 books: results,
