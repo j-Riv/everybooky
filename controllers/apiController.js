@@ -218,20 +218,5 @@ module.exports = {
         }).catch(error => {
             console.log(error);
         });
-    },
-    authoredBooks: (req, res) => {
-        models.Book.findAll({
-            where: {
-                author: req.body.author
-            }
-        }).then(results => {
-            const booksObj = {
-                books: results
-            };
-            console.log(booksObj);
-            res.json(booksObj);
-        }).catch(error => {
-            console.error(error);
-        });
     }
 }
