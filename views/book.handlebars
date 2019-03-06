@@ -4,10 +4,17 @@
             <div class="col-10">
                 <h1 class="display-4">{{book.title}}</h1>
                 <p class="lead">{{book.body}}</p>
+                <div class="col-md-3 mb-3 text-white">
+                    <div class="card book grow text-white" style="background-image: url('{{book.imageUrl}}');">
+                        <div class="card-img-overlay">
+                            <h4>{{book.title}}</h4>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-2">
                 {{#if loggedIn}}
-                    <i class="fas fa-cog float-right" data-toggle="modal" data-target="#updateBookModal"></i>
+                <i class="fas fa-cog float-right" data-toggle="modal" data-target="#updateBookModal"></i>
                 {{/if}}
             </div>
         </div>
@@ -33,10 +40,11 @@
         {{!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> --}}
         {{#if loggedIn}}
         <p class="pt-5">
-            <a class="btn btn-blue" data-toggle="collapse" href="#multiCollapseAddLine" role="button" aria-expanded="false"
-                aria-controls="multiCollapseAddLine">Add a Line</a>
-            <button id="editPosts" class="btn btn-blue" type="button" data-toggle="collapse" data-target="#multiCollapseUpdatePost"
-                aria-expanded="false" aria-controls="multiCollapseUpdatePost">Edit a Line</button>
+            <a class="btn btn-blue" data-toggle="collapse" href="#multiCollapseAddLine" role="button"
+                aria-expanded="false" aria-controls="multiCollapseAddLine">Add a Line</a>
+            <button id="editPosts" class="btn btn-blue" type="button" data-toggle="collapse"
+                data-target="#multiCollapseUpdatePost" aria-expanded="false"
+                aria-controls="multiCollapseUpdatePost">Edit a Line</button>
         </p>
 
         <div class="row">
@@ -44,12 +52,13 @@
                 <div class="collapse multi-collapse" id="multiCollapseAddLine">
                     <form>
                         <div class="input-group mb-3">
-                            <input type="text" id="line" class="form-control" placeholder="Add your line" aria-label="Add your line"
-                                aria-describedby="addLine" name="line">
+                            <input type="text" id="line" class="form-control" placeholder="Add your line"
+                                aria-label="Add your line" aria-describedby="addLine" name="line">
                             <input type="text" id="user-Id" name="userId" hidden value="{{user.id}}">
                             <input type="text" id="book-Id" name="bookID" hidden value="{{book.id}}">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary rounded-right" type="button" id="addLine">Submit</button>
+                                <button class="btn btn-outline-secondary rounded-right" type="button"
+                                    id="addLine">Submit</button>
                             </div>
                         </div>
                     </form>
@@ -83,8 +92,8 @@
             </button>
         </p>
         <div class="collapse" id="collapseExample">
-            <a href="#" class="login btn btn-transparent action-button grow float-left mr-2" style="margin-left: -10px;" data-toggle="modal"
-                data-target="#loginModalCenter" role="button">Log In</a>
+            <a href="#" class="login btn btn-transparent action-button grow float-left mr-2" style="margin-left: -10px;"
+                data-toggle="modal" data-target="#loginModalCenter" role="button">Log In</a>
             or
             <a class="btn btn-transparent action-button grow ml-2" role="button" href="/login">Sign Up</a>
         </div>
@@ -106,12 +115,14 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="bookTitle">Book Title</label>
-                    <input class="form-control" type="text" id="bookTitle" placeholder="Book Title" value="{{book.title}}">
+                    <input class="form-control" type="text" id="bookTitle" placeholder="Book Title"
+                        value="{{book.title}}">
                 </div>
                 <div class="form-group">
                     <label for="bookCover">Book Cover</label>
-                    <input class="form-control" type="text" id="bookImageUrl" placeholder="Image Url" value="{{book.imageUrl}}">
-                </div>    
+                    <input class="form-control" type="text" id="bookImageUrl" placeholder="Image Url"
+                        value="{{book.imageUrl}}">
+                </div>
                 <input class="form-control" type="text" id="bookDescription" value="{{book.body}}" hidden>
                 <input class="form-control" type="text" id="bookTextLimit" value="{{book.text_limit}}" hidden>
                 <input class="form-control" type="text" id="bookGenre" value="{{book.genre}}" hidden>
