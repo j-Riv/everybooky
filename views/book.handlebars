@@ -2,7 +2,15 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-10">
-                <h1 class="display-4">{{book.title}}</h1>
+                <h1 class="display-4">{{book.title}}
+                    <!-- Marks according to whether the book is finished or not-->
+                    {{#if book.completed}}
+                    <i class="far fa-check-circle"></i>
+                    {{/if}}
+                    {{#unless book.completed}}
+                    <i class="far fa-edit"></i>
+                    {{/unless}}
+                </h1>
                 <p class="lead">{{book.body}}</p>
             </div>
             <div class="col-2">
@@ -48,12 +56,19 @@
         {{#if loggedIn}}
 
         <p class="pt-5">
+            <!-- If the book is not completed, display the add line button-->
+            {{#unless book.completed}}
             <a class="btn btn-blue" data-toggle="collapse" href="#multiCollapseAddLine" role="button"
                 aria-expanded="false" aria-controls="multiCollapseAddLine">Add a Line</a>
+            {{/unless}}
             {{#ifEquals user.id book.author}}
             <button id="editPosts" class="btn btn-blue" type="button" data-toggle="collapse"
                 data-target="#multiCollapseUpdatePost" aria-expanded="false"
                 aria-controls="multiCollapseUpdatePost">Edit a Line</button>
+            <!-- Will not show this button once the book is completed-->
+            {{#unless book.completed}}
+            <button class="btn btn-blue" data-toggle="modal" data-target="#confirmModal">Complete Book</button>
+            {{/unless}}
             {{/ifEquals}}
         </p>
         <div class="row">
@@ -147,4 +162,26 @@
     </div>
 </div>
 <!-- update post/line modal -->
+<!-- confirm modal-->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="finalize" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class='col-12 modal-title text-center'>
+                    Finalize Book
+                    <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                    </button>
+                </h3>
+            </div>
+            <div class="modal-body text-center">
+                You will not be able to undo these changes. Are you sure?
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-blue" id="finishBook" data-id="{{book.id}}">Confirm</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 {{> book-scripts}}

@@ -8,6 +8,8 @@ module.exports = function(app, passport) {
 
     app.put('/api/book/:id', apiController.updateBook);
 
+    app.put('/api/book/complete/:id', apiController.completeBook);
+
     app.delete('/api/book/:id', apiController.deleteBook);
 
     // posts
