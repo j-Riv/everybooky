@@ -21,6 +21,12 @@
     padding: 0 10px
 }
 
+.rotate:hover {
+    transform: rotate(45deg);
+    transition-timing-function: ease-in-out;
+    transition: 0.5s;
+}
+
 .footer-basic ul a {
     color: inherit;
     text-decoration: none;
