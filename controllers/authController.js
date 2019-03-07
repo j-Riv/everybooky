@@ -6,7 +6,7 @@ module.exports = {
             .then(result => {
                 res.render('homepage', {
                     loggedIn: req.isAuthenticated(),
-                    title: 'Homepage',
+                    title: 'Everbooky | Write together and share forever',
                     books: result,
                     user: req.user,
                     displayChat: false
@@ -24,7 +24,7 @@ module.exports = {
             console.log(results);
             res.render('homepage', {
                 loggedIn: req.isAuthenticated(),
-                title: 'Homepage',
+                title: 'Everbooky | Write together and share forever',
                 books: results,
                 displayChat: false
             });
@@ -51,13 +51,26 @@ module.exports = {
             include: [models.Book]
         }).then(results => {
             const books = results;
-            res.render('dashboard', {
-                loggedIn: req.isAuthenticated(),
-                title: 'Dashboard',
-                books: books,
-                user: req.user,
-                displayChat: true
+            // authored
+            models.Book.findAll({
+                where: {
+                    author: req.user.id
+                }
+            }).then(results => {
+                const authoredBooks = results;
+                console.log(results);
+                res.render('dashboard', {
+                    loggedIn: req.isAuthenticated(),
+                    title: 'Dashboard',
+                    books: books,
+                    authoredBooks: authoredBooks,
+                    user: req.user,
+                    displayChat: true
+                });
+            }).catch(error => {
+                console.error(error);
             });
+            return false;
         }).catch(error => {
             console.log(error);
         });

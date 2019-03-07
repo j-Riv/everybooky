@@ -5,7 +5,6 @@
         let bookContributors = [];
 
         function getContributors() {
-            console.log('Getting contributors');
             const contributors = $('#contList');
             // empty before pull
             contributors.empty();
@@ -13,7 +12,6 @@
             type: 'GET'
             }).then(
             function (results) {
-                console.log(results);
                 let temp = [];
                 results.forEach(author => {
                     if (!temp.includes(author.id)) {

@@ -52,10 +52,7 @@ module.exports = function(sequelize, DataTypes) {
         freezeTableName: true
     });
     Book.associate = function(models) {
-        models.Book.hasMany(models.User);
-    };
-    Book.associate = function(models) {
-        models.Book.hasMany(models.Post);
+        models.Book.hasMany(models.Post, { onDelete: 'cascade', hooks: true });
     };
     return Book;
 };
