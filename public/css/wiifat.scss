@@ -92,6 +92,11 @@ input[type="color"]:focus,
     // }
 }
 
+.btn-outline-blue {
+    color: $blue;
+    border: 1px solid $blue;
+}
+
 .bg-blue {
     background-color: $blue;
 }
@@ -290,7 +295,7 @@ input[type="color"]:focus,
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    a {
+    h4 {
         color: #fff;
         text-transform: uppercase;
         text-shadow: 5px 5px 20px #000;

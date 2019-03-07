@@ -5,7 +5,6 @@
         let bookContributors = [];
 
         function getContributors() {
-            console.log('Getting contributors');
             const contributors = $('#contList');
             // empty before pull
             contributors.empty();
@@ -13,7 +12,6 @@
             type: 'GET'
             }).then(
             function (results) {
-                console.log(results);
                 let temp = [];
                 results.forEach(author => {
                     if (!temp.includes(author.id)) {
@@ -63,18 +61,6 @@
                 console.log('not in list');
                 getContributors();
             }
-        });
-
-        // Delete book button
-        $('.delete-button').click(function(e) {
-            e.preventDefault();
-            $.ajax('/api/book/' + {{ this.id }}, {
-                type: "DELETE"
-            }).then(result => {
-                location.reload();
-            }).catch(error => {
-                console.log(error);
-            });
         });
 
         // This will prevent the user from going past the max amount of characters.

@@ -6,7 +6,7 @@ module.exports = {
             .then(result => {
                 res.render('homepage', {
                     loggedIn: req.isAuthenticated(),
-                    title: 'Homepage',
+                    title: 'Everbooky | Write together and share forever',
                     books: result,
                     user: req.user,
                     displayChat: false
@@ -24,7 +24,7 @@ module.exports = {
             console.log(results);
             res.render('homepage', {
                 loggedIn: req.isAuthenticated(),
-                title: 'Homepage',
+                title: 'Everbooky | Write together and share forever',
                 books: results,
                 displayChat: false
             });
@@ -58,7 +58,6 @@ module.exports = {
                 }
             }).then(results => {
                 const authoredBooks = results;
-                console.log('authoredd');
                 console.log(results);
                 res.render('dashboard', {
                     loggedIn: req.isAuthenticated(),
@@ -200,6 +199,14 @@ module.exports = {
             });
         }).catch(error => {
             console.log(error);
+        });
+    },
+    privacyPolicy: (req, res) => {
+        res.render('privacy-policy', {
+            loggedIn: req.isAuthenticated(),
+            title: 'Privacy Policy',
+            displayChat: false,
+            user: req.user
         });
     }
 }

@@ -21,24 +21,29 @@
 
             <div class="row text-center">
                 <div class="col-sm-12">
-
-                    <button class="btn btn-blue" type="button" data-toggle="collapse" data-target="#collapseBooks"
-                        aria-expanded="false" aria-controls="collapseBooks">
-                        View All Books
-                    </button>
+                    {{#if books}}
+                        <button class="btn btn-blue" type="button" data-toggle="collapse" data-target="#collapseBooks" aria-expanded="false"
+                            aria-controls="collapseBooks">
+                            View All Books
+                        </button>
+                    {{/if}}
+                    {{#if authoredBooks}}
                     <button class="btn btn-blue" type="button" data-toggle="collapse" data-target="#collapseAuthor"
                         aria-expanded="false" aria-controls="collapseAuthor">
                         Your Books
                     </button>
+                    {{/if}}
                 </div>
             </div>
+            {{#if books}}
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 text-center">
                     <div class="collapse" id="collapseBooks">
                         <hr />
-                        <ul class="pt-3 list-unstyled">
-                            <div class="row">
-                                {{#eachUnique books}}
+                        <h5>Books You've Contributed To</h5>
+                        <div class="row">
+                            {{#eachUnique books}}
+                                {{#if this.Book.id}}
                                 <div class="col-md-3 mb-3 text-white">
                                     <div class="card book grow text-white"
                                         style="background-image: url('{{this.Book.imageUrl}}');">
@@ -48,23 +53,24 @@
                                             </div>
                                         </a>
                                     </div>
+                                    <button class="delete-btn btn text-blue" data-id="{{this.Book.id}}"><i class="fas fa-trash-alt"></i></button>
                                 </div>
-                                {{/eachUnique}}
-                            </div>
-                            <button class="delete-button btn btn-blue" id="{{this.id}}">Delete</button>
+                                {{/if}}
+                            {{/eachUnique}}
                         </div>
-                        {{!-- Got rid of this to get rid of my error --}}
-                        {{!-- {{/eachUnique}} --}}
                     </div>
                 </div>
             </div>
+            {{/if}}
+            {{#if authoredBooks}}
             <div class="row">
-                       <div class="col-sm-12">
+                <div class="col-sm-12 text-center">
                     <div class="collapse" id="collapseAuthor">
                         <hr />
-                        <ul class="pt-3 list-unstyled">
-                            <div class="row">
-                                {{#each authoredBooks}}
+                        <h5>Books You've Started</h5>
+                            <div class="row">                               
+                            {{#each authoredBooks}}
+                                {{#if this.id}}
                                 <div class="col-md-3 mb-3 text-white">
                                     <div class="card book grow text-white" style="background-image: url('{{this.imageUrl}}');">
                                         <a href="/book/{{this.id}}">
@@ -73,14 +79,15 @@
                                             </div>
                                         </a>
                                     </div>
+                                    <button class="delete-btn btn text-blue" data-id="{{this.id}}"><i class="fas fa-trash-alt"></i></button>
                                 </div>
-                                {{/each}}
-                            </div>
-                        </ul>
+                                {{/if}}
+                            {{/each}}
+                        </div>
                     </div>
                 </div>
             </div>
-
+            {{/if}}
         </div>
     </div>
     {{!-- modal --}}

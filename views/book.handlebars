@@ -34,7 +34,7 @@
                         <h4>{{book.title}}</h4>
                     </div>
                 </div>
-                <h5 class="text-dark text-center">Genre: {{book.genre}}</h5>
+                <h5 class="text-dark text-center text-capitalize">Genre: {{book.genre}}</h5>
             </div>
             <div class="col-sm-9">
                 <div id="bookContent">
@@ -84,7 +84,7 @@
                         <h2>Update Line</h2>
                         <p>Click on the line you want to edit...</p>
                         <div class="input-group mb-3">
-                            <input class="form-control" type="text" id="updateLine" placeholder="Line">
+                            <input class="form-control" type="text" id="updateLine" placeholder="Line" maxlength="160">
                             <input class="form-control" type="text" id="updateLineId" hidden>
                             <div class="input-group-append">
                                 <button class="btn btn-blue rounded-right" type="button" id="updatePost">Submit</button>
@@ -128,12 +128,12 @@
                 <div class="form-group">
                     <label for="bookTitle">Book Title</label>
                     <input class="form-control" type="text" id="bookTitle" placeholder="Book Title"
-                        value="{{book.title}}">
+                        value="{{book.title}}" maxlength="100">
                 </div>
                 <div class="form-group">
                     <label for="bookCover">Book Cover</label>
                     <input class="form-control" type="text" id="bookImageUrl" placeholder="Image Url"
-                        value="{{book.imageUrl}}">
+                        value="{{book.imageUrl}}" maxlength="255">
                 </div>
                 <input class="form-control" type="text" id="bookDescription" value="{{book.body}}" hidden>
                 <input class="form-control" type="text" id="bookTextLimit" value="{{book.text_limit}}" hidden>
