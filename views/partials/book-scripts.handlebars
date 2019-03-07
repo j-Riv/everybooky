@@ -26,8 +26,7 @@
             });
         };
 
-        $('#addLine').on('click', function (e) {
-            e.preventDefault();
+        function addLine() {
             const theLine = {
                 line: $('#line').val().trim(),
                 userId: $('#user-Id').val().trim(),
@@ -47,6 +46,17 @@
             $('#line').val('');
             $('#charNum').text('160 characters left');
             return false;
+        }
+
+        $('#addLine').on('click', function (e) {
+            e.preventDefault();
+            addLine();
+        });
+
+        $(document).on('keypress', function (e) {
+        if (e.which == 13) {
+            addLine();
+        }
         });
 
         //get changes
