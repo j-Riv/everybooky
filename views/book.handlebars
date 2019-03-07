@@ -17,13 +17,13 @@
             <div class="col-2">
                 {{#if loggedIn}}
                 {{#ifEquals user.id book.author}}
-                <i class="fas fa-cog float-right" data-toggle="modal" data-target="#updateBookModal"></i>
+                <i class="fas fa-cog float-right rotate" data-toggle="modal" data-target="#updateBookModal"></i>
                 {{/ifEquals}}
                 {{/if}}
             </div>
         </div>
-        <div class="btn-group dropright float-right mb-2">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+        <div class="btn-group dropright float-left mb-2">
+            <button type="button" class="btn btn-transparent dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
                 Contributors
             </button>
@@ -56,7 +56,7 @@
         {{!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> --}}
         {{#if loggedIn}}
 
-        <div class="pt-5 d-flex justify-content-center">
+        <div class="mt-5 mb-3 d-flex justify-content-center">
             <!-- If the book is not completed, display the add line button-->
             {{#unless book.completed}}
             <a class="btn btn-blue border-circle" data-toggle="collapse" href="#multiCollapseAddLine" role="button"
