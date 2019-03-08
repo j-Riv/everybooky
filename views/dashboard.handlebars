@@ -53,8 +53,12 @@
                                         </div>
                                     </a>
                                 </div>
+                                {{#ifEquals user.id book.author}}
+                                <h1 class="text-dark">{{user}}</h1>
+                                <h1 class="text-dark">{{Book.author}}</h1>
                                 <button class="delete-btn btn text-blue" data-id="{{this.Book.id}}"><i
                                         class="fas fa-trash-alt"></i></button>
+                                {{/ifEquals}}
                             </div>
                             {{/if}}
                             {{/eachUnique}}
