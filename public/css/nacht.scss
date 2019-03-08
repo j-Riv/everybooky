@@ -22,10 +22,17 @@ $lighter-black: #191919;
             }
         }
     }
+    .book {
+        background-color: #000 !important;
+        border: 1px solid $lighter-black;
+    }
     a,
     .login,
     .btn {
         color: #fff !important;
+    }
+    .text-blue {
+        color: #666666;
     }
     .btn-blue {
         background-color: $lighter-black;
@@ -51,6 +58,29 @@ $lighter-black: #191919;
                 color: #fff;
                 border: 1px solid $lighter-black;
             }
+        }
+    }
+    input,
+    select,
+    textarea {
+        background-color: $lighter-black;
+        color: #fff;
+        border: 1px solid $lighter-black;
+    }
+    #editBook {
+        #addLine,
+        #updatePost {
+            background-color: #000;
+            border: 1px solid $charcoal;
+            transition: hover .5s;
+            &:hover {
+                background-color: $charcoal;
+            }
+        }
+    }
+    #team {
+        #viewTeam {
+            background-color: #666666;
         }
     }
 }

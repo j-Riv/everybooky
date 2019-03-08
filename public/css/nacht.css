@@ -22,10 +22,19 @@
   color: #222 !important;
 }
 
+.night .book {
+  background-color: #000 !important;
+  border: 1px solid #191919;
+}
+
 .night a,
 .night .login,
 .night .btn {
   color: #fff !important;
+}
+
+.night .text-blue {
+  color: #666666;
 }
 
 .night .btn-blue {
@@ -56,4 +65,28 @@
   background-color: #191919;
   color: #fff;
   border: 1px solid #191919;
+}
+
+.night input,
+.night select,
+.night textarea {
+  background-color: #191919;
+  color: #fff;
+  border: 1px solid #191919;
+}
+
+.night #editBook #addLine,
+.night #editBook #updatePost {
+  background-color: #000;
+  border: 1px solid #222;
+  transition: hover .5s;
+}
+
+.night #editBook #addLine:hover,
+.night #editBook #updatePost:hover {
+  background-color: #222;
+}
+
+.night #team #viewTeam {
+  background-color: #666666;
 }

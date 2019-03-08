@@ -240,12 +240,15 @@ module.exports = {
     },
     darkMode: (req, res) => {
         const mode = req.body;
-        console.log('This: ' + mode.mode);
-        models.Mode.update({
+        console.log('setting/unsetting dark mode');
+        console.log(mode);
+        const id = req.user.id;
+        console.log('This: ' + mode.mode + ', id: ' + id);
+        models.User.update({
             dark_mode: mode.mode
         }, {
             where: {
-                id: 1
+                id: id
             }
         }).then(result => {
             if (result.changedRows === 0) {
@@ -258,4 +261,5 @@ module.exports = {
             console.error(error);
         });
     }
+
 }
