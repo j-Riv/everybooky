@@ -26,6 +26,10 @@
   color: #222 !important;
 }
 
+.night .dropdown-item {
+  color: #222 !important;
+}
+
 .night .book {
   background-color: #000 !important;
   border: 1px solid #191919;

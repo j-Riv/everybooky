@@ -25,6 +25,9 @@ $lighter-black: #191919;
             }
         }
     }
+    .dropdown-item {
+        color: $charcoal !important;
+    }
     .book {
         background-color: #000 !important;
         border: 1px solid $lighter-black;
