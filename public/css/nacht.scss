@@ -113,4 +113,24 @@ $lighter-black: #191919;
             }
         }
     }
+    // login signup
+    .register-photo {
+        background-color: $lighter-black;
+        form {
+            background-color: #000;
+            input,
+            select,
+            textarea {
+                background-color: $lighter-black;
+                color: #fff;
+                border: 1px solid $lighter-black;
+            }
+        }
+    }
+    // team
+    #team {
+        .jumbotron {
+            background-color: $lighter-black;
+        }
+    }
 }

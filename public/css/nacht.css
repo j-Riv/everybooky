@@ -118,3 +118,23 @@
 .night #chatWrapper .btn-blue#sendMessage {
   border: 1px solid #000;
 }
+
+.night .register-photo {
+  background-color: #191919;
+}
+
+.night .register-photo form {
+  background-color: #000;
+}
+
+.night .register-photo form input,
+.night .register-photo form select,
+.night .register-photo form textarea {
+  background-color: #191919;
+  color: #fff;
+  border: 1px solid #191919;
+}
+
+.night #team .jumbotron {
+  background-color: #191919;
+}
