@@ -6,6 +6,9 @@ $lighter-black: #191919;
     .navbar {
         background-color: #000;
         color: #fff;
+        .navbar-toggler {
+            border: 1px solid $lighter-black;
+        }
     }
     #searchBarForm {
         #searchBar {
@@ -22,10 +25,17 @@ $lighter-black: #191919;
             }
         }
     }
+    .book {
+        background-color: #000 !important;
+        border: 1px solid $lighter-black;
+    }
     a,
     .login,
     .btn {
         color: #fff !important;
+    }
+    .text-blue {
+        color: #666666;
     }
     .btn-blue {
         background-color: $lighter-black;
@@ -51,6 +61,76 @@ $lighter-black: #191919;
                 color: #fff;
                 border: 1px solid $lighter-black;
             }
+        }
+    }
+    input,
+    select,
+    textarea {
+        background-color: $lighter-black;
+        color: #fff;
+        border: 1px solid $lighter-black;
+    }
+    #editBook {
+        #addLine,
+        #updatePost,
+        #add-line-btn {
+            background-color: #000;
+            border: 1px solid $charcoal;
+            transition: hover .5s;
+            &:hover {
+                background-color: $charcoal;
+            }
+        }
+    }
+    #team {
+        #viewTeam {
+            background-color: #666666;
+        }
+    }
+    // chat
+    #chatWrapper {
+        .nav-tabs {
+            border-bottom: $lighter-black;
+            #letsChat {
+                background-color: $lighter-black;
+                border-bottom: $lighter-black;
+            }
+        }
+        #chat {
+            background-color: $lighter-black;
+        }
+        input {
+            &.form-control {
+                &.inputMessage {
+                    background-color: #000;
+                    border: 1px solid #000;
+                }
+            }
+        }
+        .btn-blue {
+            &#sendMessage {
+                border: 1px solid #000;
+            }
+        }
+    }
+    // login signup
+    .register-photo {
+        background-color: $lighter-black;
+        form {
+            background-color: #000;
+            input,
+            select,
+            textarea {
+                background-color: $lighter-black;
+                color: #fff;
+                border: 1px solid $lighter-black;
+            }
+        }
+    }
+    // team
+    #team {
+        .jumbotron {
+            background-color: $lighter-black;
         }
     }
 }
