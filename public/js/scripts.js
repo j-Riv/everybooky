@@ -84,29 +84,30 @@ function userPreference() {
         toggleNight();
     };
 
-    if (nightPreference === "false") {
-    };
+    if (nightPreference === "false") {};
 };
+userPreference();
 
 //button toggles night mode on/off
-$("#nightBtn").click(function () {
+$("#nightBtn").click(function() {
     $('#nightBtn').toggleClass('fa-sun fa-moon')
     toggleNight();
 });
 
 function toggleNight() {
+    console.log('clicked night');
     var nightAttr = $('#nightBtn').attr("night");
     if (nightAttr === "false") {
-        nightBtn.attr("night", "true");
-        $(body).toggleClass('night');
+        $('#nightBtn').attr("night", "true");
+        $('body').removeClass('night');
         localStorage.setItem("nightmode", true);
-        userPreference();
+        console.log('false');
     };
 
     if (nightAttr === "true") {
-        nightBtn.attr("night", "false");
-        $(body).toggleClass('night');
+        $('#nightBtn').attr("night", "false");
+        $('body').addClass('night');
         localStorage.setItem("nightmode", false);
-        userPreference();
+        console.log('true');
     };
 };
