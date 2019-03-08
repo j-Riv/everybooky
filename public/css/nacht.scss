@@ -6,6 +6,9 @@ $lighter-black: #191919;
     .navbar {
         background-color: #000;
         color: #fff;
+        .navbar-toggler {
+            border: 1px solid $lighter-black;
+        }
     }
     #searchBarForm {
         #searchBar {

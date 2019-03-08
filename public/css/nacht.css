@@ -8,6 +8,10 @@
   color: #fff;
 }
 
+.night .navbar .navbar-toggler {
+  border: 1px solid #191919;
+}
+
 .night #searchBarForm #searchBar {
   background-color: #222;
   border: 1px solid #222;
