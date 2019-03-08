@@ -1,0 +1,56 @@
+$charcoal: #222;
+$lighter-black: #191919;
+.night {
+    background-color: #000;
+    color: #fff;
+    .navbar {
+        background-color: #000;
+        color: #fff;
+    }
+    #searchBarForm {
+        #searchBar {
+            background-color: $charcoal;
+            border: 1px solid $charcoal;
+        }
+        .btn {
+            border: 1px solid $charcoal;
+            color: #fff;
+        }
+        #typeList {
+            a {
+                color: $charcoal !important;
+            }
+        }
+    }
+    a,
+    .login,
+    .btn {
+        color: #fff !important;
+    }
+    .btn-blue {
+        background-color: $lighter-black;
+    }
+    .action-button,
+    #sortBtn {
+        background-color: $lighter-black !important;
+    }
+    .footer {
+        background-color: #000;
+    }
+    .modal-dialog {
+        .modal-content {
+            background-color: #000 !important;
+            border: 1px solid $lighter-black;
+            .close {
+                color: #fff;
+            }
+            input,
+            select,
+            textarea {
+                background-color: $lighter-black;
+                color: #fff;
+                border: 1px solid $lighter-black;
+            }
+        }
+    }
+}
