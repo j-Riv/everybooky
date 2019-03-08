@@ -21,28 +21,30 @@
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="genre">Genre</label>
                                     <select class="form-control" id="genre" name="genre">
+                                        <option value="short-story">Short Story</option>
                                         <option value="adventure">Adventure</option>
+                                        <option value="romance">Romance</option>
+                                        <option value="fantasy">Fantasy</option>
+                                        <option value="horror">Horror</option>
                                         <option value="mystery">Mystery</option>
                                         <option value="thriller">Thriller</option>
                                         <option value="sci-fi">Sci-fi</option>
-                                        <option value="romance">Romance</option>
-                                        <option value="fantasy">Fantasy</option>
                                         <option value="crime">Crime</option>
-                                        <option value="short-story">Short Story</option>
                                         <option value="satire">Satire</option>
                                         <option value="erotica">Erotica</option>
+                                        <option value="fan-fiction">Fan Fiction</option>
                                         <option value="fairytale">Fairytale</option>
                                         <option value="children">Children</option>
                                         <option value="young-adult">Young Adult</option>
-                                        <option value="other">Other...</option>
+                                        <option value="other">Other</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            {{!-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="limit">Word Limit</label>
                                     <select class="form-control" id="limit" name="limit">
@@ -53,10 +55,10 @@
                                         <option value="other">Other...</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
-                    <div class="form-group">
+                    {{!-- <div class="form-group">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -81,7 +83,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label for="about">About</label>
                         <textarea class="form-control" id="body" rows="3" name="body" required></textarea>
