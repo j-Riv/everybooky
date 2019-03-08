@@ -17,7 +17,11 @@
   <script src="/socket.io/socket.io.js"></script>
 </head>
 
-<body>
+{{#if mode}}
+<body class="night">
+  {{else}}
+  <body>
+    {{/if}}
   <div class="wrapper">
     {{> header}}
     {{{body}}}
