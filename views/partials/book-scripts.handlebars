@@ -10,7 +10,7 @@
             contributors.empty();
             $.ajax('/api/users/book/' + {{ book.id }}, {
             type: 'GET'
-            }).then(
+        }).then(
             function (results) {
                 let temp = [];
                 results.forEach(author => {
@@ -24,10 +24,9 @@
                 });
                 bookContributors = temp;
             });
-        }
+        };
 
-        $('#addLine').on('click', function (e) {
-            e.preventDefault();
+        function addLine() {
             const theLine = {
                 line: $('#line').val().trim(),
                 userId: $('#user-Id').val().trim(),
@@ -47,14 +46,25 @@
             $('#line').val('');
             $('#charNum').text('160 characters left');
             return false;
+        }
+
+        $('#addLine').on('click', function (e) {
+            e.preventDefault();
+            addLine();
+        });
+
+        $(document).on('keypress', function (e) {
+        if (e.which == 13) {
+            addLine();
+        }
         });
 
         //get changes
         socket.on('added line: {{book.title}}', function (res) {
             console.log('added line: ' + res.line);
             let content = `
-                <span id="line-${res.id}" class="post-line" data-id="${res.id}">${res.line}</span>
-            `;
+                    <span id="line-${res.id}" class="post-line" data-id="${res.id}">${res.line}</span>
+                `;
             $('#bookContent').append(content);
             // if new contributor pull contributors again
             if (!bookContributors.includes(Number(res.contributorId))) {
@@ -75,7 +85,7 @@
             else if (this.value.length > max) {
                 this.value = this.value.substring(0, max);
             }
-        })
+        });
 
         // This will count the characters left on screen and tell user they've reached the max.
         $('#line').keyup(function () {
@@ -115,14 +125,14 @@
             }).catch(err => {
                 console.error(err);
             });
-        });
+            });
 
         // edit post
         $('#editPosts').on('click', (e) => {
             const posts = $('.post-line');
             posts.addClass('edit-line');
         });
-        $(document).on('click', '.edit-line', function() {
+        $(document).on('click', '.edit-line', function () {
             const post = $(this);
             const line = post.html();
             const id = post.attr('data-id');
@@ -151,7 +161,20 @@
             });
         });
 
+        $('#finishBook').click(() => {
+            let id = $('#finishBook').data('id');
+            console.log(id);
+            $.ajax('/api/book/complete/' + id, {
+                type: "PUT",
+            }).then(result => {
+                location.reload();
+            }).catch(err => {
+                console.log(err);
+            });
+        });
+
         // get contributors on load
         getContributors();
-    });
+
+        });
 </script>

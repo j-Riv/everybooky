@@ -4,23 +4,25 @@ module.exports = function(app, passport) {
 
     app.get('/api/books', apiController.getBooks);
 
-    app.post('/api/book', apiController.createBook);
+    app.post('/api/book', isLoggedIn, apiController.createBook);
 
-    app.put('/api/book/:id', apiController.updateBook);
+    app.put('/api/book/:id', isLoggedIn, apiController.updateBook);
 
-    app.delete('/api/book/:id', apiController.deleteBook);
+    app.put('/api/book/complete/:id', isLoggedIn, apiController.completeBook);
+
+    app.delete('/api/book/:id', isLoggedIn, apiController.deleteBook);
 
     // posts
-    app.post('/api/book/post', apiController.addPost);
+    app.post('/api/book/post', isLoggedIn, apiController.addPost);
 
     app.get('/api/books/:id/posts/', apiController.getPosts);
 
-    app.put('/api/books/post/', apiController.updatePost);
+    app.put('/api/books/post/', isLoggedIn, apiController.updatePost);
 
     // user
-    app.get('/api/user/:id', apiController.getCurrentUser);
+    app.get('/api/user/:id', isLoggedIn, apiController.getCurrentUser);
 
-    app.put('/api/user/:id', apiController.updateUser);
+    app.put('/api/user/:id', isLoggedIn, apiController.updateUser);
 
     app.get('/api/users/book/:id', apiController.getUsersByBook);
 

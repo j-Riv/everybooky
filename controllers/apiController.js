@@ -60,6 +60,25 @@ module.exports = {
             console.error(error);
         });
     },
+    completeBook: (req,res) => {
+        models.Book.update({
+            completed: true
+        }, {
+            where: {
+                id: req.params.id
+            }
+        }).then(result => {
+            if (result.changedRows === 0) {
+                // error id must not exist
+                return res.status(404).end();
+            } else {
+                res.status(200).end();
+                console.log('BOOK COMPLETED');
+            }
+        }).catch(error => {
+            console.log(error);
+        })
+    },
     deleteBook: (req, res) => {
         models.Book.destroy({
             where: {
