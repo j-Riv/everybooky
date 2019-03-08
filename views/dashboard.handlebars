@@ -1,25 +1,96 @@
 <div class="container" id="dashboard">
-    <div class="jumbotron bg-transparent">
+    <div>
         <div class="container">
-            <div class="row">
+            {{!-- <div class="row">
                 <div class="col-sm-12">
-                    <i class="fas fa-cog float-right rotate" data-toggle="modal" data-target="#updateUserModal"></i>
+
                 </div>
-            </div>
-            <div class=" row">
-                <div class="col-sm-4">
-                    <img src="{{user.photo}}" class="circle-image mr-3 w-100"
-                        alt="{{user.firstname}} {{user.lastname}}">
+            </div> --}}
+            <div class="mt-3">
+                <div class="d-flex justify-content-end">
+                    <span data-toggle="tooltip" data-placement="top" title="Settings"><i class="fas fa-cog rotate"
+                            data-toggle="modal" data-target="#updateUserModal"></i></span>
                 </div>
-                <div class="col-sm-8" style="word-wrap: break-word">
-                    <h1>{{user.firstname}} {{user.lastname}}</h1>
-                    <h6> {{user.username}}</h6>
-                    <h3>About:</h3>
-                    <p>{{user.about}}</p>
+                <div class=" row">
+                    <div class="col-sm-4 d-flex justify-content-center mb-4">
+                        <img src="{{user.photo}}" class="circle-image w-75 h-100 align-self-center"
+                            alt="{{user.firstname}} {{user.lastname}}">
+                    </div>
+                    <div class="col-sm-8" style="word-wrap: break-word">
+                        <h1 class="mb-4">{{user.firstname}} {{user.lastname}}</h1>
+                        <div class="d-inline-flex mb-4"><i class="fas fa-user p-1 pr-2" style="margin-top: 3px"></i>
+                            <h4>{{user.username}}</h4>
+                        </div>
+                        <p>{{user.about}}</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="row text-center">
+            <hr>
+            <div class="d-flex justify-content-center">
+                <div class="d-inline-flex justify-content-around mx-auto">
+                    <div class="p-2 selected pro-tab" id="allBooks">View All Books</div>
+                    <div class="p-2">|</div>
+                    <div class="p-2 pro-tab" id="yourBooks">Books Written</div>
+                </div>
+            </div>
+            <hr>
+
+            <div id="profileBooks" class="text-center">
+                <div class="row" id="allBookDisplay">
+                    {{!-- if there are no books, display this message --}}
+                    {{#unless books}}
+                    <h3 class="text-secondary">No books contributed to</h3>
+                    {{/unless}}
+
+                    {{!-- if there are books, display each one --}}
+                    {{#if books}}
+                    {{#eachUnique books}}
+                    {{#if this.Book.id}}
+                    <div class="col-md-3 mb-3 text-white">
+                        <div class="card book grow text-white" style="background-image: url('{{this.Book.imageUrl}}');">
+                            <a href="/book/{{this.Book.id}}">
+                                <div class="card-img-overlay">
+                                    <h4>{{this.Book.title}}</h4>
+                                </div>
+                            </a>
+                        </div>
+                        {{#ifEquals User.id this.Book.author}}
+                        <span data-toggle="tooltip" data-placement="bottom" title="Delete Book"><button
+                                class="delete-btn btn text-blue" data-id="{{this.Book.id}}"><i
+                                    class="fas fa-trash-alt"></i></button></span>
+                        {{/ifEquals}}
+                    </div>
+                    {{/if}}
+                    {{/eachUnique}}
+                    {{/if}}
+                </div>
+                <div class="row" id="yourBookDisplay">
+                    {{#unless authoredBooks}}
+                    <h3 class="text-secondary">No books written yet</h3>
+                    {{/unless}}
+                    {{#if authoredBooks}}
+                    {{#each authoredBooks}}
+                    {{#if this.id}}
+                    <div class="col-md-3 mb-3 text-white">
+                        <div class="card book grow text-white" style="background-image: url('{{this.imageUrl}}');">
+                            <a href="/book/{{this.id}}">
+                                <div class="card-img-overlay">
+                                    <h4>{{this.title}}</h4>
+                                </div>
+                            </a>
+                        </div>
+                        <span data-toggle="tooltip" data-placement="bottom" title="Delete Book"><button
+                                class="delete-btn btn text-blue" data-id="{{this.Book.id}}"><i
+                                    class="fas fa-trash-alt grow"></i></button></span>
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                    {{/if}}
+                </div>
+            </div>
+
+            {{!-- <div class="row text-center">
                 <div class="col-sm-12">
                     {{#if books}}
                     <button class="btn btn-blue" type="button" data-toggle="collapse" data-target="#collapseBooks"
@@ -34,12 +105,11 @@
                     </button>
                     {{/if}}
                 </div>
-            </div>
-            {{#if books}}
+            </div> --}}
+            {{!-- {{#if books}}
             <div class="row">
                 <div class="col-sm-12 text-center">
                     <div class="collapse" id="collapseBooks">
-                        <hr />
                         <h5>Books You've Contributed To</h5>
                         <div class="row">
                             {{#eachUnique books}}
@@ -65,7 +135,6 @@
             <div class="row">
                 <div class="col-sm-12 text-center">
                     <div class="collapse" id="collapseAuthor">
-                        <hr />
                         <h5>Books You've Started</h5>
                         <div class="row">
                             {{#each authoredBooks}}
@@ -80,8 +149,9 @@
                                     </a>
                                 </div>
                                 {{#ifEquals User.id Book.author}}
-                                <button class="delete-btn btn text-blue" data-id="{{this.Book.id}}"><i
-                                        class="fas fa-trash-alt"></i></button>
+                                <span data-toggle="tooltip" data-placement="bottom" title="Delete Book"><button
+                                        class="delete-btn btn text-blue" data-id="{{this.Book.id}}"><i
+                                            class="fas fa-trash-alt"></i></button></span>
                                 {{/ifEquals}}
                             </div>
                             {{/if}}
@@ -90,7 +160,7 @@
                     </div>
                 </div>
             </div>
-            {{/if}}
+            {{/if}} --}}
         </div>
     </div>
     {{!-- modal --}}
