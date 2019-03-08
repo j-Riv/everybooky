@@ -42,6 +42,19 @@ input[type="color"]:focus,
   box-shadow: none;
 }
 
+#dashboard {
+  font-family: 'Quicksand', sans-serif;
+}
+
+.selected {
+  border-bottom: 1px solid black;
+}
+
+.pro-tab:hover {
+  cursor: pointer;
+  border-bottom: 1px solid #02A4D3;
+}
+
 /* Helpers */
 .compressed {
   max-height: 0;

@@ -62,6 +62,7 @@ $('#searchButton').on('click', function() {
 $('.delete-btn').click(function(e) {
     e.preventDefault();
     let id = $(this).attr('data-id');
+    console.log('id:' + id);
     $.ajax('/api/book/' + id, {
         type: 'DELETE'
     }).then(result => {

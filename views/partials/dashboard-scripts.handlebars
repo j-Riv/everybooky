@@ -8,6 +8,8 @@ $(document).ready(() => {
         $('#allBook').toggle();
     });
 
+    $('#yourBookDisplay').hide();
+
     $('#modalSubmit').click((e) => {
         e.preventDefault();
         const profilePic = $('#profilePic').val().trim();
@@ -31,5 +33,18 @@ $(document).ready(() => {
             console.error(err);
         });
     });
+
+    $('#allBooks').click( () => {
+        $('#allBookDisplay').show();
+        $('#yourBookDisplay').hide();
+        $('#allBooks').addClass('selected');
+        $('#yourBooks').removeClass('selected');
+    });
+    $('#yourBooks').click( () => {
+        $('#allBookDisplay').hide();
+        $('#yourBookDisplay').show();
+        $('#allBooks').removeClass('selected');
+        $('#yourBooks').addClass('selected');
+    })
 });
 </script>
