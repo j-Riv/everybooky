@@ -4,7 +4,7 @@ A web app designed to allow people to come together and write stories, one line 
 
 **Link** [Everybooky](https://sleepy-caverns-35821.herokuapp.com/)
 
-![Everybooky](/public/images/screenshots/everybooky-light.jpg)
+![Everybooky](/public/images/screenshots/everybooky-dark.jpg)
 
 ## Tecnologies Used:
 * Javascript
