@@ -76,35 +76,46 @@ $(function() {
     $('[data-toggle="tooltip"]').tooltip();
 });
 
-// Toggle Night Mode
-function userPreference() {
-    var nightPreference = localStorage.getItem("nightmode");
-
-    if (nightPreference === "true") {
-        toggleNight();
-    };
-};
-
-userPreference();
-
 //button toggles night mode on/off
 $("#nightBtn").click(function() {
     $('#nightBtn').toggleClass('fa-sun fa-moon')
     toggleNight();
 });
 
+// function toggleNight() {
+//     console.log('clicked night');
+//     var nightAttr = $('#nightBtn').attr("night");
+//     if (nightAttr === "false") {
+//         $('#nightBtn').attr("night", "true");
+//         $('body').toggleClass('night');
+//         localStorage.setItem("nightmode", true);
+//     };
+
+//     if (nightAttr === "true") {
+//         $('#nightBtn').attr("night", "false");
+//         $('body').toggleClass('night');
+//         localStorage.setItem("nightmode", false);
+//     };
+// };
+
 function toggleNight() {
+    let mode;
+    if ($('body').hasClass('night')) {
+        mode = 0;
+    } else {
+        mode = 1;
+    }
     console.log('clicked night');
-    var nightAttr = $('#nightBtn').attr("night");
-    if (nightAttr === "false") {
-        $('#nightBtn').attr("night", "true");
-        $('body').toggleClass('night');
-        localStorage.setItem("nightmode", true);
+    let data = {
+        mode: mode
     };
 
-    if (nightAttr === "true") {
-        $('#nightBtn').attr("night", "false");
-        $('body').toggleClass('night');
-        localStorage.setItem("nightmode", false);
-    };
+    $.ajax('/api/dark/', {
+        type: "PUT",
+        data: data
+    }).then(result => {
+        location.reload();
+    }).catch(error => {
+        console.log(error);
+    });
 };
