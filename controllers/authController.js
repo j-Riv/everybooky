@@ -1,7 +1,24 @@
 const models = require('../models/');
+let mode;;
+
+function getMode() {
+    models.Mode.findOne({
+        where: {
+            id: 1
+        }
+    }).then(result => {
+        console.log('dark_mode');
+        console.log(result.dataValues.dark_mode);
+        mode = result.dataValues.dark_mode;
+    });
+    return mode;
+}
 
 module.exports = {
     homepage: (req, res) => {
+        getMode();
+        console.log('the mode');
+        console.log(mode);
         models.Book.findAll()
             .then(result => {
                 res.render('homepage', {
@@ -9,11 +26,13 @@ module.exports = {
                     title: 'Everbooky | Write together and share forever',
                     books: result,
                     user: req.user,
-                    displayChat: false
+                    displayChat: false,
+                    mode: mode
                 });
-            })
+            });
     },
     getBooksSorted: (req, res) => {
+        getMode();
         let sortType = req.params.type
         models.Book.findAll({}).then(results => {
             if (sortType === 'new') {
@@ -26,22 +45,26 @@ module.exports = {
                 loggedIn: req.isAuthenticated(),
                 title: 'Everbooky | Write together and share forever',
                 books: results,
-                displayChat: false
+                displayChat: false,
+                mode: mode
             });
         }).catch(error => {
             console.error(error);
         });
     },
     login: (req, res) => {
+        getMode();
         if (req.isAuthenticated()) {
             res.redirect('/dashboard');
         } else {
             res.render('login', {
-                title: 'Log In / Sign Up'
+                title: 'Log In / Sign Up',
+                mode: mode
             });
         }
     },
     dashboard: (req, res) => {
+        getMode();
         let id = req.user.id;
         // get book information
         models.Post.findAll({
@@ -65,7 +88,8 @@ module.exports = {
                     books: books,
                     authoredBooks: authoredBooks,
                     user: req.user,
-                    displayChat: true
+                    displayChat: true,
+                    mode: mode
                 });
             }).catch(error => {
                 console.error(error);
@@ -76,19 +100,23 @@ module.exports = {
         });
     },
     team: (req, res) => {
+        getMode();
         res.render('wiifat', {
             loggedIn: req.isAuthenticated(),
             title: 'Team',
             user: req.user,
-            displayChat: false
+            displayChat: false,
+            mode: mode
         });
     },
     logout: (req, res) => {
+        getMode();
         req.session.destroy(err => {
             res.redirect('/');
         });
     },
     editBook: (req, res) => {
+        getMode();
         let id = req.params.id;
         // update views
         models.Book.findOne({
@@ -116,7 +144,8 @@ module.exports = {
                     title: 'Book',
                     book: results[0].Book,
                     posts: results,
-                    displayChat: true
+                    displayChat: true,
+                    mode: mode
                 }
             }
             // not signed in
@@ -126,7 +155,8 @@ module.exports = {
                     title: 'Book',
                     book: results[0].Book,
                     posts: results,
-                    displayChat: false
+                    displayChat: false,
+                    mode: mode
                 }
             }
             res.render('book', obj);
@@ -135,6 +165,7 @@ module.exports = {
         });
     },
     searchBooksById: (req, res) => {
+        getMode();
         models.Book.findOne({
             where: {
                 id: req.params.id
@@ -146,13 +177,15 @@ module.exports = {
                 title: 'Results',
                 booksObj: results,
                 displayChat: false,
-                user: req.user
+                user: req.user,
+                mode: mode
             });
         }).catch(error => {
             console.log(error);
         });
     },
     searchBooksByTitle: (req, res) => {
+        getMode();
         models.Book.findAll({
             where: {
                 title: req.params.title
@@ -163,13 +196,15 @@ module.exports = {
                 title: 'Results',
                 booksObj: results,
                 displayChat: false,
-                user: req.user
+                user: req.user,
+                mode: mode
             });
         }).catch(error => {
             console.log(error);
         });
     },
     searchBooksByAuthor: (req, res) => {
+        getMode();
         models.Post.findAll({
             where: {
                 UserId: req.params.id
@@ -177,7 +212,8 @@ module.exports = {
             include: [models.Book]
         }).then(results => {
             let books = {
-                booksObj: results
+                booksObj: results,
+                mode: mode
             };
             res.render('result', books);
         }).catch(error => {
@@ -185,6 +221,7 @@ module.exports = {
         });
     },
     searchGenre: (req, res) => {
+        getMode();
         models.Book.findAll({
             where: {
                 genre: req.params.genre
@@ -195,18 +232,21 @@ module.exports = {
                 title: 'Results',
                 booksObj: results,
                 displayChat: false,
-                user: req.user
+                user: req.user,
+                mode: mode
             });
         }).catch(error => {
             console.log(error);
         });
     },
     privacyPolicy: (req, res) => {
+        getMode();
         res.render('privacy-policy', {
             loggedIn: req.isAuthenticated(),
             title: 'Privacy Policy',
             displayChat: false,
-            user: req.user
+            user: req.user,
+            mode: mode
         });
     }
 }
