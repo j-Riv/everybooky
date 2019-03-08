@@ -1,6 +1,10 @@
-# project_2
+# Everybooky
 
-<!-- Everybooky a web app designed to allow people to come together and write books.
+A web app designed to allow people to come together and write stories, one line at a time.
+
+**Link** [Everybooky](https://sleepy-caverns-35821.herokuapp.com/)
+
+![Everybooky](/public/images/screenshots/everybooky-light.jpg)
 
 ## Tecnologies Used:
 * Javascript
@@ -17,4 +21,4 @@
 * [passport](http://www.passportjs.org/)
 
 ## Description
-User will be able to create an account and collaborate on writing stories/books on line at a time.  -->
+User will be able to create an account and collaborate on writing stories/books on line at a time.
