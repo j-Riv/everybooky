@@ -38,6 +38,10 @@ module.exports = function(sequelize, DataTypes) {
         status: {
             type: DataTypes.ENUM('active', 'inactive'),
             defaultValue: 'active'
+        },
+        dark_mode: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: 0
         }
     });
 

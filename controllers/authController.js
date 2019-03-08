@@ -1,7 +1,19 @@
 const models = require('../models/');
+let mode;
+
+function darkMode(req) {
+    if (req.isAuthenticated()) {
+        mode = req.user.dark_mode;
+    } else {
+        mode = false;
+    }
+    return mode;
+}
 
 module.exports = {
     homepage: (req, res) => {
+        console.log('the mode');
+        console.log(mode);
         models.Book.findAll()
             .then(result => {
                 res.render('homepage', {
@@ -9,9 +21,10 @@ module.exports = {
                     title: 'Everbooky | Write together and share forever',
                     books: result,
                     user: req.user,
-                    displayChat: false
+                    displayChat: false,
+                    mode: darkMode(req)
                 });
-            })
+            });
     },
     getBooksSorted: (req, res) => {
         let sortType = req.params.type
@@ -26,7 +39,8 @@ module.exports = {
                 loggedIn: req.isAuthenticated(),
                 title: 'Everbooky | Write together and share forever',
                 books: results,
-                displayChat: false
+                displayChat: false,
+                mode: darkMode(req)
             });
         }).catch(error => {
             console.error(error);
@@ -37,7 +51,8 @@ module.exports = {
             res.redirect('/dashboard');
         } else {
             res.render('login', {
-                title: 'Log In / Sign Up'
+                title: 'Log In / Sign Up',
+                mode: darkMode(req)
             });
         }
     },
@@ -65,7 +80,8 @@ module.exports = {
                     books: books,
                     authoredBooks: authoredBooks,
                     user: req.user,
-                    displayChat: true
+                    displayChat: true,
+                    mode: darkMode(req)
                 });
             }).catch(error => {
                 console.error(error);
@@ -80,7 +96,8 @@ module.exports = {
             loggedIn: req.isAuthenticated(),
             title: 'Team',
             user: req.user,
-            displayChat: false
+            displayChat: false,
+            mode: darkMode(req)
         });
     },
     logout: (req, res) => {
@@ -116,7 +133,8 @@ module.exports = {
                     title: 'Book',
                     book: results[0].Book,
                     posts: results,
-                    displayChat: true
+                    displayChat: true,
+                    mode: darkMode(req)
                 }
             }
             // not signed in
@@ -126,7 +144,8 @@ module.exports = {
                     title: 'Book',
                     book: results[0].Book,
                     posts: results,
-                    displayChat: false
+                    displayChat: false,
+                    mode: darkMode(req)
                 }
             }
             res.render('book', obj);
@@ -146,7 +165,8 @@ module.exports = {
                 title: 'Results',
                 booksObj: results,
                 displayChat: false,
-                user: req.user
+                user: req.user,
+                mode: darkMode(req)
             });
         }).catch(error => {
             console.log(error);
@@ -163,7 +183,8 @@ module.exports = {
                 title: 'Results',
                 booksObj: results,
                 displayChat: false,
-                user: req.user
+                user: req.user,
+                mode: darkMode(req)
             });
         }).catch(error => {
             console.log(error);
@@ -177,7 +198,8 @@ module.exports = {
             include: [models.Book]
         }).then(results => {
             let books = {
-                booksObj: results
+                booksObj: results,
+                mode: darkMode(req)
             };
             res.render('result', books);
         }).catch(error => {
@@ -195,7 +217,8 @@ module.exports = {
                 title: 'Results',
                 booksObj: results,
                 displayChat: false,
-                user: req.user
+                user: req.user,
+                mode: darkMode(req)
             });
         }).catch(error => {
             console.log(error);
@@ -206,7 +229,8 @@ module.exports = {
             loggedIn: req.isAuthenticated(),
             title: 'Privacy Policy',
             displayChat: false,
-            user: req.user
+            user: req.user,
+            mode: darkMode(req)
         });
     }
 }

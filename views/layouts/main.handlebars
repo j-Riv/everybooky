@@ -18,7 +18,11 @@
   <script src="/socket.io/socket.io.js"></script>
 </head>
 
-<body>
+{{#if mode}}
+<body class="night">
+  {{else}}
+  <body>
+{{/if}}
   <div class="wrapper">
     {{> header}}
     {{{body}}}
@@ -33,6 +37,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
   <script src="/public/js/scripts.js"></script>
   <script src="/public/js/form.js"></script>
+  {{> dark-mode-scripts}}
 </body>
 
 </html>

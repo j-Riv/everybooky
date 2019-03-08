@@ -77,7 +77,7 @@ module.exports = {
             }
         }).catch(error => {
             console.log(error);
-        })
+        });
     },
     deleteBook: (req, res) => {
         models.Book.destroy({
@@ -237,5 +237,29 @@ module.exports = {
         }).catch(error => {
             console.log(error);
         });
+    },
+    darkMode: (req, res) => {
+        const mode = req.body;
+        console.log('setting/unsetting dark mode');
+        console.log(mode);
+        const id = req.user.id;
+        console.log('This: ' + mode.mode + ', id: ' + id);
+        models.User.update({
+            dark_mode: mode.mode
+        }, {
+            where: {
+                id: id
+            }
+        }).then(result => {
+            if (result.changedRows === 0) {
+                // error id must not exist
+                return res.status(404).end();
+            } else {
+                res.status(200).end();
+            }
+        }).catch(error => {
+            console.error(error);
+        });
     }
+
 }
