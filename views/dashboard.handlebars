@@ -53,9 +53,7 @@
                                         </div>
                                     </a>
                                 </div>
-                                {{#ifEquals user.id user.id}}
-                                <h1 class="text-dark">{{User.username}}</h1>
-                                <h1 class="text-dark">{{Book.author}}</h1>
+                                {{#ifEquals User.id Book.author}}
                                 <button class="delete-btn btn text-blue" data-id="{{this.Book.id}}"><i
                                         class="fas fa-trash-alt"></i></button>
                                 {{/ifEquals}}
