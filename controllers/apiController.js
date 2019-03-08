@@ -17,7 +17,7 @@ module.exports = {
         models.Book.create({
             title: book.title,
             body: book.body,
-            text_limit: book.limit,
+            text_limit: 500,
             genre: book.genre,
             imageUrl: book.imageUrl,
             author: book.author
@@ -60,7 +60,7 @@ module.exports = {
             console.error(error);
         });
     },
-    completeBook: (req,res) => {
+    completeBook: (req, res) => {
         models.Book.update({
             completed: true
         }, {

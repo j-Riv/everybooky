@@ -7,7 +7,6 @@ $('#createBookForm').submit(function(event) {
         let book = {
             title: $('#title').val().trim(),
             genre: $('#genre').val().trim(),
-            limit: $('#limit').val().trim(),
             imageUrl: $('#imageUrl').val().trim(),
             author: $('#userId').val().trim(),
             body: $('#body').val().trim()
