@@ -70,3 +70,8 @@ $('.delete-btn').click(function(e) {
         console.log(error);
     });
 });
+
+// tooltips
+$(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+});

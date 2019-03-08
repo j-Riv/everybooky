@@ -17,7 +17,7 @@
             <div class="col-2">
                 {{#if loggedIn}}
                 {{#ifEquals user.id book.author}}
-                <i class="fas fa-cog float-right rotate" data-toggle="modal" data-target="#updateBookModal"></i>
+                    <i class="fas fa-cog float-right rotate" data-toggle="modal" data-target="#updateBookModal"></i>
                 {{/ifEquals}}
                 {{/if}}
             </div>
@@ -62,17 +62,21 @@
         <div class="mt-5 mb-3 d-flex justify-content-center">
             <!-- If the book is not completed, display the add line button-->
             {{#unless book.completed}}
-            <a class="btn btn-blue border-circle" data-toggle="collapse" href="#multiCollapseAddLine" role="button"
-                aria-expanded="false" aria-controls="multiCollapseAddLine"><i class="fas fa-pencil-alt"></i></a>
+            <button class="btn btn-blue border-circle" data-toggle="collapse" href="#multiCollapseAddLine" role="button"
+                aria-expanded="false" aria-controls="multiCollapseAddLine">
+                <span data-toggle="tooltip" data-placement="top" title="Add Line"><i class="fas fa-pencil-alt"></i></span>
+            </button>
             {{/unless}}
             {{#ifEquals user.id book.author}}
             <button id="editPosts" class="btn btn-blue border-circle mx-5" type="button" data-toggle="collapse"
-                data-target="#multiCollapseUpdatePost" aria-expanded="false" aria-controls="multiCollapseUpdatePost"><i
-                    class="far fa-edit"></i></button>
+                data-target="#multiCollapseUpdatePost" aria-expanded="false" aria-controls="multiCollapseUpdatePost">
+                <span data-toggle="tooltip" data-placement="top" title="Edit Line"><i class="far fa-edit"></i></span>
+            </button>
             <!-- Will not show this button once the book is completed-->
             {{#unless book.completed}}
-            <button class="btn btn-blue border-circle" data-toggle="modal" data-target="#confirmModal"><i
-                    class="fas fa-check-circle"></i></button>
+            <button class="btn btn-blue border-circle" data-toggle="modal" data-target="#confirmModal">
+                <span data-toggle="tooltip" data-placement="top" title="Complete Book"><i class="fas fa-check-circle"></i></span>
+            </button>
             {{/unless}}
             {{/ifEquals}}
         </div>
