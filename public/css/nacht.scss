@@ -72,7 +72,8 @@ $lighter-black: #191919;
     }
     #editBook {
         #addLine,
-        #updatePost {
+        #updatePost,
+        #add-line-btn {
             background-color: #000;
             border: 1px solid $charcoal;
             transition: hover .5s;

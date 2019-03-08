@@ -80,14 +80,16 @@
 }
 
 .night #editBook #addLine,
-.night #editBook #updatePost {
+.night #editBook #updatePost,
+.night #editBook #add-line-btn {
   background-color: #000;
   border: 1px solid #222;
   transition: hover .5s;
 }
 
 .night #editBook #addLine:hover,
-.night #editBook #updatePost:hover {
+.night #editBook #updatePost:hover,
+.night #editBook #add-line-btn:hover {
   background-color: #222;
 }
 
