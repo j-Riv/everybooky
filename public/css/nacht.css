@@ -96,3 +96,25 @@
 .night #team #viewTeam {
   background-color: #666666;
 }
+
+.night #chatWrapper .nav-tabs {
+  border-bottom: #191919;
+}
+
+.night #chatWrapper .nav-tabs #letsChat {
+  background-color: #191919;
+  border-bottom: #191919;
+}
+
+.night #chatWrapper #chat {
+  background-color: #191919;
+}
+
+.night #chatWrapper input.form-control.inputMessage {
+  background-color: #000;
+  border: 1px solid #000;
+}
+
+.night #chatWrapper .btn-blue#sendMessage {
+  border: 1px solid #000;
+}

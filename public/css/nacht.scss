@@ -87,4 +87,30 @@ $lighter-black: #191919;
             background-color: #666666;
         }
     }
+    // chat
+    #chatWrapper {
+        .nav-tabs {
+            border-bottom: $lighter-black;
+            #letsChat {
+                background-color: $lighter-black;
+                border-bottom: $lighter-black;
+            }
+        }
+        #chat {
+            background-color: $lighter-black;
+        }
+        input {
+            &.form-control {
+                &.inputMessage {
+                    background-color: #000;
+                    border: 1px solid #000;
+                }
+            }
+        }
+        .btn-blue {
+            &#sendMessage {
+                border: 1px solid #000;
+            }
+        }
+    }
 }
