@@ -35,14 +35,14 @@ $(document).ready(() => {
     });
 
     $('#allBooks').click( () => {
-        $('#allBookDisplay').show();
-        $('#yourBookDisplay').hide();
+        $('#allBookDisplay').show('slow');
+        $('#yourBookDisplay').hide('slow');
         $('#allBooks').addClass('selected');
         $('#yourBooks').removeClass('selected');
     });
     $('#yourBooks').click( () => {
-        $('#allBookDisplay').hide();
-        $('#yourBookDisplay').show();
+        $('#allBookDisplay').hide('slow');
+        $('#yourBookDisplay').show('slow');
         $('#allBooks').removeClass('selected');
         $('#yourBooks').addClass('selected');
     })
