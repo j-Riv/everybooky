@@ -29,6 +29,9 @@ $lighter-black: #191919;
         background-color: #000 !important;
         border: 1px solid $lighter-black;
     }
+    hr {
+        border-top: 1px solid $lighter-black;
+    }
     a,
     .login,
     .btn {
