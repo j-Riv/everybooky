@@ -6,10 +6,10 @@
                     <h1 class="display-4">{{book.title}}</h1>
                     <!-- Marks according to whether the book is finished or not-->
                     {{#if book.completed}}
-                    <h5><i class="far fa-check-circle text-success"></i></h5>
+                    <h5 class="ml-2"><i class="far fa-check-circle text-success"></i></h5>
                     {{/if}}
                     {{#unless book.completed}}
-                    <h5><i class="fas fa-book-open text-warning"></i></h5>
+                    <h5 class="ml-2"><i class="fas fa-book-open text-warning"></i></h5>
                     {{/unless}}
                 </div>
                 <p class="lead">{{book.body}}</p>
@@ -38,12 +38,9 @@
         <!-- the posts -->
         <div class="row">
             <div class="col-sm-3 mb-3 text-white">
-                <div class="card book grow text-white" style="background-image: url('{{book.imageUrl}}');">
-                    <div class="card-img-overlay">
-                        <h4>{{book.title}}</h4>
-                    </div>
+                <div class="card book-page text-white" style="background-image: url('{{book.imageUrl}}');">
                 </div>
-                <h5 class="text-dark text-center text-capitalize">Genre: {{book.genre}}</h5>
+                <h5 class="text-dark text-center text-capitalize mt-2 lead">Genre: {{book.genre}}</h5>
             </div>
             <div class="col-sm-9">
                 <div id="bookContent">
