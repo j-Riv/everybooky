@@ -1,4 +1,14 @@
 const models = require('../models/');
+let mode;
+
+function darkMode(req) {
+    if (req.isAuthenticated()) {
+        mode = req.user.dark_mode;
+    } else {
+        mode = false;
+    }
+    return mode;
+}
 
 module.exports = {
     getBooks: (req, res) => {
@@ -236,6 +246,47 @@ module.exports = {
             return false;
         }).catch(error => {
             console.log(error);
+        });
+    },
+    userProfile: (req, res) => {
+        let id = req.params.id;
+        console.log(id);
+        models.User.findOne({
+            where: {
+                id: id
+            }
+        }).then(results => {
+            const user = results;
+            models.Post.findAll({
+                where: {
+                    UserId: id
+                },
+                include: [models.Book]
+            }).then(results => {
+                const books = results;
+                models.Book.findAll({
+                    where: {
+                        author: id
+                    }
+                }).then(results => {
+                    const authoredBooks = results;
+                    res.render('user-profile', {
+                        loggedIn: req.isAuthenticated(),
+                        title: 'User Profile',
+                        books: books,
+                        authoredBooks: authoredBooks,
+                        user: user,
+                        displayChat: true,
+                        mode: darkMode(req)
+                    });
+                }).catch(err => {
+                    console.log(err);
+                });
+            }).catch(err => {
+                console.log(err);
+            });
+        }).catch(err => {
+            console.log(err);
         });
     },
     darkMode: (req, res) => {

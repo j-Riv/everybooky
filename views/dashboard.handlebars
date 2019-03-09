@@ -48,12 +48,15 @@
                     {{#eachUnique books}}
                     {{#if this.Book.id}}
                     <div class="col-md-3 mb-3 text-white">
-                        <div class="card book grow text-white" style="background-image: url('{{this.Book.imageUrl}}');">
-                            <a href="/book/{{this.Book.id}}">
-                                <div class="card-img-overlay">
-                                    <h4>{{this.Book.title}}</h4>
-                                </div>
-                            </a>
+                        <div class="book-box w-100 rounded border-secondary border">
+                            <div class="card book text-white rounded-0 border-0"
+                                style="background-image: url('{{this.Book.imageUrl}}');">
+                                <a href="/book/{{this.Book.id}}">
+                                    <div class="card-img-overlay">
+                                        <h4 class="book-title">{{this.Book.title}}</h4>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                         {{#ifEquals User.id this.Book.author}}
                         <span data-toggle="tooltip" data-placement="bottom" title="Delete Book"><button
@@ -65,7 +68,7 @@
                     {{/eachUnique}}
                     {{/if}}
                 </div>
-                <div class="row" id="yourBookDisplay">
+                <div class="row" id="yourBookDisplay" style="display: none">
                     {{#unless authoredBooks}}
                     <h3 class="text-secondary">No books written yet</h3>
                     {{/unless}}
@@ -73,12 +76,15 @@
                     {{#each authoredBooks}}
                     {{#if this.id}}
                     <div class="col-md-3 mb-3 text-white">
-                        <div class="card book grow text-white" style="background-image: url('{{this.imageUrl}}');">
-                            <a href="/book/{{this.id}}">
-                                <div class="card-img-overlay">
-                                    <h4>{{this.title}}</h4>
-                                </div>
-                            </a>
+                        <div class="book-box w-100 rounded border-secondary border">
+                            <div class="card book text-white rounded-0 border-0"
+                                style="background-image: url('{{this.imageUrl}}');">
+                                <a href="/book/{{this.id}}">
+                                    <div class="card-img-overlay">
+                                        <h4>{{this.title}}</h4>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                         <button data-toggle="tooltip" data-placement="bottom" title="Delete Book"
                             class="delete-btn btn text-blue" data-id="{{this.id}}"><i

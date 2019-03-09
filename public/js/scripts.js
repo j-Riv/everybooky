@@ -36,7 +36,7 @@ if (document.getElementById("confirmPassword")) {
 }
 
 // search
-let searchType;
+let searchType = 'Title';
 // get search type
 $('#typeList a').on('click', function() {
     searchType = $(this).html();
