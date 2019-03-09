@@ -53,6 +53,14 @@
   background-color: #191919;
 }
 
+.night .navbar-text .text-dark {
+  color: #fff !important;
+}
+
+.night .navbar-text .text-dark:hover {
+  color: #fff !important;
+}
+
 .night .action-button,
 .night #sortBtn {
   background-color: #191919 !important;

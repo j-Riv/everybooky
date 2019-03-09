@@ -46,6 +46,14 @@ $lighter-black: #191919;
     .btn-blue {
         background-color: $lighter-black;
     }
+    .navbar-text {
+        .text-dark {
+            color: #fff !important;
+            &:hover {
+                color: #fff !important;
+            }
+        }
+    }
     .action-button,
     #sortBtn {
         background-color: $lighter-black !important;
