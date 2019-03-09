@@ -9,11 +9,13 @@
     {{#if booksObj}}
     {{#each booksObj}}
     <div class="row">
-        <div class="col-md-3">
-            <a href="/book/{{this.id}}">
-                <div class="card book grow text-white" style="background-image: url('{{this.imageUrl}}');">
-                </div>
-            </a>
+        <div class="col-md-3 mb-3 text-center">
+            <div class="book-box w-100 rounded border-secondary border">
+                <a href="/book/{{this.id}}">
+                    <div class="card book text-white" style="background-image: url('{{this.imageUrl}}');">
+                    </div>
+                </a>
+            </div>
         </div>
         <div class="col-md-9 text-black">
             <h1><a class="text-black" href="/book/{{this.id}}">{{this.title}}</a></h1>

@@ -22,6 +22,43 @@ a,
   height: 207px;
 }
 
+#dashboard {
+  font-family: 'Quicksand', sans-serif;
+}
+
+.selected {
+  border-bottom: 1px solid black;
+}
+
+.contributor:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.pro-tab:hover {
+  cursor: pointer;
+  border-bottom: 1px solid #02A4D3;
+}
+
+.book-box {
+  overflow: hidden;
+  background-color: black;
+}
+
+.book:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+  transition: .2s ease-in-out;
+}
+
+.book-page {
+  height: 330px;
+  background-color: #e9ecef;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
 textarea:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
@@ -40,19 +77,6 @@ input[type="color"]:focus,
 .uneditable-input:focus {
   border-color: #ced4da;
   box-shadow: none;
-}
-
-#dashboard {
-  font-family: 'Quicksand', sans-serif;
-}
-
-.selected {
-  border-bottom: 1px solid black;
-}
-
-.pro-tab:hover {
-  cursor: pointer;
-  border-bottom: 1px solid #02A4D3;
 }
 
 /* Helpers */
@@ -679,7 +703,7 @@ input[type="color"]:focus,
 }
 
 .book {
-  height: 300px;
+  height: 330px;
   background-color: #e9ecef;
   background-repeat: no-repeat;
   background-position: center;
