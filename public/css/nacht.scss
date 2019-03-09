@@ -139,4 +139,13 @@ $lighter-black: #191919;
             background-color: $lighter-black;
         }
     }
+    // dashboard
+    #dashboard {
+        .pro-tab {
+            &.selected,
+            &:hover {
+                border-bottom: 1px solid $lighter-black;
+            }
+        }
+    }
 }

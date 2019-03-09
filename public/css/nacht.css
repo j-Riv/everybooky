@@ -146,3 +146,7 @@
 .night #team .jumbotron {
   background-color: #191919;
 }
+
+.night #dashboard .pro-tab.selected, .night #dashboard .pro-tab:hover {
+  border-bottom: 1px solid #191919;
+}
