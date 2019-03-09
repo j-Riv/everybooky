@@ -16,7 +16,7 @@
                 let temp = [];
                 results.forEach(author => {
                     if (!temp.includes(author.id)) {
-                        let contributor = `<li class='contributor' data-id='${author.id}'>${author.lastname}, ${author.firstname}</li>`;
+                        let contributor = `<div class='contributor dropdown-item' data-id='${author.id}'>${author.lastname}, ${author.firstname}</div>`;
                         contributors.append(contributor);
                     }
                     temp.push(author.id);
