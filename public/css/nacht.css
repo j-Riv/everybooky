@@ -26,9 +26,17 @@
   color: #222 !important;
 }
 
+.night .dropdown-item {
+  color: #222 !important;
+}
+
 .night .book {
   background-color: #000 !important;
   border: 1px solid #191919;
+}
+
+.night hr {
+  border-top: 1px solid #191919;
 }
 
 .night a,
@@ -137,4 +145,8 @@
 
 .night #team .jumbotron {
   background-color: #191919;
+}
+
+.night #dashboard .pro-tab.selected, .night #dashboard .pro-tab:hover {
+  border-bottom: 1px solid #191919;
 }
