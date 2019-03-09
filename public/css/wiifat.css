@@ -50,6 +50,11 @@ input[type="color"]:focus,
   border-bottom: 1px solid black;
 }
 
+.contributor:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .pro-tab:hover {
   cursor: pointer;
   border-bottom: 1px solid #02A4D3;

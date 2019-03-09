@@ -26,6 +26,8 @@ module.exports = function(app, passport) {
 
     app.get('/api/users/book/:id', apiController.getUsersByBook);
 
+    app.get('/api/user/profile/:id', apiController.userProfile);
+
     // mode
     app.put('/api/dark/', apiController.darkMode);
 

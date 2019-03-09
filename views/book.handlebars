@@ -17,14 +17,14 @@
             <div class="col-2">
                 {{#if loggedIn}}
                 {{#ifEquals user.id book.author}}
-                    <i class="fas fa-cog float-right rotate" data-toggle="modal" data-target="#updateBookModal"></i>
+                <i class="fas fa-cog float-right rotate" data-toggle="modal" data-target="#updateBookModal"></i>
                 {{/ifEquals}}
                 {{/if}}
             </div>
         </div>
         <div class="btn-group dropright float-left mb-2">
-            <button type="button" class="btn btn-transparent dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
+            <button type="button" class="btn btn-transparent dropdown-toggle" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 Contributors
             </button>
             <div class="dropdown-menu">
@@ -60,7 +60,8 @@
             {{#unless book.completed}}
             <button class="btn btn-blue border-circle" data-toggle="collapse" href="#multiCollapseAddLine" role="button"
                 aria-expanded="false" aria-controls="multiCollapseAddLine">
-                <span data-toggle="tooltip" data-placement="top" title="Add Line"><i class="fas fa-pencil-alt"></i></span>
+                <span data-toggle="tooltip" data-placement="top" title="Add Line"><i
+                        class="fas fa-pencil-alt"></i></span>
             </button>
             {{/unless}}
             {{#ifEquals user.id book.author}}
@@ -71,7 +72,8 @@
             <!-- Will not show this button once the book is completed-->
             {{#unless book.completed}}
             <button class="btn btn-blue border-circle" data-toggle="modal" data-target="#confirmModal">
-                <span data-toggle="tooltip" data-placement="top" title="Complete Book"><i class="fas fa-check-circle"></i></span>
+                <span data-toggle="tooltip" data-placement="top" title="Complete Book"><i
+                        class="fas fa-check-circle"></i></span>
             </button>
             {{/unless}}
             {{/ifEquals}}
@@ -167,6 +169,7 @@
     </div>
 </div>
 <!-- update post/line modal -->
+<div id="hiddenId" data-id="{{user.id}}"></div>
 <!-- confirm modal-->
 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="finalize" aria-hidden="true">
     <div class="modal-dialog" role="document">

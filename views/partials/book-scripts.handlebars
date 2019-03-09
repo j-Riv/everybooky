@@ -1,4 +1,5 @@
 <script>
+
     // socket.io
     $(function () {
         const socket = io();
@@ -15,9 +16,7 @@
                 let temp = [];
                 results.forEach(author => {
                     if (!temp.includes(author.id)) {
-                        let contributor = `
-                        <li>${author.lastname}, ${author.firstname}</li>
-                    `;
+                        let contributor = `<li class='contributor' data-id='${author.id}'>${author.lastname}, ${author.firstname}</li>`;
                         contributors.append(contributor);
                     }
                     temp.push(author.id);
@@ -54,17 +53,17 @@
         });
 
         $(document).on('keypress', function (e) {
-        if (e.which == 13) {
-            addLine();
-        }
+            if (e.which == 13) {
+                addLine();
+            }
         });
 
         //get changes
         socket.on('added line: {{book.title}}', function (res) {
             console.log('added line: ' + res.line);
             let content = `
-                    <span id="line-${res.id}" class="post-line" data-id="${res.id}">${res.line}</span>
-                `;
+                        <span id="line-${res.id}" class="post-line" data-id="${res.id}">${res.line}</span>
+                    `;
             $('#bookContent').append(content);
             // if new contributor pull contributors again
             if (!bookContributors.includes(Number(res.contributorId))) {
@@ -125,7 +124,7 @@
             }).catch(err => {
                 console.error(err);
             });
-            });
+                });
 
         // edit post
         $('#editPosts').on('click', (e) => {
@@ -141,6 +140,23 @@
             $('#updateLineId').val(id);
             // toggle modal
             $('#updatePostModal').modal('toggle')
+        });
+
+        $(document).on('click', '.contributor', function (e) {
+            e.preventDefault();
+            let user = $('#hiddenId').attr('data-id');
+            console.log('user id: ' + user);
+            let id = $(this).attr('data-id');
+            if (user === id) {
+                window.location.href = '/dashboard';
+            }
+            else {
+                $.ajax('/api/user/profile/' + id, {
+                    type: "GET"
+                }).then(results => {
+                    window.location.href = '/api/user/profile/' + id;
+                });
+            }
         });
 
         $('#updatePost').on('click', () => {
