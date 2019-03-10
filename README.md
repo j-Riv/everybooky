@@ -2,7 +2,7 @@
 
 A web app designed to allow people to come together and write stories, one line at a time.
 
-**Link** [Everybooky](https://sleepy-caverns-35821.herokuapp.com/)
+**Link** [Everybooky](https://everybooky.herokuapp.com/)
 
 ![Everybooky](/public/images/screenshots/this-is-everybooky.jpg)
 
