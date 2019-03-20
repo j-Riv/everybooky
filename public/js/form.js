@@ -4,7 +4,7 @@ $('#createBookForm').submit(function(event) {
         event.stopPropagation();
     } else {
         //do your ajax submition here
-        let book = {
+        const book = {
             title: $('#title').val().trim(),
             genre: $('#genre').val().trim(),
             imageUrl: $('#imageUrl').val().trim(),
@@ -16,9 +16,9 @@ $('#createBookForm').submit(function(event) {
             type: "POST",
             data: book
         }).then(result => {
-            var bookId = result.id
+            const bookId = result.id
             if (result) {
-                let post = {
+                const post = {
                     line: $('#post').val().trim(),
                     userId: $('#userId').val().trim(),
                     bookId: bookId
