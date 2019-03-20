@@ -1,6 +1,6 @@
-var numUsers = 0;
+let numUsers = 0;
 module.exports.respond = function(socket) {
-    var addedUser = false;
+    let addedUser = false;
     // when the client emits 'new message', this listens and executes
     socket.on('new message', (data) => {
         // we tell the client to execute 'new message'
