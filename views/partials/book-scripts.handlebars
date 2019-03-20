@@ -3,7 +3,7 @@
     // socket.io
     $(function () {
         const socket = io();
-        const bookContributors = [];
+        let bookContributors = [];
 
         function getContributors() {
             const contributors = $('#contList');
