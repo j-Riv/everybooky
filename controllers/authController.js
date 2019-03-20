@@ -27,7 +27,7 @@ module.exports = {
             });
     },
     getBooksSorted: (req, res) => {
-        let sortType = req.params.type
+        const sortType = req.params.type
         models.Book.findAll({}).then(results => {
             if (sortType === 'new') {
                 results.sort((a, b) => (a.id < b.id) ? 1 : -1)
@@ -57,7 +57,7 @@ module.exports = {
         }
     },
     dashboard: (req, res) => {
-        let id = req.user.id;
+        const id = req.user.id;
         // get book information
         models.Post.findAll({
             where: {
@@ -106,7 +106,7 @@ module.exports = {
         });
     },
     editBook: (req, res) => {
-        let id = req.params.id;
+        const id = req.params.id;
         // update views
         models.Book.findOne({
             where: {
@@ -197,7 +197,7 @@ module.exports = {
             },
             include: [models.Book]
         }).then(results => {
-            let books = {
+            const books = {
                 booksObj: results,
                 mode: darkMode(req)
             };
