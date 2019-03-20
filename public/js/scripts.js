@@ -43,7 +43,7 @@ $('#typeList a').on('click', function() {
 });
 // do the search
 $('#searchButton').on('click', function() {
-    let searchTerm = $('#searchBar').val().trim();
+    const searchTerm = $('#searchBar').val().trim();
     // if not empty
     if (searchType === '') {
         searchType = 'Title'
@@ -61,7 +61,7 @@ $('#searchButton').on('click', function() {
 // Delete book button
 $('.delete-btn').click(function(e) {
     e.preventDefault();
-    let id = $(this).attr('data-id');
+    const id = $(this).attr('data-id');
     console.log('id:' + id);
     $.ajax('/api/book/' + id, {
         type: 'DELETE'
