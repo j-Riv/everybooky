@@ -11,8 +11,7 @@
             contributors.empty();
             $.ajax('/api/users/book/' + {{ book.id }}, {
             type: 'GET'
-        }).then(
-            function (results) {
+        }).then(results => {
                 const temp = [];
                 results.forEach(author => {
                     if (!temp.includes(author.id)) {
@@ -25,7 +24,7 @@
             });
         };
 
-        function addLine() {
+        const addLine = () => {
             const theLine = {
                 line: $('#line').val().trim(),
                 userId: $('#user-Id').val().trim(),
@@ -37,8 +36,7 @@
             $.ajax('/api/book/post', {
                 type: 'POST',
                 data: theLine
-            }).then(
-                function (result) {
+            }).then(result => {
                     console.log('response from server:' + result);
                 }
             );
@@ -47,19 +45,19 @@
             return false;
         }
 
-        $('#addLine').on('click', function (e) {
+        $('#addLine').on('click', e => {
             e.preventDefault();
             addLine();
         });
 
-        $(document).on('keypress', function (e) {
+        $(document).on('keypress', e =>{
             if (e.which == 13) {
                 addLine();
             }
         });
 
         //get changes
-        socket.on('added line: {{book.title}}', function (res) {
+        socket.on('added line: {{book.title}}', res => {
             console.log('added line: ' + res.line);
             const content = `
                         <span id="line-${res.id}" class="post-line" data-id="${res.id}">${res.line}</span>
@@ -127,11 +125,11 @@
                 });
 
         // edit post
-        $('#editPosts').on('click', (e) => {
+        $('#editPosts').on('click', e => {
             const posts = $('.post-line');
             posts.addClass('edit-line');
         });
-        $(document).on('click', '.edit-line', function () {
+        $(document).on('click', '.edit-line', function() {
             const post = $(this);
             const line = post.html();
             const id = post.attr('data-id');
@@ -142,7 +140,7 @@
             $('#updatePostModal').modal('toggle')
         });
 
-        $(document).on('click', '.contributor', function (e) {
+        $(document).on('click', '.contributor', function(e) {
             e.preventDefault();
             const user = $('#hiddenId').attr('data-id');
             console.log('user id: ' + user);
