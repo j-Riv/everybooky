@@ -3,7 +3,7 @@
     // socket.io
     $(function () {
         const socket = io();
-        let bookContributors = [];
+        const bookContributors = [];
 
         function getContributors() {
             const contributors = $('#contList');
@@ -13,7 +13,7 @@
             type: 'GET'
         }).then(
             function (results) {
-                let temp = [];
+                const temp = [];
                 results.forEach(author => {
                     if (!temp.includes(author.id)) {
                         let contributor = `<div class='contributor dropdown-item' data-id='${author.id}'>${author.lastname}, ${author.firstname}</div>`;
@@ -61,7 +61,7 @@
         //get changes
         socket.on('added line: {{book.title}}', function (res) {
             console.log('added line: ' + res.line);
-            let content = `
+            const content = `
                         <span id="line-${res.id}" class="post-line" data-id="${res.id}">${res.line}</span>
                     `;
             $('#bookContent').append(content);
@@ -144,9 +144,9 @@
 
         $(document).on('click', '.contributor', function (e) {
             e.preventDefault();
-            let user = $('#hiddenId').attr('data-id');
+            const user = $('#hiddenId').attr('data-id');
             console.log('user id: ' + user);
-            let id = $(this).attr('data-id');
+            const id = $(this).attr('data-id');
             if (user === id) {
                 window.location.href = '/dashboard';
             }
@@ -178,7 +178,7 @@
         });
 
         $('#finishBook').click(() => {
-            let id = $('#finishBook').data('id');
+            const id = $('#finishBook').data('id');
             console.log(id);
             $.ajax('/api/book/complete/' + id, {
                 type: "PUT",
