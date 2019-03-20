@@ -32,7 +32,7 @@ module.exports = {
             imageUrl: book.imageUrl,
             author: book.author
         }).then(result => {
-            let bookObj = {
+            const bookObj = {
                 id: result.id,
                 title: book.title
             }
@@ -120,7 +120,7 @@ module.exports = {
             UserId: req.body.userId,
             BookId: req.body.bookId
         }).then(result => {
-            let postObj = {
+            const postObj = {
                 id: result.id,
                 line: req.body.line,
                 contributorId: req.body.userId
@@ -132,7 +132,7 @@ module.exports = {
         });
     },
     getPosts: (req, res) => {
-        let id = req.params.id;
+        const id = req.params.id;
         models.Post.findAll({
             where: {
                 BookId: id
@@ -148,7 +148,7 @@ module.exports = {
         });
     },
     updatePost: (req, res) => {
-        let post = req.body;
+        const post = req.body;
         models.Post.update({
             body: post.updatedLine
         }, {
@@ -172,7 +172,7 @@ module.exports = {
         });
     },
     getCurrentUser: (req, res) => {
-        let id = req.params.id;
+        const id = req.params.id;
         models.User.findOne({
             where: {
                 id: id
@@ -212,16 +212,16 @@ module.exports = {
         });
     },
     getUsersByBook: (req, res) => {
-        let id = req.params.id;
+        const id = req.params.id;
         models.Post.findAll({
             where: {
                 BookId: id
             },
             include: [models.Book]
         }).then(results => {
-            var userObj = [];
+            const userObj = [];
             // save ids to list
-            let userIdList = [];
+            const userIdList = [];
             results.forEach(post => {
                 userIdList.push(post.UserId);
             });
@@ -249,7 +249,7 @@ module.exports = {
         });
     },
     userProfile: (req, res) => {
-        let id = req.params.id;
+        const id = req.params.id;
         console.log(id);
         models.User.findOne({
             where: {
