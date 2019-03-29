@@ -6,11 +6,6 @@ A web app designed to allow people to come together and write stories, one line 
 
 ![Everybooky](/public/images/screenshots/this-is-everybooky.jpg)
 
-## Tecnologies Used:
-* Javascript
-* jQuery
-* SASS
-
 ## Built With:
 * [Bootstrap](https://getbootstrap.com/)
 * [jQuery](https://jquery.com/)
